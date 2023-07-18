@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+@await Component.InvokeAsync("_HeadPartial")
+<body>
+    <!-- START PRELOADER -->
+  
+    <!-- END OF /. PRELOADER -->
+
+        @await Component.InvokeAsync("_NavbarPartial")
+        <!-- End Navigation -->
+        <!-- START PAGE TITILE SECTION -->
+        <div class="player-profile-section page-title-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="section-title profile-title">
+                            <h1>Fikstür</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="pagination-area">
+                            <ul>
+                                <li><a href="#">Ana Sayfa<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                      
+                                <li class="active"><a href="#">Fikstür</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END OF /. PAGE TITLE SECTION -->
+        @await Component.InvokeAsync("_FixturePartial")
+
+
+
+        <div class="prev-and-next-sec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="prev-and-next-btn-section prev-and-next-btn-section1">
+                            <div class="prev-and-next-btn">
+                                <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i>Prev</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="prev-and-next-btn-section">
+                            <div class="prev-and-next-btn">
+                                <a href="#">Next<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     <br />
+       
+       
+  
+    <!-- jQuery libery -->
+    <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/sport_template-master/js/vendor/bootstrap.min.js"></script>
+    <!-- jQuery Ui -->
+    <script src="~/sport_template-master/js/jquery-ui-min.js"></script>
+    <!-- Owl -->
+    <script src="~/sport_template-master/js/owl.carousel.min.js"></script>
+    <!-- Downcount -->
+    <script src="~/sport_template-master/js/jquery.downCount.js"></script>
+    <!-- Bootsnav -->
+    <script src="~/sport_template-master/js/bootsnav.js"></script>
+    <!-- Isotope -->
+    <script src="~/sport_template-master/js/isotope.pkgd.min.js"></script>
+    <!-- prettyphoto -->
+    <script src="~/sport_template-master/js/jquery.prettyPhoto.js"></script>
+    <!-- tweetie -->
+    <script src="~/sport_template-master/scripts/Tweetie/tweetie.min.js"></script>
+    <!-- appear -->
+    <script src="~/sport_template-master/js/jquery.appear.js"></script>
+    <!-- waypoint -->
+    <script src="~/sport_template-master/js/waypoints.min.js"></script>
+    <!-- progress bar -->
+    <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
+    <!-- custom -->
+    <script src="~/sport_template-master/js/custom.js"></script>
+</body>
+</html>

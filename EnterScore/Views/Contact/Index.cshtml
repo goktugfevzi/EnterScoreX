@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+@await Component.InvokeAsync("_HeadPartial")
+<body>
+    <!-- START PRELOADER -->
+    <div id="preloader">
+        <div id="loader-wrapper">
+            <div class="loader1"></div>
+        </div>
+    </div>
+    <!-- END OF /. PRELOADER -->
+
+   
+        <!-- START HEADER TOP SECTION -->
+        @await Component.InvokeAsync("_NavbarPartial")
+          
+        
+        <!-- End Navigation -->
+        <!-- START PAGE TITILE SECTION -->
+        <div class="page-title-section contact-page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-title">
+                            <h2>İLETİŞİM</h2>
+                            <p>Öneri veya Şikayetleriniz için Bize Ulaşın</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- END OF /. PAGE TITLE SECTION -->
+        <!-- START CONTACT INFO SECTION -->
+    @await Component.InvokeAsync("_ContactPartial")
+       <!-- END OF /. CONTACT INFO SECTION  -->
+    @await Component.InvokeAsync("_MapPartial")
+
+
+     
+   
+    <!-- jQuery libery -->
+    <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/sport_template-master/js/vendor/bootstrap.min.js"></script>
+    <!-- jQuery Ui -->
+    <script src="~/sport_template-master/js/jquery-ui-min.js"></script>
+    <!-- Owl -->
+    <script src="~/sport_template-master/js/owl.carousel.min.js"></script>
+    <!-- Downcount -->
+    <script src="~/sport_template-master/js/jquery.downCount.js"></script>
+    <!-- Bootsnav -->
+    <script src="~/sport_template-master/js/bootsnav.js"></script>
+    <!-- Isotope -->
+    <script src="~/sport_template-master/js/isotope.pkgd.min.js"></script>
+    <!-- prettyphoto -->
+    <script src="~/sport_template-master/js/jquery.prettyPhoto.js"></script>
+    <!-- tweetie -->
+    <script src="~/sport_template-master/scripts/Tweetie/tweetie.min.js"></script>
+    <!-- appear -->
+    <script src="~/sport_template-master/js/jquery.appear.js"></script>
+    <!-- waypoint -->
+    <script src="~/sport_template-master/js/waypoints.min.js"></script>
+    <!-- progress bar -->
+    <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
+    <!-- map -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!-- knob -->
+    <script src="~/sport_template-master/js/jquery.knob.js"></script>
+    <!-- throttle -->
+    <script src="~/sport_template-master/js/jquery.throttle.js"></script>
+    <!-- classycount -->
+    <script src="~/sport_template-master/js/jquery.classycountdown.min.js"></script>
+    <!-- custom -->
+    <script src="~/sport_template-master/js/custom.js"></script>
+
+</body>
+</html>
+
+    

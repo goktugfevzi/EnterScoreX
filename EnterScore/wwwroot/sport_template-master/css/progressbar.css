@@ -1,0 +1,75 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+$primaryColor : #D00463;
+$secondaryColor : #389ba6;
+$mainColor : #D00463;
+$sizeContent : 210px;
+$strokeWidth : 5;
+$strokeLineCap : round;
+$fontfamily : 'Roboto', sans-serif;
+
+body{
+  background-color: #1b1a1a;
+	color: #ffffff;
+	font-family: $fontfamily;
+}
+.ProgressBar,
+.ProgressBar-contentCircle{
+    display: table;
+    height: $sizeContent;
+    position: absolute;
+    width: $sizeContent;
+}
+.ProgressBar-circle,
+.ProgressBar-background{
+    //animation: progress 1s;
+    fill: none; // background color
+    stroke: $primaryColor; // path color
+    stroke-width: $strokeWidth; // path size
+    stroke-linecap: $strokeLineCap;
+    stroke-dasharray: 0; // circonférence du cercle
+    stroke-dashoffset: 0; // longeur du cercle
+    position: relative;
+    z-index: 10;
+}
+.ProgressBar-background{
+    stroke: white; // path color
+  stroke-width: $strokeWidth - 1;
+    z-index: 0;
+}
+.ProgressBar-percentage{
+  color: $secondaryColor;
+  font-size: 40px;
+  text-align: center;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/************************/
+/* structure de la page */
+/************************/
+.Content{
+	height: 270px;
+	margin: -135px 0 0 0;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+}
+.List{
+  display: flex;
+  list-style: none;
+  margin: 10px auto;
+  padding: 0px;
+  width: $sizeContent * 4;
+	height: $sizeContent;
+}
+
+.List-item{
+  float: left;
+  width: $sizeContent;
+}
+
+.Title{
+	text-align: center;
+}

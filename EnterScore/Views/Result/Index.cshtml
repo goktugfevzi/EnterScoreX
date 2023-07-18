@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+@await Component.InvokeAsync("_HeadPartial")
+
+<body>
+    <!-- START PRELOADER -->
+    <div id="preloader">
+        <div id="loader-wrapper">
+            <div class="loader1"></div>
+        </div>
+    </div>
+    <!-- END OF /. PRELOADER -->
+
+    <div class="wrapper">
+        <!-- START HEADER TOP SECTION -->
+        @await Component.InvokeAsync("_NavbarPartial")
+        <!-- End Navigation -->
+        <!-- start of /. match today section -->
+        @await Component.InvokeAsync("_MatchTodayPartial")
+
+        @await Component.InvokeAsync("_MatchDetailsPartial")
+
+      
+    
+      
+    </div><!-- end /. wrapper -->
+    <!-- jQuery libery -->
+    <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/sport_template-master/js/vendor/bootstrap.min.js"></script>
+    <!-- jQuery Ui -->
+    <script src="~/sport_template-master/js/jquery-ui-min.js"></script>
+    <!-- Owl -->
+    <script src="~/sport_template-master/js/owl.carousel.min.js"></script>
+    <!-- Downcount -->
+    <script src="~/sport_template-master/js/jquery.downCount.js"></script>
+    <!-- Bootsnav -->
+    <script src="~/sport_template-master/js/bootsnav.js"></script>
+    <!-- Isotope -->
+    <script src="~/sport_template-master/js/isotope.pkgd.min.js"></script>
+    <!-- prettyphoto -->
+    <script src="~/sport_template-master/js/jquery.prettyPhoto.js"></script>
+    <!-- tweetie -->
+    <script src="~/sport_template-master/scripts/Tweetie/tweetie.min.js"></script>
+    <!-- appear -->
+    <script src="~/sport_template-master/js/jquery.appear.js"></script>
+    <!-- waypoint -->
+    <script src="~/sport_template-master/js/waypoints.min.js"></script>
+    <!-- progress bar -->
+    <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
+    <!-- custom -->
+    <script src="~/sport_template-master/js/custom.js"></script>
+    <!-- facebook like js -->
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=937758502980138";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</body>
+</html>

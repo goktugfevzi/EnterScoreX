@@ -1,0 +1,162 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- web site title -->
+    <title>Sportsox | Sport Team Clubs HTML Template</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="~/sport_template-master/images/favicon.png">
+
+    <!-- style -->
+    <link rel="stylesheet" href="~/sport_template-master/css/style.css">
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+    <![endif]-->
+</head>
+<body class="home2">
+    <!-- START PRELOADER -->
+    <div id="preloader">
+        <div id="loader-wrapper">
+            <div class="loader1"></div>
+        </div>
+    </div>
+    <!-- END OF /. PRELOADER -->
+
+    <div class="wrapper">
+        <!-- START COMING SOON SECTION -->
+        <div class="page-area-section-error comign-soon-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="comign-soon">
+                            <h2>Coming Soon</h2>
+                            <div id="countdown1">
+                                <img src="~/sport_template-master/images/ball.png" class="img-responsive" width="355" height="350" style="border: 0" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3">
+                        <div id="countdowntimer" class="home2-timer">
+                            <ul class="countdown center">
+                                <li class="couner-box">
+                                    <span class="days">00</span>
+                                    <p class="displayformat">Days</p>
+                                    <p class="time-divder">:</p>
+                                </li>
+                                <li class="couner-box">
+                                    <span class="hours">00</span>
+                                    <p class="displayformat">Hours</p>
+                                    <p class="time-divder">:</p>
+                                </li>
+                                <li class="couner-box">
+                                    <span class="minutes">00</span>
+                                    <p class="displayformat">Minutes</p>
+                                    <p class="time-divder">:</p>
+                                </li>
+                                <li class="couner-box">
+                                    <span class="seconds">00</span>
+                                    <p class="displayformat">Seconds</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END OF /. COMING SOON SECTION -->
+        <!-- start of twtter section -->
+       
+
+    </div>
+
+    <!-- jQuery libery -->
+    <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/sport_template-master/js/vendor/bootstrap.min.js"></script>
+    <!-- jQuery Ui -->
+    <script src="~/sport_template-master/js/jquery-ui-min.js"></script>
+    <!-- Owl -->
+    <script src="~/sport_template-master/js/owl.carousel.min.js"></script>
+    <!-- Downcount -->
+    <script src="~/sport_template-master/js/jquery.downCount.js"></script>
+    <!-- Bootsnav -->
+    <script src="~/sport_template-master/js/bootsnav.js"></script>
+    <!-- Isotope -->
+    <script src="~/sport_template-master/js/isotope.pkgd.min.js"></script>
+    <!-- prettyphoto -->
+    <script src="~/sport_template-master/js/jquery.prettyPhoto.js"></script>
+    <!-- tweetie -->
+    <script src="~/sport_template-master/scripts/Tweetie/tweetie.min.js"></script>
+    <!-- appear -->
+    <script src="~/sport_template-master/js/jquery.appear.js"></script>
+    <!-- waypoint -->
+    <script src="~/sport_template-master/js/waypoints.min.js"></script>
+    <!-- progress bar -->
+    <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
+    <!-- knob -->
+    <script src="~/sport_template-master/js/jquery.knob.js"></script>
+    <!-- throttle -->
+    <script src="~/sport_template-master/js/jquery.throttle.js"></script>
+    <!-- classycount -->
+    <script src="~/sport_template-master/js/jquery.classycountdown.min.js"></script>
+    <!-- custom -->
+    <script src="~/sport_template-master/js/custom.js"></script>
+    <script type="~/sport_template-master/text/javascript">
+
+        $('#countdown1').ClassyCountdown({
+            end: $.now() + 10000,
+            labels: false,
+            style: {
+                element: "",
+                textResponsive: .5,
+                days: {
+                    gauge: {
+                        thickness: .03,
+                        bgColor: "rgba(255,255,255,0.05)",
+                        fgColor: "#1abc9c"
+                    },
+                    textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                },
+                hours: {
+                    gauge: {
+                        thickness: .03,
+                        bgColor: "rgba(255,255,255,0.05)",
+                        fgColor: "#2980b9"
+                    },
+                    textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                },
+                minutes: {
+                    gauge: {
+                        thickness: .03,
+                        bgColor: "rgba(255,255,255,0.05)",
+                        fgColor: "#8e44ad"
+                    },
+                    textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                },
+                seconds: {
+                    gauge: {
+                        thickness: .03,
+                        //bgColor: "rgba(255,255,255,0.05)",
+                        fgColor: "#fec722"
+                    },
+                    textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                }
+
+            },
+            onEndCallback: function () {
+                console.log("Time out!");
+            }
+        });
+    </script>
+</body>
+</html>
