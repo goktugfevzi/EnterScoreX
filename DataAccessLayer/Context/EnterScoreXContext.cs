@@ -24,16 +24,29 @@ namespace DataAccessLayer.Context
                .HasForeignKey(z => z.AwayTeamID)
                .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<Result>()
+            modelBuilder.Entity<Fixture>()
              .HasOne(x => x.HomeTeam)
              .WithMany(y => y.HomesResult)
              .HasForeignKey(z => z.HomeTeamID)
              .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<Result>()
+            modelBuilder.Entity<Fixture>()
                .HasOne(x => x.AwayTeam)
                .WithMany(y => y.AwayResult)
                .HasForeignKey(z => z.AwayTeamID)
+               .OnDelete(DeleteBehavior.ClientSetNull);
+
+
+            modelBuilder.Entity<Goal>()
+             .HasOne(x => x.GoalForTeam)
+             .WithMany(y => y.GoalForTeam)
+             .HasForeignKey(z => z.GoalForTeamID)
+             .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Goal>()
+               .HasOne(x => x.GoalAgainstTeam)
+               .WithMany(y => y.GoalAgainstTeam)
+               .HasForeignKey(z => z.GoalAgainstTeamID)
                .OnDelete(DeleteBehavior.ClientSetNull);
 
 
@@ -49,7 +62,7 @@ namespace DataAccessLayer.Context
         public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Referee> Referees { get; set; }
-        public DbSet<Result> Results { get; set; }
+        public DbSet<Fixture> Results { get; set; }
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<Team> Teams { get; set; }

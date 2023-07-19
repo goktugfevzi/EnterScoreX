@@ -9,6 +9,6 @@ namespace EntityLayer.Concrete
     public class Position
     {
         public int PositionID { get; set; }
-        public string PositionName { get; set; }
+        public string Name { get; set; }
     }
 }

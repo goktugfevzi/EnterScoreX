@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterScore", "EnterScore\EnterScore.csproj", "{6B524466-EF6E-481A-8ACA-AE0F097B2AA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnterScore", "EnterScore\EnterScore.csproj", "{6B524466-EF6E-481A-8ACA-AE0F097B2AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{3D983EFB-0460-4413-BABF-3F72DFAB9CC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{3D983EFB-0460-4413-BABF-3F72DFAB9CC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{123EA72E-4808-474B-9C1B-C46537810C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{123EA72E-4808-474B-9C1B-C46537810C8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOLayer", "DTOLayer\DTOLayer.csproj", "{492B6E22-6301-46FF-81EE-98B504FF90AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOLayer", "DTOLayer\DTOLayer.csproj", "{492B6E22-6301-46FF-81EE-98B504FF90AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityLayer", "EntityLayer\EntityLayer.csproj", "{E5BA0072-C6E2-4BDC-801C-8C7B1FDBF25D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityLayer", "EntityLayer\EntityLayer.csproj", "{E5BA0072-C6E2-4BDC-801C-8C7B1FDBF25D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

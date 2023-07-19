@@ -1,0 +1,165 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dark Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Choices.js-->
+    <link rel="stylesheet" href="vendor/choices.js/public/assets/styles/choices.min.css">
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="~/admin_panel/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="~/admin_panel/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/admin_panel/img/favicon.ico">
+
+</head>
+<body>
+    <div class="d-flex align-items-stretch">
+        <!-- Sidebar Navigation-->
+        <nav id="sidebar">
+            <!-- Sidebar Header-->
+            <div class="sidebar-header d-flex align-items-center p-4">
+                <img class="avatar shadow-0 img-fluid rounded-circle" src="~/admin_panel/img/project-3.jpg" alt="...">
+                <div class="ms-3 title">
+                    <h1 class="h5 mb-1">EnterScoreX</h1>
+                </div>
+            </div>
+            <ul class="list-unstyled">
+                <li class="sidebar-item active">
+                    <a class="sidebar-link" href="index.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#real-estate-1"> </use>
+                        </svg><span>Sezonlar </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="tables.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#portfolio-grid-1"> </use>
+                        </svg><span>Takımlar </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="tables.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#portfolio-grid-1"> </use>
+                        </svg><span>Oyuncular </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="charts.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#sales-up-1"> </use>
+                        </svg><span>Fikstur </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="forms.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#survey-1"> </use>
+                        </svg><span>Goller </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="forms.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#survey-1"> </use>
+                        </svg><span>Maçlar </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="#exampledropdownDropdown" data-bs-toggle="collapse">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#browser-window-1"> </use>
+                        </svg><span>İstatistikler</span>
+                    </a>
+                    <ul class="collapse list-unstyled " id="exampledropdownDropdown">
+                        <li><a class="sidebar-link" href="#">Oyuncu İstatistikleri</a></li>
+                        <li><a class="sidebar-link" href="#">Takım İstatistikleri</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="#exampledropdownDropdown" data-bs-toggle="collapse">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#browser-window-1"> </use>
+                        </svg><span>Detaylar</span>
+                    </a>
+                    <ul class="collapse list-unstyled " id="exampledropdownDropdown">
+                        <li><a class="sidebar-link" href="#">Teknik Direktor</a></li>
+                        <li><a class="sidebar-link" href="#">Stadyum</a></li>
+                        <li><a class="sidebar-link" href="#">Hakemler</a></li>
+                        <li><a class="sidebar-link" href="#">Pozisyonlar</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="login.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#disable-1"> </use>
+                        </svg><span>Mesajlar </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="login.html">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#disable-1"> </use>
+                        </svg><span>Çıkış Yap </span>
+                    </a>
+                </li>
+
+        </nav>
+        <div class="page-content">
+            <section>
+                <div class="container-fluid">
+                    @RenderBody()
+                    <footer class="position-absolute bottom-0 bg-dash-dark-2 text-white text-center py-3 w-100 text-xs" id="footer">
+                        <div class="container-fluid text-center">
+                            <p class="mb-0 text-dash-gray">2023 EnterScoreX.</p>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+
+            <!-- Page Footer-->
+        </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="~/admin_panel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin_panel/vendor/just-validate/js/just-validate.min.js"></script>
+    <script src="~/admin_panel/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/admin_panel/vendor/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="~/admin_panel/js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="~/admin_panel/js/front.js"></script>
+    <script>
+
+        function injectSvgSprite(path) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", path, true);
+            ajax.send();
+            ajax.onload = function (e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+
+        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+
+    </script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</body>
+</html>

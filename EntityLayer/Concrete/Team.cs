@@ -21,7 +21,9 @@ namespace EntityLayer.Concrete
 
         public virtual ICollection<Match> HomesMatches { get; set; }
         public virtual ICollection<Match> AwayMatches { get; set; }
-        public virtual ICollection<Result> HomesResult { get; set; }
-        public virtual ICollection<Result> AwayResult { get; set; }
+        public virtual ICollection<Fixture> HomesResult { get; set; }
+        public virtual ICollection<Fixture> AwayResult { get; set; }
+        public virtual ICollection<Goal> GoalForTeam { get; set; }
+        public virtual ICollection<Goal> GoalAgainstTeam { get; set; }
     }
 }

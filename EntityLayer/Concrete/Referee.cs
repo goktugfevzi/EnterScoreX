@@ -9,6 +9,6 @@ namespace EntityLayer.Concrete
     public class Referee
     {
         public int RefereeID { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
     }
 }

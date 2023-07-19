@@ -20,6 +20,11 @@ namespace EntityLayer.Concrete
         public int MatchID { get; set; }
         public Match Match { get; set; }
 
+        public int? GoalForTeamID { get; set; }
+        public Team GoalForTeam { get; set; }
+
+        public int? GoalAgainstTeamID { get; set; }
+        public Team GoalAgainstTeam { get; set; }
 
     }
 }
