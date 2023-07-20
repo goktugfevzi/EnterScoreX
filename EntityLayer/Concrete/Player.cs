@@ -21,7 +21,7 @@ namespace EntityLayer.Concrete
         public string? Description { get; set; }
 
 
-        public int TeamID { get; set; }
+        public int? TeamID { get; set; }
         public Team Team { get; set; }
 
         public int PositionID { get; set; }

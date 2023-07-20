@@ -1,0 +1,19 @@
+﻿@model EntityLayer.Concrete.Coach
+
+@{
+    ViewData["Title"] = "AddCoach";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yeni Teknik Ekleme</h1>
+
+
+<form method="post">
+    <label>Teknik Adam Adı</label>
+    <input type="text" class="form-control border" name="Name" />
+    <br />
+
+    <button class="btn btn-outline-info">Teknik Adamı Kaydet</button>
+    <a href="/Admin/Referee" class="btn btn-outline-danger">Geri Dön</a>
+
+</form>
