@@ -1,0 +1,27 @@
+﻿@model EntityLayer.Concrete.Stadium
+
+@{
+    ViewData["Title"] = "AddStadium";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Stadyum Eklemek istermisin</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+    <label>Stadyum Adı</label>
+    <input type="text" class="form-control border" name="Name" />
+    <br />
+    <label>Şehir</label>
+    <input type="text" class="form-control border" name="City" />
+    <br />
+    <label>Kapasite</label>
+    <input type="text" class="form-control border" name="Capacity" />
+    <br />
+    <label>Fotoğraf</label>
+    <input type="file" class="form-control border" name="imageFile" />
+    <br />
+  
+    <button class="btn btn-outline-info">Stadyumu Kaydet</button>
+    <a href="/Admin/Stadium" class="btn btn-outline-danger">Geri Dön</a>
+</form>

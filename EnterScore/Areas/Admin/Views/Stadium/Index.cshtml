@@ -1,8 +1,42 @@
-﻿
+﻿@model List<EntityLayer.Concrete.Stadium>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Stadyum</h1>
 
+
+<div class="container">
+    <div class="column">
+        <div class="col-12">
+            <h3 class="titulo-tabla">Stadyumlar</h3>
+            <table id="ejemplo" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Fotoğraf</th>
+                        <th>İsim</th>
+                        <th>Şehir</th>
+                        <th>Kapasite</th>
+                        <th>Sil</th>
+                        <th>Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src=@item.ImageURL height="70" width="90"></td>
+                            <td>@item.Name</td>
+                            <td>@item.City</td>
+                            <td>@item.Capacity</td>
+                            <td><a href="/Admin/Stadium/UpdateStadium/@item.StadiumID" class="btn btn-outline-success">Düzenle</a></td>
+                            <td><a href="/Admin/Stadium/DeleteStadium/@item.StadiumID" class="btn btn-outline-danger">Sil</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="/Admin/Stadium/AddStadium" class="btn btn-outline-light">Yeni Stadyum Girişi</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model EntityLayer.Concrete.Stadium
+@{
+    ViewData["Title"] = "UpdateStadium";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Stadyum Güncelleme</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="StadiumID" value="@Model.StadiumID" />
+    <label>Stadyum Adı</label>
+    <input type="text" class="form-control border" name="Name" value="@Model.Name" />
+    <br />
+    <label>Şehir</label>
+    <input type="text" class="form-control border" name="City" value="@Model.City" />
+    <br />
+    <label>Kapasite</label>
+    <input type="text" class="form-control border" name="Capacity" value="@Model.Capacity" />
+    <br />
+    <label>Fotoğraf</label>
+    <input type="file" class="form-control border" name="imageFile" />
+    <br />
+
+    <button class="btn btn-outline-info">Stadyumu Güncelle</button>
+    <a href="/Admin/Stadium" class="btn btn-outline-danger">Geri Dön</a>
+
+</form>

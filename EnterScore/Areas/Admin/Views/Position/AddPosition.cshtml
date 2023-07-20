@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "AddPosition";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>AddPosition</h1>
+
+<form method="post">
+    <label>Pozisyon Adı</label>
+    <input type="text" class="form-control border" name="Name" />
+    <br />
+
+    <button class="btn btn-outline-info">Pozisyonu Kaydet</button>
+    <a href="/Admin/Referee" class="btn btn-outline-danger">Geri Dön</a>
+
+</form>

@@ -1,0 +1,18 @@
+﻿@model EntityLayer.Concrete.Position
+
+@{
+    ViewData["Title"] = "UpdatePosition";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Pozisyon Güncelleme page</h1>
+
+<form method="post">
+    <input type="hidden" name="PositionID" value="@Model.PositionID" />
+    <label>Pozisyon</label>
+    <input type="text" class="form-control border" name="Name" value="@Model.Name" / />
+    <br />
+
+    <button class="btn btn-outline-info">Pozisyonu Kaydet</button>
+    <a href="/Admin/Referee" class="btn btn-outline-danger">Geri Dön</a>
+</form>
