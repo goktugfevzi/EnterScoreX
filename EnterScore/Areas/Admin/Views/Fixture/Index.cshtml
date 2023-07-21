@@ -1,0 +1,41 @@
+﻿@model List<EntityLayer.Concrete.Fixture>
+
+@{
+    ViewData["Title"] = "Fikstür Sayfası";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Fikstür Sayfası</h1>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Veritabanında fikstür verileri bulunmamaktadır. <a href="/Admin/Fixture/CreateFixture/">Fixture Oluştur</a></p>
+}
+else
+{
+    <button id="playMatchesButton" class="btn btn-primary">Bu Haftaki Maçları Oyna</button>
+    <div class="row">
+        @foreach (var fixtureGroup in Model.GroupBy(f => f.Week))
+        {
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        Hafta @fixtureGroup.Key
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach (var fixture in fixtureGroup)
+                            {
+                                <li class="list-group-item">
+                                    Ev Sahibi Takım: @fixture.HomeTeamID, Deplasman Takım: @fixture.AwayTeamID
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+}

@@ -25,7 +25,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseStatusCodePagesWithReExecute("/ErrorPage/ErrorPage"/*, "?code{}"*/);
 app.UseAuthorization();
 
 app.MapControllerRoute(

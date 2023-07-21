@@ -4,7 +4,7 @@
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class First_M : Migration
+    public partial class Quaresma_Q8 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

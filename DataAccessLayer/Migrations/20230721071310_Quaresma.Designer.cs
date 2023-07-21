@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(EnterScoreXContext))]
-    [Migration("20230720173209_Table_Completed")]
-    partial class Table_Completed
+    [Migration("20230721071310_Quaresma")]
+    partial class Quaresma
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,7 +92,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("HomeTeamID");
 
-                    b.ToTable("Results");
+                    b.ToTable("Fixtures");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Goal", b =>

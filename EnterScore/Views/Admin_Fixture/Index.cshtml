@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-12">
+            <h3 class="titulo-tabla">Clientes Registrados </h3>
+
+
+            <table id="ejemplo" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Sil</th>
+                        <th>Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                    
+                        <td><a href="/Admin/Team/EditTeam/" class="btn btn-outline-success">Düzenle</a></td>
+                        <td><a href="/Admin/Team/DeleteTeam/" class="btn btn-outline-danger">Sil</a></td>
+                   
+                </tbody>
+              
+            </table>
+
+
+            <a href="/Admin/Team/AddTeam/" class="btn btn-outline-primary">Yeni Rehber Girişi</a>
+         
+
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

@@ -1,0 +1,53 @@
+﻿@model List<EntityLayer.Concrete.Team>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="container">
+    <div class="column">
+        <div class="col-12">
+            <h3 class="titulo-tabla">Kulüpler </h3>
+            <form method="post">
+                <!-- Selectbox ve Filtrele butonu burada -->
+            </form>
+
+            <table id="ejemplo" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Kulüp Adı</th>
+                        <th>Kulüp Sembolü</th>
+                        <th>Kulüp Teknik Direktörü</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Name</td>
+                            <td>@item.ImageUrl</td>
+
+                            @foreach (var item1 in ViewBag.CoachList)
+                            {
+                                if (item.CoachID == item1.CoachID)
+                                {
+                                    <td>@item1.Name</td>
+                                }
+                            }
+
+                            <td><a href="/Admin/Team/TeamUpdate/@item.TeamID" class="btn btn-outline-success">Güncelle</a></td>
+                            <td><a href="/Admin/Team/DeleteTeam/@item.TeamID" class="btn btn-outline-danger">Sil</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="/Admin/Team/AddTeam" class="btn btn-outline-light">Yeni Rehber Girişi</a>
+        </div>
+    </div>
+</div>

@@ -13695,3 +13695,126 @@ STYLE SWITCHER FOR DEMO
 #style-switch h4, #style-switch .h4 {
   color: #6a6c70;
 }
+/*body {
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}*/
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Kartlarý sola yaslar */
+}
+
+.kart {
+    flex-basis: calc(25% - 40px); /* Her kartýn yüzde 25'ini kaplayacak þekilde ayarla ve her kartýn sað ve solunda 20px boþluk býrak */
+    margin: 20px;
+    padding: 20px;
+    background-color: #95cc8b; /* Yeþilin bir tonu */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.resim-kapsayici {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+    .resim-kapsayici img {
+        border-radius: 50%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+.takim-adi {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.btnav {
+    width: 100%;
+    background-color: #71a357; /* Daha koyu bir yeþil tonu */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btnav:hover {
+        background-color: #618d4d; /* Daha koyu bir yeþil tonu */
+    }
+
+
+
+
+
+
+.halisaha-kart {
+    flex-basis: calc(25% - 40px); /* Her kartýn yüzde 25'ini kaplayacak þekilde ayarla ve her kartýn sað ve solunda 20px boþluk býrak */
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f8f8; /* Kart arka plan rengi */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .halisaha-kart .resim-kapsayici {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+    }
+
+        .halisaha-kart .resim-kapsayici img {
+            border-radius: 50%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+    .halisaha-kart .takim-adi {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .halisaha-kart .pozisyon {
+        font-size: 16px;
+        color: #666;
+    }
+
+.kaleci .resim-kapsayici {
+    background-color: #ffc107; /* Kaleci arka plan rengi */
+}
+
+.defans .resim-kapsayici {
+    background-color: #0d47a1; /* Defans arka plan rengi */
+}
+
+.orta-saha .resim-kapsayici {
+    background-color: #ff5722; /* Orta saha arka plan rengi */
+}
+
+.forvet .resim-kapsayici {
+    background-color: #4caf50; /* Forvet arka plan rengi */
+}

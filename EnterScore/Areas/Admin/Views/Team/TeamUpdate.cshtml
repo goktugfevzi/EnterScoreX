@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.Team
+@{
+    ViewData["Title"] = "AddTeam";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Ürün Güncelleme Sayfası</h2>
+<form method="post">
+    @Html.HiddenFor(x => x.TeamID)
+    @Html.Label("Kulüp Adı")
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Kulüp Simgesi")
+    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+    <br />
+    @Html.Label("Teknik Direktör ID'si")
+    @Html.TextBoxFor(x => x.CoachID, new { @class = "form-control" })
+    <br />
+
+
+    <button class="btn btn-success">Kategoriyi Güncelle</button>
+</form>

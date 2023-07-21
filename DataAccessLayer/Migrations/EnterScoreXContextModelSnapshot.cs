@@ -4,7 +4,6 @@ using DataAccessLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,10 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(EnterScoreXContext))]
-    [Migration("20230718190425_Messi_Migration")]
-    partial class Messi_Migration
+    partial class EnterScoreXContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,6 +64,35 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Fixture", b =>
+                {
+                    b.Property<int>("FixtureID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FixtureID"), 1L, 1);
+
+                    b.Property<int>("AwayTeamID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HomeTeamID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Week")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("WeekCompleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("FixtureID");
+
+                    b.HasIndex("AwayTeamID");
+
+                    b.HasIndex("HomeTeamID");
+
+                    b.ToTable("Fixtures");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Goal", b =>
                 {
                     b.Property<int>("GoalID")
@@ -73,6 +100,14 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GoalID"), 1L, 1);
+
+                    b.Property<int?>("GoalAgainstTeamID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GoalForTeamID")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.Property<int>("GoalTime")
                         .HasColumnType("int");
@@ -84,6 +119,10 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("GoalID");
+
+                    b.HasIndex("GoalAgainstTeamID");
+
+                    b.HasIndex("GoalForTeamID");
 
                     b.HasIndex("MatchID");
 
@@ -224,7 +263,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeamID")
+                    b.Property<int?>("TeamID")
                         .HasColumnType("int");
 
                     b.Property<int>("Weight")
@@ -271,7 +310,7 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PositionID"), 1L, 1);
 
-                    b.Property<string>("PositionName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -288,40 +327,13 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RefereeID"), 1L, 1);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RefereeID");
 
                     b.ToTable("Referees");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Result", b =>
-                {
-                    b.Property<int>("ResultID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResultID"), 1L, 1);
-
-                    b.Property<int>("AwayTeamID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HomeTeamID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MatchID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ResultID");
-
-                    b.HasIndex("AwayTeamID");
-
-                    b.HasIndex("HomeTeamID");
-
-                    b.HasIndex("MatchID");
-
-                    b.ToTable("Results");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Season", b =>
@@ -438,8 +450,35 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("TeamStatistics");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Fixture", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Team", "AwayTeam")
+                        .WithMany("AwayResult")
+                        .HasForeignKey("AwayTeamID")
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Team", "HomeTeam")
+                        .WithMany("HomesResult")
+                        .HasForeignKey("HomeTeamID")
+                        .IsRequired();
+
+                    b.Navigation("AwayTeam");
+
+                    b.Navigation("HomeTeam");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Goal", b =>
                 {
+                    b.HasOne("EntityLayer.Concrete.Team", "GoalAgainstTeam")
+                        .WithMany("GoalAgainstTeam")
+                        .HasForeignKey("GoalAgainstTeamID")
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Team", "GoalForTeam")
+                        .WithMany("GoalForTeam")
+                        .HasForeignKey("GoalForTeamID")
+                        .IsRequired();
+
                     b.HasOne("EntityLayer.Concrete.Match", "Match")
                         .WithMany()
                         .HasForeignKey("MatchID")
@@ -451,6 +490,10 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("PlayerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("GoalAgainstTeam");
+
+                    b.Navigation("GoalForTeam");
 
                     b.Navigation("Match");
 
@@ -508,9 +551,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasOne("EntityLayer.Concrete.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TeamID");
 
                     b.Navigation("Position");
 
@@ -526,31 +567,6 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Result", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Team", "AwayTeam")
-                        .WithMany("AwayResult")
-                        .HasForeignKey("AwayTeamID")
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.Team", "HomeTeam")
-                        .WithMany("HomesResult")
-                        .HasForeignKey("HomeTeamID")
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.Match", "Match")
-                        .WithMany()
-                        .HasForeignKey("MatchID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AwayTeam");
-
-                    b.Navigation("HomeTeam");
-
-                    b.Navigation("Match");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Team", b =>
@@ -580,6 +596,10 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("AwayMatches");
 
                     b.Navigation("AwayResult");
+
+                    b.Navigation("GoalAgainstTeam");
+
+                    b.Navigation("GoalForTeam");
 
                     b.Navigation("HomesMatches");
 
