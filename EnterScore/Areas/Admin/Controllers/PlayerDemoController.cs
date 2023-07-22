@@ -10,20 +10,20 @@ namespace EnterScore.Areas.Admin.Controllers
     [Area("Admin")]
     public class PlayerDemoController : Controller
     {
-        EnterScoreXContext _enterScoreXContext = new EnterScoreXContext();
-
-        public PlayerDemoController(EnterScoreXContext enterScoreXContext)
+        private readonly IPlayerService _playerService;
+        public PlayerDemoController(IPlayerService playerService)
         {
-            _enterScoreXContext = enterScoreXContext;
+            _playerService = playerService;
         }
+
         [HttpGet]
         public IActionResult PlayerDemo(int id)
         {
-                List<Player> players = _enterScoreXContext.Players.ToList();
-                List<Player> teamPlayers = players.Where(player => player.TeamID == id).ToList();
+            var players = _playerService.TGetListAll();
+            List<Player> teamPlayers = players.Where(player => player.TeamID == id).ToList();
 
-                ViewBag.TeamPlayers = teamPlayers;
-                return View();
-            }
+            ViewBag.TeamPlayers = teamPlayers;
+            return View();
+        }
     }
 }

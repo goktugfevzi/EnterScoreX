@@ -47,10 +47,5 @@ namespace BusinessLayer.Concrete
             return _teamDal.GetTeamsWithCoach();
 
         }
-
-        public List<Team> TGetProductsWithCategory()
-        {
-            return _teamDal.GetTeamsWithCoach();
-        }
     }
 }

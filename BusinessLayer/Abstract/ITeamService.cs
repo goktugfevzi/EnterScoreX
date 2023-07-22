@@ -9,7 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface ITeamService : IGenericService<Team>
     {
-        public List<Team> TGetProductsWithCategory();
+        public List<Team> TGetTeamsWithCoach();
 
     }
 }

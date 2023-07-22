@@ -23,11 +23,7 @@ namespace EnterScore.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-
-            List<Coach> CoachLists = _coachService.TGetListAll();
-            ViewBag.CoachList = CoachLists;
-            var values = _teamService.TGetListAll();
-            
+            var values = _teamService.TGetTeamsWithCoach();
             return View(values);
         }
         [HttpGet]
