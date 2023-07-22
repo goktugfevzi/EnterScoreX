@@ -1,0 +1,79 @@
+﻿@model List<EntityLayer.Concrete.Player>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+  
+}
+
+<div class="container">
+    <div class="column">
+        <div class="col-12">
+            <h3 class="titulo-tabla">Oyuncular </h3>
+            <table style="table-layout: fixed; text-align:center" id="ejemplo" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Oyuncu Fotoğrafı </th>
+                        <th>Oyuncu Adı</th>
+                   
+                        <th>Oyuncu Numarası</th>
+                        <th>Oyuncu Uyruğu</th>
+                        <th>Oyuncu Değeri</th>
+               
+                        <th>Oyuncu Takımı</th>
+                        <th>Oyuncu Pozisyonu</th>
+
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    
+                        <tr>
+
+                            <td><img src=@item.ImageURL height="70" width="90"></td>
+                            <td>@item.Name</td>
+                    
+                        
+                            <td>@item.Number</td>
+                            <td>@item.Nationality</td>
+                            <td>@item.Price</td>
+
+
+                            @foreach (var item1 in ViewBag.TeamLists)
+                            {
+                                if (item.TeamID == item1.TeamID)
+                                {
+                                    <td>@item1.Name</td>
+                                }
+                            }
+
+
+
+
+
+                            @foreach (var item2 in ViewBag.PositionLists)
+                            {
+                                if (item.PositionID == item2.PositionID)
+                                {
+                                    <td>@item2.Name</td>
+                                }
+                            }
+
+
+
+
+
+                            <td><a href="/Admin/PlayerCreate/PlayerUpdate/@item.PlayerID" class="btn btn-outline-success">Güncelle</a></td>
+                            <td><a href="/Admin/PlayerCreate/DeletePlayer/@item.PlayerID" class="btn btn-outline-danger">Sil</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="/Admin/PlayerCreate/AddPlayer" class="btn btn-outline-light">Yeni Oyuncu Girişi</a>
+        </div>
+    </div>
+</div>
+
+

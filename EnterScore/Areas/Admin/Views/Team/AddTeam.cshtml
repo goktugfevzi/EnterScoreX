@@ -4,21 +4,25 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<form method="post" onsubmit="submitForm()">
+<form method="post" enctype="multipart/form-data">
+
+    <label>Kulüp Fotoğrafı</label>
+    <input type="file" class="form-control border" name="imageFile" />
+    <br />
     <label>Kulüp Adı</label>
     <input type="text" class="form-control border" name="Name" />
     <br />
-    <label>Kulüp Fotoğrafı</label>
-    <input type="text" class="form-control border" name="ImageUrl" />
-    <br />
+  
     <label for="coachSelect">Teknik Direktör Seç:</label>
     <select id="coachSelect" name="CoachID" class="form-control">
+      
         <option value="">Seçer misin ki lütfen? </option>
         @foreach (var item in ViewBag.CoachList)
         {
             <option value="@item.CoachID">@item.Name</option>
         }
     </select>
+    <br />
     <button type="submit" class="btn btn-info">Kulübü Kaydet</button>
 </form>
 

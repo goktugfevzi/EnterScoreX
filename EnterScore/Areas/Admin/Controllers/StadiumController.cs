@@ -46,6 +46,8 @@ namespace EnterScore.Areas.Admin.Controllers
             _stadiumService.TInsert(p);
             return RedirectToAction("Stadium", "Admin");
 
+
+
         }
 
         public IActionResult DeleteStadium(int id)

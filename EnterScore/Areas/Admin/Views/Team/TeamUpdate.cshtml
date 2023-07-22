@@ -3,20 +3,36 @@
     ViewData["Title"] = "AddTeam";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>Ürün Güncelleme Sayfası</h2>
-<form method="post">
-    @Html.HiddenFor(x => x.TeamID)
-    @Html.Label("Kulüp Adı")
-    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-    <br />
-
-    @Html.Label("Kulüp Simgesi")
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
-    <br />
-    @Html.Label("Teknik Direktör ID'si")
-    @Html.TextBoxFor(x => x.CoachID, new { @class = "form-control" })
-    <br />
 
 
-    <button class="btn btn-success">Kategoriyi Güncelle</button>
+
+
+<h1>Kulüp Güncelleme</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="TeamID" value="@Model.TeamID" />
+
+    <label>Kulüp Simgesi</label>
+    <input type="file" class="form-control border" name="imageFile" value="imageFile"  />
+    <br />
+
+
+    <label>Kulüp Adı</label>
+    <input type="text" class="form-control border" name="Name" value="@Model.Name" />
+    <br />
+  
+
+    <select id="coachSelect" name="CoachID" class="form-control">
+        <option value="">Teknik Direktör Seç? </option>
+        @foreach (var item in ViewBag.CoachList)
+        {
+            // Eğer mevcut teknik direktör bu seçenekle eşleşiyorsa 'selected' ekleyin
+            <option value="@item.CoachID" @(item.CoachID == Model.CoachID ? "selected" : "")>@item.Name</option>
+        }
+    </select>
+    <br />
+
+    <button class="btn btn-outline-info">Kulübü Güncelle</button>
+    <a href="/Admin/Team" class="btn btn-outline-danger">Geri Dön</a>
+
 </form>

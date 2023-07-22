@@ -1,43 +1,24 @@
-﻿
+﻿@model List<EntityLayer.Concrete.Team>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="container">
-    <div class="row">
+
+
+    <br />
+    @foreach (var item in Model)
+    {
         <div class="kart">
             <div class="resim-kapsayici">
                 <!-- Yuvarlak resmi buraya ekleyin -->
-                <img src="/sport_template-master/images/fixture-team1.png" alt="Yuvarlak Resim">
+                <img style="width:100px;height:100px;" src="@item.ImageUrl" alt="Yuvarlak Resim">
             </div>
-            <h1 class="takim-adi">EJDERHA FC</h1>
-            <button class="btnav btn-danger">Oyuncu Gir</button>
+            <h1 class="takim-adi">@item.Name</h1>
+            <a href="/Admin/TeamList/PlayerList/@item.TeamID" class="btnav btn-danger">Oyuncu Gir</a>
         </div>
-        <div class="kart">
-            <div class="resim-kapsayici">
-                <!-- Yuvarlak resmi buraya ekleyin -->
-                <img src="/sport_template-master/images/fixture-team1.png" alt="Yuvarlak Resim">
-            </div>
-            <h1 class="takim-adi">EJDERHA FC</h1>
-            <button class="btnav btn-danger">Oyuncu Gir</button>
-        </div>
-        <div class="kart">
-            <div class="resim-kapsayici">
-                <!-- Yuvarlak resmi buraya ekleyin -->
-                <img src="/sport_template-master/images/fixture-team1.png" alt="Yuvarlak Resim">
-            </div>
-            <h1 class="takim-adi">EJDERHA FC</h1>
-            <button class="btnav btn-danger">Oyuncu Gir</button>
-        </div>
-        <div class="kart">
-            <div class="resim-kapsayici">
-                <!-- Yuvarlak resmi buraya ekleyin -->
-                <img src="/sport_template-master/images/fixture-team1.png" alt="Yuvarlak Resim">
-            </div>
-            <h1 class="takim-adi">EJDERHA FC</h1>
-            <button class="btnav btn-danger">Oyuncu Gir</button>
-        </div>
-    </div>
+    }
 </div>
 
 

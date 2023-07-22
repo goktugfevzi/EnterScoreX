@@ -11,20 +11,21 @@ namespace EntityLayer.Concrete
     {
 
         public int MatchID { get; set; }
-        public DateTime MatchDate { get; set; }
 
-        public int HomeTeamShots { get; set; }
-        public int AwayTeamShots { get; set; }
-        public int HomeTeamShotsOnTarget { get; set; }
-        public int AwayTeamShotsOnTarget { get; set; }
-        public int HomeTeamPassSuccess { get; set; }
-        public int AwayTeamPassSuccess { get; set; }
-        public int HomeTeamFoulCount { get; set; }
-        public int AwayTeamFoulCount { get; set; }
-        public int HomeTeamAirealDualSuccess { get; set; }
-        public int AwayTeamAirealDualSuccess { get; set; }
+        public int? HomeTeamShots { get; set; }
+        public int? AwayTeamShots { get; set; }
+        public int? HomeTeamShotsOnTarget { get; set; }
+        public int? AwayTeamShotsOnTarget { get; set; }
+        public int? HomeTeamPassSuccess { get; set; }
+        public int? AwayTeamPassSuccess { get; set; }
+        public int? HomeTeamFoulCount { get; set; }
+        public int? AwayTeamFoulCount { get; set; }
+        public int? HomeTeamAirealDualSuccess { get; set; }
+        public int? AwayTeamAirealDualSuccess { get; set; }
 
-
+        /// <summary>
+        /// HOMETEAMID VE AWAYTEAMID FIXTURE TABLOSUNDAN INCLUDE OLARAK ÇEKİLİP KULLANILMALIDIR
+        /// </summary>
         public int? HomeTeamID { get; set; }
         public Team HomeTeam { get; set; }
 
@@ -40,6 +41,12 @@ namespace EntityLayer.Concrete
         public int RefereeID { get; set; }
         public Referee Referee { get; set; }
 
+        public int FixtureID { get; set; }
+        public Fixture Fixture { get; set; }
+
+        /// <summary>
+        /// SEASONID DE FIXTURE DEN INCLUDE EDİLEREK YAOLACAK
+        /// </summary>
         public int SeasonID { get; set; }
         public Season Season { get; set; }
     }

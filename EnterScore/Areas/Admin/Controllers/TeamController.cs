@@ -39,9 +39,19 @@ namespace EnterScore.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddTeam(Team team)
+        public async Task<IActionResult> AddTeam(Team p, IFormFile imageFile)
         {
-            _teamService.TInsert(team);
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var fileName = Path.GetFileName(imageFile.FileName);
+                var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "admin_panel", "img", fileName);
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                }
+                p.ImageUrl = "/admin_panel/img/" + fileName;
+            }
+            _teamService.TInsert(p);
             return RedirectToAction("Team", "Admin");
 
         }
@@ -57,13 +67,25 @@ namespace EnterScore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult TeamUpdate(int id)
         {
+            List<Coach> CoachLists = _coachService.TGetListAll();
+            ViewBag.CoachList = CoachLists;
             var values = _teamService.TGetById(id);
             return View(values);
         }
 
         [HttpPost]
-        public IActionResult TeamUpdate(Team p)
+        public async Task<IActionResult> TeamUpdate(Team p, IFormFile imageFile)
         {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var fileName = Path.GetFileName(imageFile.FileName);
+                var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "admin_panel", "img", fileName);
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                }
+                p.ImageUrl = "/admin_panel/img/" + fileName;
+            }
             _teamService.TUpdate(p);
             return RedirectToAction("Team", "Admin");
 
