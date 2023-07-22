@@ -9,5 +9,7 @@ namespace DataAccessLayer.Abstract
 {
     public interface IFixtureDal : IGenericDal<Fixture>
     {
+        public List<Fixture> GetFixtureWithTeams();
+
     }
 }

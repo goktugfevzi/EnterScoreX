@@ -27,7 +27,7 @@ else
                             @foreach (var fixture in fixtureGroup)
                             {
                                 <li class="list-group-item">
-                                    Ev Sahibi Takım: @fixture.HomeTeamID, Deplasman Takım: @fixture.AwayTeamID
+                                    Ev Sahibi Takım: @fixture.HomeTeam.Name, Deplasman Takım: @fixture.AwayTeam.Name
                                 </li>
                             }
                         </ul>
@@ -36,6 +36,5 @@ else
             </div>
         }
     </div>
-
 
 }

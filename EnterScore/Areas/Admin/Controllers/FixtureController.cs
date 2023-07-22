@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EnterScore.Areas.Admin.Controllers
 {
@@ -18,46 +19,59 @@ namespace EnterScore.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var values = _fixtureService.TGetListAll();
+            var values = _fixtureService.TGetFixtureWithTeams();
             return View(values);
         }
+
         [HttpGet]
         public IActionResult CreateFixture()
         {
             Fixture fixture = new Fixture();
             var teams = _teamService.TGetListAll();
-            var weeks = (teams.Count - 1) * 2;
-
+            var weeks = (teams.Count - 1);
+            // Eşleşmeleri oluştur
             for (int i = 1; i <= weeks; i++)
             {
                 fixture.Week = i;
-                List<Team> shuffledTeams = ShuffleTeams(teams);
 
-                for (int j = 0; j < teams.Count / 2; j++)
+                for (int j = 0; j < (weeks + 1) / 2; j++)
                 {
-                    fixture.HomeTeamID = shuffledTeams[j].TeamID;
-                    fixture.AwayTeamID = shuffledTeams[teams.Count - 1 - j].TeamID;
+                    fixture.HomeTeamID = teams[j].TeamID;
+                    fixture.AwayTeamID = teams[weeks - j].TeamID;
                     fixture.WeekCompleted = false;
                     fixture.FixtureID = 0;
+                    fixture.SeasonID = 2;
                     _fixtureService.TInsert(fixture);
+                }
+
+                // Takımları dairesel olarak değiştir
+                var lastTeam = teams[weeks];
+                for (int k = weeks; k > 1; k--)
+                {
+                    teams[k] = teams[k - 1];
+                }
+                teams[1] = lastTeam;
+            }
+
+            // İKİNCİ SEZON ATAMASI YAPMA KISMI
+            var previousSeasonFixtures = _fixtureService.TGetListAll();
+            for (int i = 1; i <= weeks; i++)
+            {
+                fixture.Week = i + weeks; // weeksi üstüne eklememizin sebebi ikinci sezonun haftası belli olsun diye 
+
+                int fixtureIndex = (i - 1) * (teams.Count / 2);
+                for (int j = 0; j < teams.Count / 2; j++)
+                {
+                    fixture.HomeTeamID = previousSeasonFixtures[fixtureIndex].AwayTeamID;
+                    fixture.AwayTeamID = previousSeasonFixtures[fixtureIndex].HomeTeamID;
+                    fixture.WeekCompleted = false;
+                    fixture.SeasonID = 4;
+                    fixture.FixtureID = 0; // table 'Fixtures' when IDENTITY_INSERT is set to OFF.
+                    _fixtureService.TInsert(fixture);
+                    fixtureIndex++;
                 }
             }
             return RedirectToAction("Fixture", "Admin");
         }
-        private List<Team> ShuffleTeams(List<Team> teams)
-        {
-            Random rand = new Random();
-            int n = teams.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rand.Next(n + 1);
-                Team value = teams[k];
-                teams[k] = teams[n];
-                teams[n] = value;
-            }
-            return teams;
-        }
-
     }
 }

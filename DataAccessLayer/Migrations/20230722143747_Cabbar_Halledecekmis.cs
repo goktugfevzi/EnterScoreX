@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class Quaresma : Migration
+    public partial class Cabbar_Halledecekmis : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -137,12 +137,19 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Week = table.Column<int>(type: "int", nullable: false),
                     WeekCompleted = table.Column<bool>(type: "bit", nullable: false),
+                    SeasonID = table.Column<int>(type: "int", nullable: false),
                     HomeTeamID = table.Column<int>(type: "int", nullable: false),
                     AwayTeamID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Fixtures", x => x.FixtureID);
+                    table.ForeignKey(
+                        name: "FK_Fixtures_Seasons_SeasonID",
+                        column: x => x.SeasonID,
+                        principalTable: "Seasons",
+                        principalColumn: "SeasonID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Fixtures_Teams_AwayTeamID",
                         column: x => x.AwayTeamID,
@@ -341,6 +348,11 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Fixtures_HomeTeamID",
                 table: "Fixtures",
                 column: "HomeTeamID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fixtures_SeasonID",
+                table: "Fixtures",
+                column: "SeasonID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Goals_GoalAgainstTeamID",

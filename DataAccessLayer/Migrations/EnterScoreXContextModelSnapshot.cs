@@ -78,6 +78,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("HomeTeamID")
                         .HasColumnType("int");
 
+                    b.Property<int>("SeasonID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Week")
                         .HasColumnType("int");
 
@@ -89,6 +92,8 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("AwayTeamID");
 
                     b.HasIndex("HomeTeamID");
+
+                    b.HasIndex("SeasonID");
 
                     b.ToTable("Fixtures");
                 });
@@ -462,9 +467,17 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("HomeTeamID")
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.Concrete.Season", "Season")
+                        .WithMany()
+                        .HasForeignKey("SeasonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AwayTeam");
 
                     b.Navigation("HomeTeam");
+
+                    b.Navigation("Season");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Goal", b =>

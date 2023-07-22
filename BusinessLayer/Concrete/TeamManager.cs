@@ -20,7 +20,7 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(Team t)
         {
-         _teamDal.Delete(t);
+            _teamDal.Delete(t);
         }
 
         public Team TGetById(int id)
@@ -30,7 +30,7 @@ namespace BusinessLayer.Concrete
 
         public List<Team> TGetListAll()
         {
-           return _teamDal.GetListAll();
+            return _teamDal.GetListAll();
         }
 
         public void TInsert(Team t)
@@ -41,6 +41,16 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Team t)
         {
             _teamDal.Update(t);
+        }
+        public List<Team> TGetTeamsWithCoach()
+        {
+            return _teamDal.GetTeamsWithCoach();
+
+        }
+
+        public List<Team> TGetProductsWithCategory()
+        {
+            return _teamDal.GetTeamsWithCoach();
         }
     }
 }

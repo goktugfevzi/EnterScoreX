@@ -14,6 +14,9 @@ namespace EntityLayer.Concrete
         public bool WeekCompleted { get; set; }
 
 
+        public int SeasonID { get; set; }
+        public Season Season { get; set; }
+
         public int HomeTeamID { get; set; }
         public Team HomeTeam { get; set; }
 

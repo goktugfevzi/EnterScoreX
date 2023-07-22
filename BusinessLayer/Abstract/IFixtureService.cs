@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IFixtureService : IGenericService<Fixture>
     {
+        public List<Fixture> TGetFixtureWithTeams();
+
     }
 }
