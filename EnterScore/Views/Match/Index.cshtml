@@ -1,8 +1,40 @@
-﻿
+﻿@model List<EntityLayer.Concrete.Fixture>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maç Listesi</title>
+</head>
+<body>
+    <h1>Maç Listesi</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Hafta</th>
+                <th>Ev Takımı</th>
+                <th>Deplasman Takımı</th>
+       <th>Sezon ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fixture in Model)
+            {
+                <tr>
+                    <td>@fixture.FixtureID</td>
+                    <td>@fixture.Week</td>
+                    <td>@fixture.HomeTeamID</td>
+                    <td>@fixture.WeekCompleted</td>
+                    <td>@fixture.AwayTeamID</td>
+               <td>@fixture.SeasonID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

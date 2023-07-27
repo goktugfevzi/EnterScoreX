@@ -13,7 +13,6 @@ namespace EntityLayer.Concrete
         public int Week { get; set; }
         public bool WeekCompleted { get; set; }
 
-
         public int SeasonID { get; set; }
         public Season Season { get; set; }
 
@@ -23,5 +22,6 @@ namespace EntityLayer.Concrete
         public int AwayTeamID { get; set; }
         public Team AwayTeam { get; set; }
 
+        public List<Match> Matches { get; set; }
     }
 }

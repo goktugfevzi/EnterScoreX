@@ -1,0 +1,53 @@
+﻿@model DTOLayer.DTOs.ContactUsDTOs.SendMessageDto
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="contact-title">
+            <h3>İletişim Formunu Kullanın  <Span>& Size Yardımcı Olalım!</Span></h3>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2">
+        <form method="post" class="row comment-reply contact-form">
+            <div class="col-md-6 form-group">
+                <input type="text" class="form-control" asp-for="Name" placeholder="Ad Soyad">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="email" class="form-control" asp-for="Mail" placeholder="Mail Adresiniz">
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" asp-for="SubjectTitle" placeholder="Konu Başlığı">
+                <span asp-validation-for="SubjectTitle" class="text-danger"></span>
+            </div>
+            <div class="col-md-12 form-group">
+                <textarea class="form-control" asp-for="MessageBody" cols="30" rows="6" placeholder="Bu Alana Mesajınızı Yazabilirsiniz"></textarea>
+                <span asp-validation-for="MessageBody" class="text-danger"></span>
+            </div>
+            <div class="col-md-12">
+                <input onclick="sendMessage()" type="submit" class="comment-submit" value="Mesajını Gönder"> 
+                <div id="statusMessage"></div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+ 
+   
+
+    <script>
+        function sendMessage() {
+            var message = document.getElementById("messageInput").value;
+            // Controller'a mesajı gönderme talebini iletiyoruz
+            controller.sendMessage(message);
+        }
+
+        function showMessage(message) {
+            var statusMessage = document.getElementById("statusMessage");
+            statusMessage.innerHTML = message;
+        }
+    </script>

@@ -19,6 +19,8 @@ namespace BusinessLayer.Concrete
             _fixtureDal = fixtureDal;
         }
 
+       
+
         public void TDelete(Fixture t)
         {
             _fixtureDal.Delete(t);

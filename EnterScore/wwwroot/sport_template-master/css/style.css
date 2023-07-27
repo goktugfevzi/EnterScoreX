@@ -1,4 +1,4 @@
-/*
+﻿/*
 *Theme Name: Spotsox
 Theme URI: https://webRedox.net
 Author URI: https://webRedox.net/
@@ -6564,4 +6564,105 @@ table.point-items-more span {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+/*------------------------------------------------------------------------------------------------*/
+.container3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Kartlarý sola yaslar */
+}
+
+.kart {
+    flex-basis: auto; /**/ /* Her kartýn yüzde 25'ini kaplayacak þekilde ayarla ve her kartýn sað ve solunda 20px boþluk býrak */
+    margin: 20px;
+    padding: 20px;
+    background-color: transparent; /* Arka plan rengini saydam yapýn */
+    background-image: url('/sport_template-master/images/as3.png'); /* "as.png" dosyasýný arka plan olarak kullanýn */
+    background-size: cover; /* Arka planý tamamen kaplayacak þekilde boyutlandýr */
+    background-position: center center; /* Arka planý merkezlemek için */
+    height: 300px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
+.resim-kapsayici2 {
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    max-width: 150px;
+    max-height: 150px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .resim-kapsayici2:hover {
+        box-shadow: 0 30px 8px rgba(0, 0, 0, 0.4);
+        transform: scale(1.1);
+    }
+
+    .resim-kapsayici2 img {
+        width: 100%;
+        height: 100%;
+    }
+
+.takim-adi {
+    font-size: 15px;
+    margin-bottom: 3px; /* Takým yazýsý ile buton arasýndaki mesafeyi artýr */
+    color: #333;
+    font-weight: bold; /* Takým yazýsýný koyu yap */
+}
+
+.btnav {
+    width: 50%;
+    background-color: transparent; /* Butonun arka planını şeffaf yap */
+    color: #24252f;
+    border: none;
+    padding: 10px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative; /* Butonun pozisyonunu belirlemek için */
+    z-index: 1; /* Butonun diğer içeriklerin üzerinde görünmesini sağlar */
+}
+
+.btnav:hover {
+    background-color: rgba(184, 134, 11, 0.7); /* Daha koyu bir altın rengi ve %70 şeffaflık */
+}
+.kart2 {
+    /* Diğer stil kodları burada */
+    margin: 18px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-as-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Yanlarda hafif gölge efekti */
+    transition: all 0.3s ease; /* Hover durumunda tüm özellikler için geçiş efekti uygula */
+    margin-bottom: 10px; /* Butonların arasını aç */
+}
+
+    .img-as-button:hover {
+        /* Hover durumunda belirginleştirmek için */
+        background-color: rgba(0, 0, 0, 0.5); /* Arka planı doldur */
+        transform: scale(1.1); /* Hover durumunda butonun boyutunu biraz büyüt */
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Hover durumunda kenarlara gölge ekle */
+    }
+
+.takim-adi2 {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold; /* Takım yazısını koyu yap */
+    margin-top: -10px; /* Adjust the negative margin value to your preference */
 }

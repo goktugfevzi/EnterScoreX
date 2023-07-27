@@ -18,5 +18,7 @@ namespace DataAccessLayer.Conrete.EntityFramework
             using var context = new EnterScoreXContext();
             return context.Teams.Include(x => x.Coach).ToList();
         }
+     
+
     }
 }

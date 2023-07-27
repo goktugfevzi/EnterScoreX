@@ -12,5 +12,6 @@ namespace DataAccessLayer.Abstract
     {
         public List<Fixture> GetFixtureWithTeams();
 
+
     }
 }

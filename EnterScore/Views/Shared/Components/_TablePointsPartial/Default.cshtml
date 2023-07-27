@@ -1,4 +1,6 @@
-﻿<div class="point-table-page">
+﻿@model List<EntityLayer.Concrete.Team>
+
+<div class="point-table-page">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -24,10 +26,12 @@
                     <div class="point-itmes">
                         <table class="table table-striped-inverse point-table">
                             <tbody>
-                                <tr>
+                               @foreach (var item in Model)
+                                {
+                                    <tr>
                                     <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                        <span>France</span>
+                                        <img style="width:60px; height:60px" src="@item.ImageUrl" alt="" />
+                                        <span>@item.Name</span>
                                     </th>
                                     <td data-th="Playered" width="10%" class="text-center">3</td>
                                     <td data-th="Won" width="10%" class="text-center">2</td>
@@ -37,245 +41,11 @@
                                     <td data-th="Against" width="10%" class="text-center">1</td>
                                     <td data-th="Goal dif." width="10%" class="text-center">3</td>
                                     <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag3.png" alt="" />
-                                        <span>Iceland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <th data-th="Group A" width="20%" scope="row">
-                                        <img src="~/sport_template-master/images/flag4.png" alt="" />
-                                        <span>Ireland</span>
-                                    </th>
-                                    <td data-th="Playered" width="10%" class="text-center">3</td>
-                                    <td data-th="Won" width="10%" class="text-center">2</td>
-                                    <td data-th="Draw" width="10%" class="text-center">1</td>
-                                    <td data-th="Lost" width="10%" class="text-center">0</td>
-                                    <td data-th="For" width="10%" class="text-center">4</td>
-                                    <td data-th="Against" width="10%" class="text-center">1</td>
-                                    <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                    <td data-th="Points" width="10%" class="text-center">7</td>
-                                </tr>
+                                </tr>  
+                                }
+                              
+                                
+                              
 
                             </tbody>
                         </table>

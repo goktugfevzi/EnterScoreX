@@ -20,7 +20,9 @@ namespace DataAccessLayer.Conrete.EntityFramework
             return context.Fixtures
                           .Include(x => x.HomeTeam)
                           .Include(x => x.AwayTeam)
+                          .Include(x => x.Matches)
                           .ToList();
         }
+
     }
 }

@@ -22,13 +22,24 @@ else
                     <div class="card-header">
                         Hafta @fixtureGroup.Key
                     </div>
+
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach (var fixture in fixtureGroup)
                             {
-                                <li class="list-group-item">
-                                    Ev Sahibi Takım: @fixture.HomeTeam.Name, Deplasman Takım: @fixture.AwayTeam.Name
-                                </li>
+                                if (fixture.WeekCompleted)
+                                {
+                                    var match = fixture.Matches.FirstOrDefault(m => m.FixtureID == fixture.FixtureID);
+                                    <li class="list-group-item">
+                                        @fixture.HomeTeam.Name:  @match.HomeTeamGoals-@match.AwayTeamGoals  :@fixture.AwayTeam.Name
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item">
+                                        Ev Sahibi Takım: @fixture.HomeTeam.Name, Deplasman Takım: @fixture.AwayTeam.Name
+                                    </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -36,5 +47,4 @@ else
             </div>
         }
     </div>
-
 }

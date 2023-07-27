@@ -41,7 +41,7 @@
     <label for="coachSelect">Takım Seç:</label>
     <select id="coachSelect" name="TeamID" class="form-control">
 
-        <option value="">Oyuncunun Pozisyonu </option>
+        <option value="">Oyuncunun Takımı </option>
         @foreach (var item in ViewBag.TeamLists)
         {
             <option value="@item.TeamID">@item.Name</option>

@@ -1,4 +1,7 @@
-﻿<div class="fixture-section">
+﻿@model List<EntityLayer.Concrete.Match>
+
+
+<div class="fixture-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -9,326 +12,44 @@
         </div>
         <div class="row inner-custom-row">
             <div class="col-md-12">
-                <div class="row">
-                    <div class="white-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team1.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team2.png" width="64" height="84" alt=""></a>
+
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="white-match">
+                            <div class="col-md-4">
+                                <div class="match-left">
+                                    <div class="fixture-team-img">
+                                        <a href="#"><img src="@item.HomeTeam.ImageUrl" width="80" height="77" alt=""></a>
+                                    </div>
+                                    <div class="fixture-team-name fixture-team-left">
+                                        <h1>@item.HomeTeam.Name</h1>
+                                        <p>#</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="black-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team3.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
+                            <div class="col-md-4">
+                                <div class="fixture-team-date">
+                                    @*<h1>@item.Ho</h1>*@
+                                    <p>@item.AwayTeam.Coach</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team4.png" width="64" height="84" alt=""></a>
+                            <div class="col-md-4">
+                                <div class="match-right">
+                                    <div class="fixture-team-name fixture-team-right text-right">
+                                        <h1>@item.AwayTeam.Name</h1>
+                                        <p>#</p>
+                                    </div>
+                                    <div class="fixture-team-img">
+                                        <a href="#"><img src="@item.AwayTeam.ImageUrl" width="64" height="84" alt=""></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="white-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team1.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team2.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="black-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team3.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team4.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="white-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team1.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team2.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="black-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team3.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team4.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="white-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team1.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team2.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="black-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team3.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team4.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="white-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team1.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team2.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="black-match">
-                        <div class="col-md-4">
-                            <div class="match-left">
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team3.png" width="80" height="77" alt=""></a>
-                                </div>
-                                <div class="fixture-team-name fixture-team-left">
-                                    <h1>Teamfoot</h1>
-                                    <p>France</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="fixture-team-date">
-                                <h1>06 Aug, 2016 - 11:40</h1>
-                                <p>France</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="match-right">
-                                <div class="fixture-team-name fixture-team-right text-right">
-                                    <h1>Legacy</h1>
-                                    <p>Spain</p>
-                                </div>
-                                <div class="fixture-team-img">
-                                    <a href="#"><img src="~/sport_template-master/images/fixture-team4.png" width="64" height="84" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
+
+
             </div>
         </div>
     </div>

@@ -13,13 +13,11 @@ namespace EnterScore.Areas.Admin.Controllers
         private readonly IMatchService _matchService;
         private readonly IFixtureService _fixtureService;
         private readonly ITeamService _teamService;
-        private int _lastPlayedWeek;
 
         public MatchController(IMatchService matchService, IFixtureService fixtureService, ITeamService teamService)
         {
             _matchService = matchService;
             _fixtureService = fixtureService;
-            _lastPlayedWeek = 0;
             _teamService = teamService;
         }
 
@@ -39,6 +37,7 @@ namespace EnterScore.Areas.Admin.Controllers
                 var nextWeekFixtures = fixtures.Where(f => f.Week == nextUnplayedWeek).ToList();
                 PlayMatchesForWeek(nextWeekFixtures);
             }
+
 
             return RedirectToAction("Fixture", "Admin");
         }
@@ -60,22 +59,51 @@ namespace EnterScore.Areas.Admin.Controllers
             var random = new Random();
             foreach (var fixture in weekFixtures)
             {
+
+                int homeTeamGoals = random.Next(0, 5);
+                int awayTeamGoals = random.Next(0, 5);
+
+                int homeTeamShotsOnTarget = random.Next(homeTeamGoals, homeTeamGoals + 5);
+                int awayTeamShotsOnTarget = random.Next(awayTeamGoals, awayTeamGoals + 5);
+
+                int homeTeamShots = random.Next(homeTeamShotsOnTarget, homeTeamShotsOnTarget + 4);
+                int awayTeamShots = random.Next(awayTeamShotsOnTarget, awayTeamShotsOnTarget + 4);
+
+                int homeTeamPassSuccess = random.Next(60, 150);
+                int awayTeamPassSuccess = random.Next(60, 150);
+
+                int homeTeamAerialDualSuccess;
+                int awayTeamAerialDualSuccess;
+                if (homeTeamPassSuccess > awayTeamPassSuccess)
+                {
+                    homeTeamAerialDualSuccess = random.Next(55, 67);
+                    awayTeamAerialDualSuccess = 100 - homeTeamAerialDualSuccess;
+                }
+                else
+                {
+                    awayTeamAerialDualSuccess = random.Next(55, 67);
+                    homeTeamAerialDualSuccess = 100 - awayTeamAerialDualSuccess;
+                }
+
                 Match match = new Match
                 {
                     HomeTeamID = fixture.HomeTeamID,
                     AwayTeamID = fixture.AwayTeamID,
+                    FixtureID = fixture.FixtureID,
                     StadiumID = _teamService.TGetById(fixture.HomeTeamID).StadiumID,
-                    RefereeID = random.Next(0, 5),
-                    HomeTeamShots = random.Next(0, 15),
-                    AwayTeamShots = random.Next(0, 15),
-                    HomeTeamShotsOnTarget = random.Next(0, 10),
-                    AwayTeamShotsOnTarget = random.Next(0, 10),
-                    HomeTeamPassSuccess = random.Next(0, 100),
-                    AwayTeamPassSuccess = random.Next(0, 100),
-                    HomeTeamFoulCount = random.Next(0, 20),
-                    AwayTeamFoulCount = random.Next(0, 20),
-                    HomeTeamAirealDualSuccess = random.Next(0, 100),
-                    AwayTeamAirealDualSuccess = random.Next(0, 100),
+                    RefereeID = random.Next(1, 5),
+                    HomeTeamGoals = homeTeamGoals,
+                    AwayTeamGoals = awayTeamGoals,
+                    HomeTeamShots = homeTeamShots,
+                    AwayTeamShots = awayTeamShots,
+                    HomeTeamShotsOnTarget = homeTeamShotsOnTarget,
+                    AwayTeamShotsOnTarget = awayTeamShotsOnTarget,
+                    HomeTeamPassSuccess = homeTeamPassSuccess,
+                    AwayTeamPassSuccess = awayTeamPassSuccess,
+                    HomeTeamFoulCount = random.Next(1, 10),
+                    AwayTeamFoulCount = random.Next(1, 10),
+                    HomeTeamAirealDualSuccess = homeTeamAerialDualSuccess,
+                    AwayTeamAirealDualSuccess = awayTeamAerialDualSuccess,
                 };
 
                 _matchService.TInsert(match);
@@ -87,5 +115,6 @@ namespace EnterScore.Areas.Admin.Controllers
                 _fixtureService.TUpdate(fixture);
             }
         }
+
     }
 }

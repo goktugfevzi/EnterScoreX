@@ -64,6 +64,41 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.ContactUs", b =>
+                {
+                    b.Property<int>("ContactUsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactUsID"), 1L, 1);
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MessageBody")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MessageDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("MessageStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubjectTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactUsID");
+
+                    b.ToTable("ContactUses");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Fixture", b =>
                 {
                     b.Property<int>("FixtureID")
@@ -150,6 +185,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<int?>("AwayTeamFoulCount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("AwayTeamGoals")
+                        .HasColumnType("int");
+
                     b.Property<int?>("AwayTeamID")
                         .IsRequired()
                         .HasColumnType("int");
@@ -170,6 +208,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("HomeTeamFoulCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HomeTeamGoals")
                         .HasColumnType("int");
 
                     b.Property<int?>("HomeTeamID")
@@ -523,7 +564,7 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.Fixture", "Fixture")
-                        .WithMany()
+                        .WithMany("Matches")
                         .HasForeignKey("FixtureID");
 
                     b.HasOne("EntityLayer.Concrete.Team", "HomeTeam")
@@ -606,6 +647,11 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Fixture", b =>
+                {
+                    b.Navigation("Matches");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Team", b =>

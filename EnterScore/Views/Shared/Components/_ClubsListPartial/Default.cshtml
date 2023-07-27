@@ -1,0 +1,22 @@
+﻿@model List<EntityLayer.Concrete.Team>
+
+<div class="container3">
+
+
+    <br />
+    @foreach (var item in Model)
+    {
+        <div class="kart2">
+            <a href="/ProfilesTrail/Index/@item.TeamID" class="resim-kapsayici">
+                <!-- Sadece fotoğrafı buraya ekleyin -->
+                <img src="@item.ImageUrl" class="img-as-button" />
+            </a>
+            <h1 class="takim-adi2">@item.Name</h1>
+            <br />
+        </div>
+
+    }
+
+
+
+</div>

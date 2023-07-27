@@ -33,10 +33,14 @@ namespace BusinessLayer.Concrete
             return _playerDal.GetListAll();
         }
 
+       
+
         public List<Player> TGetPlayersByTeamID(int id)
         {
             return _playerDal.GetPlayersByTeamID(id);
         }
+
+      
 
         public void TInsert(Player t)
         {

@@ -1,7 +1,10 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules.ContactUs;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Conrete.EntityFramework;
+using DTOLayer.DTOs.ContactUsDTOs;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -57,6 +60,12 @@ namespace BusinessLayer.Container
             services.AddScoped<ITeamStatisticService, TeamStatisticManager>();
             services.AddScoped<ITeamStatisticDal, EnTeamStatisticDal>();
 
+            services.AddScoped<IContactUsService, ContactUsManager>();
+            services.AddScoped<IContactUsDal, EnContactUsDal>();
+        }
+        public static void CustomerValidator(this IServiceCollection services)
+        {
+            services.AddTransient<IValidator<SendMessageDto>, SendContactUsValidator>();
         }
     }
 }

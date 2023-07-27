@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EnterScore.ViewComponents.Contact
 {
+
     public class _ContactPartial : ViewComponent
     {
+     
+        private readonly IContactService _contactService;
+
+        public _ContactPartial(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
+
         public IViewComponentResult Invoke()
         {
-            return View();
+            var values = _contactService.TGetListAll();
+            return View(values);
+
         }
     }
 }

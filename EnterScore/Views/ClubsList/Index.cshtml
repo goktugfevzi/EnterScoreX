@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+@await Component.InvokeAsync("_HeadPartial")
+<body>
+    <!-- START PRELOADER -->
+    <div id="preloader">
+        <div id="loader-wrapper">
+            <div class="loader1"></div>
+        </div>
+    </div>
+    <!-- END OF /. PRELOADER -->
+    @await Component.InvokeAsync("_NavbarPartial")
+
+
+
+    <!-- End Navigation -->
+    <!-- START PAGE TITILE SECTION -->
+    <div class="player-profile-section page-title-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="section-title profile-title">
+                        <h1>Oyuncu Profili</h1>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pagination-area">
+                        <ul>
+                            <li><a href="#">Ana Sayfa <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+
+                            <li class="active"><a href="#">Oyuncu Profili</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                <!-- END OF /. PAGE TITLE SECTION -->
+    @await Component.InvokeAsync("_ClubsListPartial")
+
+@*    @await Component.InvokeAsync("_ProfilesDetailPartial")*@
+
+
+    </div><!-- end /. wrapper -->
+    <!-- jQuery libery -->
+    <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/sport_template-master/js/vendor/bootstrap.min.js"></script>
+    <!-- jQuery Ui -->
+    <script src="~/sport_template-master/js/jquery-ui-min.js"></script>
+    <!-- Owl -->
+    <script src="~/sport_template-master/js/owl.carousel.min.js"></script>
+    <!-- Downcount -->
+    <script src="~/sport_template-master/js/jquery.downCount.js"></script>
+    <!-- Bootsnav -->
+    <script src="~/sport_template-master/js/bootsnav.js"></script>
+    <!-- Isotope -->
+    <script src="~/sport_template-master/js/isotope.pkgd.min.js"></script>
+    <!-- prettyphoto -->
+    <script src="~/sport_template-master/js/jquery.prettyPhoto.js"></script>
+    <!-- tweetie -->
+    <script src="~/sport_template-master/scripts/Tweetie/tweetie.min.js"></script>
+    <!-- appear -->
+    <script src="~/sport_template-master/js/jquery.appear.js"></script>
+    <!-- waypoint -->
+    <script src="~/sport_template-master/js/waypoints.min.js"></script>
+    <!-- progress bar -->
+    <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
+    <!-- pie chart -->
+    <script src="~/sport_template-master/js/pie-chart.js" type="text/javascript"></script>
+    <!-- custom -->
+    <script src="~/sport_template-master/js/custom.js"></script>
+    <script>
+        /* === circle progressbar === */
+        (function ($) {
+            $('#demo-pie-1, #demo-pie-2, #demo-pie-3').pieChart({
+                barColor: '#fec722',
+                trackColor: '#eee',
+                lineCap: 'round',
+                lineWidth: 2,
+                animate: {
+                    duration: 4000,
+                    enabled: true
+                },
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>

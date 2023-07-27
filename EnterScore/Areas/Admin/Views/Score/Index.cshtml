@@ -1,0 +1,28 @@
+﻿@model List<EnterScore.Areas.Admin.Models.Fixture>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h1>Fikstür Tablosu</h1>
+<div class="container">
+<table class ="table table-bordered">
+    <tr>
+        <th>Away Team</th>
+        <th>Home Team</th>
+        <th>Away Team Score</th>
+        <th>Home Team Score</th>
+    </tr>
+    @foreach (var fixture in Model)
+    {
+        <tr>
+            <td>@fixture.AwayTeam</td>
+            <td>@fixture.HomeTeam</td>
+            <td>@fixture.AwayTeamScore</td>
+            <td>@fixture.HomeTeamScore</td>
+        </tr>
+    }
+</table>
+</div>

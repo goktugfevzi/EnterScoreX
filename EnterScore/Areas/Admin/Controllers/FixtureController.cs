@@ -29,7 +29,7 @@ namespace EnterScore.Areas.Admin.Controllers
             Fixture fixture = new Fixture();
             var teams = _teamService.TGetListAll();
             var weeks = (teams.Count - 1);
-            // Eşleşmeleri oluştur
+
             for (int i = 1; i <= weeks; i++)
             {
                 fixture.Week = i;
@@ -39,13 +39,11 @@ namespace EnterScore.Areas.Admin.Controllers
                     fixture.HomeTeamID = teams[j].TeamID;
                     fixture.AwayTeamID = teams[weeks - j].TeamID;
                     fixture.WeekCompleted = false;
-                    //fixture.StadiumID = teams[j].StadiumID;
                     fixture.FixtureID = 0;
                     fixture.SeasonID = 1;
                     _fixtureService.TInsert(fixture);
                 }
 
-                // Takımları dairesel olarak değiştir
                 var lastTeam = teams[weeks];
                 for (int k = weeks; k > 1; k--)
                 {
@@ -65,7 +63,6 @@ namespace EnterScore.Areas.Admin.Controllers
                 {
                     fixture.HomeTeamID = previousSeasonFixtures[fixtureIndex].AwayTeamID;
                     fixture.AwayTeamID = previousSeasonFixtures[fixtureIndex].HomeTeamID;
-                    //fixture.StadiumID = fixture.HomeTeam.StadiumID;
                     fixture.WeekCompleted = false;
                     fixture.SeasonID = 2;
                     fixture.FixtureID = 0; // table 'Fixtures' when IDENTITY_INSERT is set to OFF.
