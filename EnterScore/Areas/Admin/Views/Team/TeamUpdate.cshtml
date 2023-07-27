@@ -13,25 +13,31 @@
     <input type="hidden" name="TeamID" value="@Model.TeamID" />
 
     <label>Kulüp Simgesi</label>
-    <input type="file" class="form-control border" name="imageFile" value="imageFile"  />
+    <input type="file" class="form-control border" name="imageFile" value="imageFile" />
     <br />
 
 
     <label>Kulüp Adı</label>
     <input type="text" class="form-control border" name="Name" value="@Model.Name" />
     <br />
-  
+
 
     <select id="coachSelect" name="CoachID" class="form-control">
         <option value="">Teknik Direktör Seç? </option>
         @foreach (var item in ViewBag.CoachList)
         {
-            // Eğer mevcut teknik direktör bu seçenekle eşleşiyorsa 'selected' ekleyin
             <option value="@item.CoachID" @(item.CoachID == Model.CoachID ? "selected" : "")>@item.Name</option>
         }
     </select>
     <br />
-
+    <select id="stadiumSelect" name="StadiumID" class="form-control">
+        <option value="">Stadyum Seç? </option>
+        @foreach (var item in ViewBag.StadiumList)
+        {
+            <option value="@item.StadiumID" @(item.StadiumID == Model.StadiumID ? "selected" : "")>@item.Name</option>
+        }
+    </select>
+    <br />
     <button class="btn btn-outline-info">Kulübü Güncelle</button>
     <a href="/Admin/Team" class="btn btn-outline-danger">Geri Dön</a>
 

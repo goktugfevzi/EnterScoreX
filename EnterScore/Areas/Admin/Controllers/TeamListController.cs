@@ -26,11 +26,7 @@ namespace EnterScore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult PlayerList(int id)
         {
-            //List<Player> players = _playerService.TGetListAll();
-            //List<Player> teamPlayers = players.Where(player => player.TeamID == id).ToList();
             var values = _playerService.TGetPlayersByTeamID(id);
-
-            //ViewBag.TeamPlayers = teamPlayers;
             return View(values);
         }
     }

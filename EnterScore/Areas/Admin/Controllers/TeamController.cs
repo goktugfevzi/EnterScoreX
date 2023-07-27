@@ -14,11 +14,13 @@ namespace EnterScore.Areas.Admin.Controllers
 
         private readonly ITeamService _teamService;
         private readonly ICoachService _coachService;
+        private readonly IStadiumService _stadiumService;
 
-        public TeamController(ITeamService teamService, ICoachService coachService)
+        public TeamController(ITeamService teamService, ICoachService coachService, IStadiumService stadiumService)
         {
             _teamService = teamService;
             _coachService = coachService;
+            _stadiumService = stadiumService;
         }
 
         public IActionResult Index()
@@ -31,7 +33,9 @@ namespace EnterScore.Areas.Admin.Controllers
         public IActionResult AddTeam()
         {
             List<Coach> CoachLists = _coachService.TGetListAll();
+            List<Stadium> StadiumLists = _stadiumService.TGetListAll();
             ViewBag.CoachList = CoachLists;
+            ViewBag.StadiumList = StadiumLists;
             return View();
         }
         [HttpPost]
@@ -65,6 +69,8 @@ namespace EnterScore.Areas.Admin.Controllers
         {
             List<Coach> CoachLists = _coachService.TGetListAll();
             ViewBag.CoachList = CoachLists;
+            List<Stadium> StadiumLists = _stadiumService.TGetListAll();
+            ViewBag.StadiumList = StadiumLists;
             var values = _teamService.TGetById(id);
             return View(values);
         }

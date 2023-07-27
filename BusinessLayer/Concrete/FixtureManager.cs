@@ -48,5 +48,6 @@ namespace BusinessLayer.Concrete
         {
             _fixtureDal.Update(t);
         }
+       
     }
 }

@@ -23,8 +23,5 @@ namespace EntityLayer.Concrete
         public int AwayTeamID { get; set; }
         public Team AwayTeam { get; set; }
 
-
-
-
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(EnterScoreXContext))]
-    [Migration("20230721165025_mig1")]
-    partial class mig1
+    [Migration("20230727182557_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("HomeTeamID")
                         .HasColumnType("int");
 
+                    b.Property<int>("SeasonID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Week")
                         .HasColumnType("int");
 
@@ -91,6 +94,8 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("AwayTeamID");
 
                     b.HasIndex("HomeTeamID");
+
+                    b.HasIndex("SeasonID");
 
                     b.ToTable("Fixtures");
                 });
@@ -141,65 +146,62 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MatchID"), 1L, 1);
 
-                    b.Property<int>("AwayTeamAirealDualSuccess")
+                    b.Property<int?>("AwayTeamAirealDualSuccess")
                         .HasColumnType("int");
 
-                    b.Property<int>("AwayTeamFoulCount")
+                    b.Property<int?>("AwayTeamFoulCount")
                         .HasColumnType("int");
 
                     b.Property<int?>("AwayTeamID")
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("AwayTeamPassSuccess")
+                    b.Property<int?>("AwayTeamPassSuccess")
                         .HasColumnType("int");
 
-                    b.Property<int>("AwayTeamShots")
+                    b.Property<int?>("AwayTeamShots")
                         .HasColumnType("int");
 
-                    b.Property<int>("AwayTeamShotsOnTarget")
+                    b.Property<int?>("AwayTeamShotsOnTarget")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeTeamAirealDualSuccess")
+                    b.Property<int?>("FixtureID")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeTeamFoulCount")
+                    b.Property<int?>("HomeTeamAirealDualSuccess")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HomeTeamFoulCount")
                         .HasColumnType("int");
 
                     b.Property<int?>("HomeTeamID")
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeTeamPassSuccess")
+                    b.Property<int?>("HomeTeamPassSuccess")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeTeamShots")
+                    b.Property<int?>("HomeTeamShots")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeTeamShotsOnTarget")
+                    b.Property<int?>("HomeTeamShotsOnTarget")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("MatchDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RefereeID")
+                    b.Property<int?>("RefereeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SeasonID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StadiumID")
+                    b.Property<int?>("StadiumID")
                         .HasColumnType("int");
 
                     b.HasKey("MatchID");
 
                     b.HasIndex("AwayTeamID");
 
+                    b.HasIndex("FixtureID");
+
                     b.HasIndex("HomeTeamID");
 
                     b.HasIndex("RefereeID");
-
-                    b.HasIndex("SeasonID");
 
                     b.HasIndex("StadiumID");
 
@@ -403,9 +405,14 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StadiumID")
+                        .HasColumnType("int");
+
                     b.HasKey("TeamID");
 
                     b.HasIndex("CoachID");
+
+                    b.HasIndex("StadiumID");
 
                     b.ToTable("Teams");
                 });
@@ -464,9 +471,17 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("HomeTeamID")
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.Concrete.Season", "Season")
+                        .WithMany()
+                        .HasForeignKey("SeasonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AwayTeam");
 
                     b.Navigation("HomeTeam");
+
+                    b.Navigation("Season");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Goal", b =>
@@ -509,6 +524,10 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("AwayTeamID")
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.Concrete.Fixture", "Fixture")
+                        .WithMany()
+                        .HasForeignKey("FixtureID");
+
                     b.HasOne("EntityLayer.Concrete.Team", "HomeTeam")
                         .WithMany("HomesMatches")
                         .HasForeignKey("HomeTeamID")
@@ -516,29 +535,19 @@ namespace DataAccessLayer.Migrations
 
                     b.HasOne("EntityLayer.Concrete.Referee", "Referee")
                         .WithMany()
-                        .HasForeignKey("RefereeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.Season", "Season")
-                        .WithMany()
-                        .HasForeignKey("SeasonID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RefereeID");
 
                     b.HasOne("EntityLayer.Concrete.Stadium", "Stadium")
                         .WithMany()
-                        .HasForeignKey("StadiumID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StadiumID");
 
                     b.Navigation("AwayTeam");
+
+                    b.Navigation("Fixture");
 
                     b.Navigation("HomeTeam");
 
                     b.Navigation("Referee");
-
-                    b.Navigation("Season");
 
                     b.Navigation("Stadium");
                 });
@@ -579,7 +588,15 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.Concrete.Stadium", "Stadium")
+                        .WithMany()
+                        .HasForeignKey("StadiumID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Coach");
+
+                    b.Navigation("Stadium");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.TeamStatistic", b =>

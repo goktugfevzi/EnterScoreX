@@ -19,6 +19,9 @@ namespace EntityLayer.Concrete
         public int CoachID { get; set; }
         public Coach Coach { get; set; }
 
+        public int StadiumID { get; set; }
+        public Stadium Stadium { get; set; }
+
         public virtual ICollection<Match> HomesMatches { get; set; }
         public virtual ICollection<Match> AwayMatches { get; set; }
         public virtual ICollection<Fixture> HomesResult { get; set; }

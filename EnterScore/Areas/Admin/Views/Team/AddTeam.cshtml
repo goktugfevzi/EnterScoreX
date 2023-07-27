@@ -12,14 +12,24 @@
     <label>Kulüp Adı</label>
     <input type="text" class="form-control border" name="Name" />
     <br />
-  
+
     <label for="coachSelect">Teknik Direktör Seç:</label>
     <select id="coachSelect" name="CoachID" class="form-control">
-      
+
         <option value="">Seçer misin ki lütfen? </option>
         @foreach (var item in ViewBag.CoachList)
         {
             <option value="@item.CoachID">@item.Name</option>
+        }
+    </select>
+    <br />
+    <label for="StadiumSelect">Stadyum Seç:</label>
+    <select id="StadiumSelect" name="StadiumID" class="form-control">
+
+        <option value="">Stadyum Seç</option>
+        @foreach (var item in ViewBag.StadiumList)
+        {
+            <option value="@item.StadiumID">@item.Name</option>
         }
     </select>
     <br />

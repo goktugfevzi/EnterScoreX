@@ -13,7 +13,7 @@
 }
 else
 {
-    <button id="playMatchesButton" class="btn btn-primary">Bu Haftaki Maçları Oyna</button>
+    <a href="/Admin/Match/PlayTheWeek/" id="playMatchesButton" class="btn btn-primary">Bu Haftaki Maçları Oyna</a>
     <div class="row">
         @foreach (var fixtureGroup in Model.GroupBy(f => f.Week))
         {

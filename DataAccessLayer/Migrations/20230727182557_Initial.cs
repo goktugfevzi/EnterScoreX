@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class mig1 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -116,7 +116,8 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CoachID = table.Column<int>(type: "int", nullable: false)
+                    CoachID = table.Column<int>(type: "int", nullable: false),
+                    StadiumID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,6 +127,12 @@ namespace DataAccessLayer.Migrations
                         column: x => x.CoachID,
                         principalTable: "Coachs",
                         principalColumn: "CoachID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Teams_Stadiums_StadiumID",
+                        column: x => x.StadiumID,
+                        principalTable: "Stadiums",
+                        principalColumn: "StadiumID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -137,6 +144,7 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Week = table.Column<int>(type: "int", nullable: false),
                     WeekCompleted = table.Column<bool>(type: "bit", nullable: false),
+                    SeasonID = table.Column<int>(type: "int", nullable: false),
                     HomeTeamID = table.Column<int>(type: "int", nullable: false),
                     AwayTeamID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -144,68 +152,18 @@ namespace DataAccessLayer.Migrations
                 {
                     table.PrimaryKey("PK_Fixtures", x => x.FixtureID);
                     table.ForeignKey(
+                        name: "FK_Fixtures_Seasons_SeasonID",
+                        column: x => x.SeasonID,
+                        principalTable: "Seasons",
+                        principalColumn: "SeasonID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Fixtures_Teams_AwayTeamID",
                         column: x => x.AwayTeamID,
                         principalTable: "Teams",
                         principalColumn: "TeamID");
                     table.ForeignKey(
                         name: "FK_Fixtures_Teams_HomeTeamID",
-                        column: x => x.HomeTeamID,
-                        principalTable: "Teams",
-                        principalColumn: "TeamID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Matches",
-                columns: table => new
-                {
-                    MatchID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MatchDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HomeTeamShots = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamShots = table.Column<int>(type: "int", nullable: false),
-                    HomeTeamShotsOnTarget = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamShotsOnTarget = table.Column<int>(type: "int", nullable: false),
-                    HomeTeamPassSuccess = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamPassSuccess = table.Column<int>(type: "int", nullable: false),
-                    HomeTeamFoulCount = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamFoulCount = table.Column<int>(type: "int", nullable: false),
-                    HomeTeamAirealDualSuccess = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamAirealDualSuccess = table.Column<int>(type: "int", nullable: false),
-                    HomeTeamID = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamID = table.Column<int>(type: "int", nullable: false),
-                    StadiumID = table.Column<int>(type: "int", nullable: false),
-                    RefereeID = table.Column<int>(type: "int", nullable: false),
-                    SeasonID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Matches", x => x.MatchID);
-                    table.ForeignKey(
-                        name: "FK_Matches_Referees_RefereeID",
-                        column: x => x.RefereeID,
-                        principalTable: "Referees",
-                        principalColumn: "RefereeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Matches_Seasons_SeasonID",
-                        column: x => x.SeasonID,
-                        principalTable: "Seasons",
-                        principalColumn: "SeasonID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Matches_Stadiums_StadiumID",
-                        column: x => x.StadiumID,
-                        principalTable: "Stadiums",
-                        principalColumn: "StadiumID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Matches_Teams_AwayTeamID",
-                        column: x => x.AwayTeamID,
-                        principalTable: "Teams",
-                        principalColumn: "TeamID");
-                    table.ForeignKey(
-                        name: "FK_Matches_Teams_HomeTeamID",
                         column: x => x.HomeTeamID,
                         principalTable: "Teams",
                         principalColumn: "TeamID");
@@ -273,6 +231,79 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Matches",
+                columns: table => new
+                {
+                    MatchID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HomeTeamShots = table.Column<int>(type: "int", nullable: true),
+                    AwayTeamShots = table.Column<int>(type: "int", nullable: true),
+                    HomeTeamShotsOnTarget = table.Column<int>(type: "int", nullable: true),
+                    AwayTeamShotsOnTarget = table.Column<int>(type: "int", nullable: true),
+                    HomeTeamPassSuccess = table.Column<int>(type: "int", nullable: true),
+                    AwayTeamPassSuccess = table.Column<int>(type: "int", nullable: true),
+                    HomeTeamFoulCount = table.Column<int>(type: "int", nullable: true),
+                    AwayTeamFoulCount = table.Column<int>(type: "int", nullable: true),
+                    HomeTeamAirealDualSuccess = table.Column<int>(type: "int", nullable: true),
+                    AwayTeamAirealDualSuccess = table.Column<int>(type: "int", nullable: true),
+                    HomeTeamID = table.Column<int>(type: "int", nullable: false),
+                    AwayTeamID = table.Column<int>(type: "int", nullable: false),
+                    StadiumID = table.Column<int>(type: "int", nullable: true),
+                    RefereeID = table.Column<int>(type: "int", nullable: true),
+                    FixtureID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Matches", x => x.MatchID);
+                    table.ForeignKey(
+                        name: "FK_Matches_Fixtures_FixtureID",
+                        column: x => x.FixtureID,
+                        principalTable: "Fixtures",
+                        principalColumn: "FixtureID");
+                    table.ForeignKey(
+                        name: "FK_Matches_Referees_RefereeID",
+                        column: x => x.RefereeID,
+                        principalTable: "Referees",
+                        principalColumn: "RefereeID");
+                    table.ForeignKey(
+                        name: "FK_Matches_Stadiums_StadiumID",
+                        column: x => x.StadiumID,
+                        principalTable: "Stadiums",
+                        principalColumn: "StadiumID");
+                    table.ForeignKey(
+                        name: "FK_Matches_Teams_AwayTeamID",
+                        column: x => x.AwayTeamID,
+                        principalTable: "Teams",
+                        principalColumn: "TeamID");
+                    table.ForeignKey(
+                        name: "FK_Matches_Teams_HomeTeamID",
+                        column: x => x.HomeTeamID,
+                        principalTable: "Teams",
+                        principalColumn: "TeamID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlayerStatistics",
+                columns: table => new
+                {
+                    PlayerStatisticID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GoalScore = table.Column<int>(type: "int", nullable: false),
+                    AsistScore = table.Column<int>(type: "int", nullable: false),
+                    PlayerID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayerStatistics", x => x.PlayerStatisticID);
+                    table.ForeignKey(
+                        name: "FK_PlayerStatistics_Players_PlayerID",
+                        column: x => x.PlayerID,
+                        principalTable: "Players",
+                        principalColumn: "PlayerID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Goals",
                 columns: table => new
                 {
@@ -311,27 +342,6 @@ namespace DataAccessLayer.Migrations
                         principalColumn: "TeamID");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PlayerStatistics",
-                columns: table => new
-                {
-                    PlayerStatisticID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GoalScore = table.Column<int>(type: "int", nullable: false),
-                    AsistScore = table.Column<int>(type: "int", nullable: false),
-                    PlayerID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlayerStatistics", x => x.PlayerStatisticID);
-                    table.ForeignKey(
-                        name: "FK_PlayerStatistics_Players_PlayerID",
-                        column: x => x.PlayerID,
-                        principalTable: "Players",
-                        principalColumn: "PlayerID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Fixtures_AwayTeamID",
                 table: "Fixtures",
@@ -341,6 +351,11 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Fixtures_HomeTeamID",
                 table: "Fixtures",
                 column: "HomeTeamID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fixtures_SeasonID",
+                table: "Fixtures",
+                column: "SeasonID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Goals_GoalAgainstTeamID",
@@ -368,6 +383,11 @@ namespace DataAccessLayer.Migrations
                 column: "AwayTeamID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Matches_FixtureID",
+                table: "Matches",
+                column: "FixtureID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Matches_HomeTeamID",
                 table: "Matches",
                 column: "HomeTeamID");
@@ -376,11 +396,6 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Matches_RefereeID",
                 table: "Matches",
                 column: "RefereeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Matches_SeasonID",
-                table: "Matches",
-                column: "SeasonID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Matches_StadiumID",
@@ -408,6 +423,11 @@ namespace DataAccessLayer.Migrations
                 column: "CoachID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Teams_StadiumID",
+                table: "Teams",
+                column: "StadiumID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TeamStatistics_TeamID",
                 table: "TeamStatistics",
                 column: "TeamID");
@@ -417,9 +437,6 @@ namespace DataAccessLayer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Contacts");
-
-            migrationBuilder.DropTable(
-                name: "Fixtures");
 
             migrationBuilder.DropTable(
                 name: "Goals");
@@ -440,22 +457,25 @@ namespace DataAccessLayer.Migrations
                 name: "Players");
 
             migrationBuilder.DropTable(
+                name: "Fixtures");
+
+            migrationBuilder.DropTable(
                 name: "Referees");
 
             migrationBuilder.DropTable(
-                name: "Seasons");
-
-            migrationBuilder.DropTable(
-                name: "Stadiums");
-
-            migrationBuilder.DropTable(
                 name: "Positions");
+
+            migrationBuilder.DropTable(
+                name: "Seasons");
 
             migrationBuilder.DropTable(
                 name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "Coachs");
+
+            migrationBuilder.DropTable(
+                name: "Stadiums");
         }
     }
 }

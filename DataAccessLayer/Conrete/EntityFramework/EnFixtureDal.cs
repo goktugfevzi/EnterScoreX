@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,8 +18,8 @@ namespace DataAccessLayer.Conrete.EntityFramework
         {
             using var context = new EnterScoreXContext();
             return context.Fixtures
-                          .Include(x => x.HomeTeam)  
-                          .Include(x => x.AwayTeam) 
+                          .Include(x => x.HomeTeam)
+                          .Include(x => x.AwayTeam)
                           .ToList();
         }
     }

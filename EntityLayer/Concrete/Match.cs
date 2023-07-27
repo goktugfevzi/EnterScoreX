@@ -34,20 +34,14 @@ namespace EntityLayer.Concrete
         public Team AwayTeam { get; set; }
 
 
-        public int StadiumID { get; set; }
+        public int? StadiumID { get; set; }
         public Stadium Stadium { get; set; }
 
 
-        public int RefereeID { get; set; }
+        public int? RefereeID { get; set; }
         public Referee Referee { get; set; }
 
-        public int FixtureID { get; set; }
+        public int? FixtureID { get; set; }
         public Fixture Fixture { get; set; }
-
-        /// <summary>
-        /// SEASONID DE FIXTURE DEN INCLUDE EDİLEREK YAOLACAK
-        /// </summary>
-        public int SeasonID { get; set; }
-        public Season Season { get; set; }
     }
 }
