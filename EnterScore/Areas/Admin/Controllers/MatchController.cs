@@ -3,6 +3,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace EnterScore.Areas.Admin.Controllers
@@ -13,12 +14,16 @@ namespace EnterScore.Areas.Admin.Controllers
         private readonly IMatchService _matchService;
         private readonly IFixtureService _fixtureService;
         private readonly ITeamService _teamService;
+        private readonly IGoalService _goalService;
+        private readonly IPlayerService _playerService;
 
-        public MatchController(IMatchService matchService, IFixtureService fixtureService, ITeamService teamService)
+        public MatchController(IMatchService matchService, IFixtureService fixtureService, ITeamService teamService, IGoalService goalService, IPlayerService playerService)
         {
             _matchService = matchService;
             _fixtureService = fixtureService;
             _teamService = teamService;
+            _goalService = goalService;
+            _playerService = playerService;
         }
 
         public IActionResult Index()
@@ -51,8 +56,26 @@ namespace EnterScore.Areas.Admin.Controllers
                     return fixture.Week;
                 }
             }
-
             return -1; // Tüm haftalar oynanmışsa -1  döndürcem
+        }
+
+        private void GoalSave(int goalCount, int forTeamID, int againstTeamID, int matchID)
+        {
+            var players = _playerService.TGetListAll();
+            List<Player> teamPlayers = players.Where(player => player.TeamID == forTeamID).ToList();
+            var random = new Random();
+            for (int i = 0; i < goalCount; i++)
+            {
+                Goal goal = new Goal
+                {
+                    GoalTime = random.Next(5, 90),
+                    PlayerID = teamPlayers[random.Next(0, teamPlayers.Count)].PlayerID,
+                    GoalForTeamID = forTeamID,
+                    GoalAgainstTeamID = againstTeamID,
+                    MatchID = matchID
+                };
+                _goalService.TInsert(goal);
+            }
         }
         private void PlayMatchesForWeek(List<Fixture> weekFixtures)
         {
@@ -62,6 +85,7 @@ namespace EnterScore.Areas.Admin.Controllers
 
                 int homeTeamGoals = random.Next(0, 5);
                 int awayTeamGoals = random.Next(0, 5);
+
 
                 int homeTeamShotsOnTarget = random.Next(homeTeamGoals, homeTeamGoals + 5);
                 int awayTeamShotsOnTarget = random.Next(awayTeamGoals, awayTeamGoals + 5);
@@ -92,6 +116,7 @@ namespace EnterScore.Areas.Admin.Controllers
                     FixtureID = fixture.FixtureID,
                     StadiumID = _teamService.TGetById(fixture.HomeTeamID).StadiumID,
                     RefereeID = random.Next(1, 5),
+                    MatchID = 0,//IDENTITY HATASI FIXTUREDE ALDIĞIMLA AYNI
                     HomeTeamGoals = homeTeamGoals,
                     AwayTeamGoals = awayTeamGoals,
                     HomeTeamShots = homeTeamShots,
@@ -105,8 +130,9 @@ namespace EnterScore.Areas.Admin.Controllers
                     HomeTeamAirealDualSuccess = homeTeamAerialDualSuccess,
                     AwayTeamAirealDualSuccess = awayTeamAerialDualSuccess,
                 };
-
                 _matchService.TInsert(match);
+                GoalSave(homeTeamGoals, fixture.HomeTeamID, fixture.AwayTeamID, match.MatchID);
+                GoalSave(awayTeamGoals, fixture.AwayTeamID, fixture.HomeTeamID, match.MatchID);
             }
 
             foreach (var fixture in weekFixtures)
@@ -115,6 +141,5 @@ namespace EnterScore.Areas.Admin.Controllers
                 _fixtureService.TUpdate(fixture);
             }
         }
-
     }
 }

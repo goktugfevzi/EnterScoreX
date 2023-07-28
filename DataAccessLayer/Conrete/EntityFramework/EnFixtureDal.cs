@@ -23,6 +23,5 @@ namespace DataAccessLayer.Conrete.EntityFramework
                           .Include(x => x.Matches)
                           .ToList();
         }
-
     }
 }

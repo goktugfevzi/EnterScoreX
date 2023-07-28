@@ -8,8 +8,8 @@ namespace DataAccessLayer.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            ////optionsBuilder.UseSqlServer("server=BURAK\\SQLEXPRESS;database= DbEnterScoreX;integrated security = true");
-            optionsBuilder.UseSqlServer("server=entescorexdb.database.windows.net;database=DbEnterScoreX;user=enterscore;password=Eskisehir26.");
+            optionsBuilder.UseSqlServer("server=DESKTOP-ITA1D3N\\SQLEXPRESS;database= DbEnterScoreX;integrated security = true");
+            //optionsBuilder.UseSqlServer("server=entescorexdb.database.windows.net;database=DbEnterScoreX;user=enterscore;password=Eskisehir26.");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

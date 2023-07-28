@@ -12,9 +12,6 @@ namespace EntityLayer.Concrete
 
         public int MatchID { get; set; }
 
-
-
-
         public int? HomeTeamGoals { get; set; }
         public int? AwayTeamGoals { get; set; }
         public int? HomeTeamShots { get; set; }
@@ -27,6 +24,8 @@ namespace EntityLayer.Concrete
         public int? AwayTeamFoulCount { get; set; }
         public int? HomeTeamAirealDualSuccess { get; set; }
         public int? AwayTeamAirealDualSuccess { get; set; }
+
+
 
         public int? HomeTeamID { get; set; }
         public Team HomeTeam { get; set; }
@@ -46,5 +45,9 @@ namespace EntityLayer.Concrete
 
         public int? FixtureID { get; set; }
         public Fixture Fixture { get; set; }
+
+
+        public List<Goal> Goals { get; set; }
+
     }
 }
