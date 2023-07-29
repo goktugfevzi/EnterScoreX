@@ -23,9 +23,15 @@ namespace BusinessLayer.Concrete
             return _matchDal.GetById(id);   
         }
 
+    
         public List<Match> TGetListAll()
         {
            return _matchDal.GetListAll();
+        }
+
+        public List<Match> TGetMatchWithTeams()
+        {
+           return _matchDal.GetMatchWithTeams();
         }
 
         public void TInsert(Match t)

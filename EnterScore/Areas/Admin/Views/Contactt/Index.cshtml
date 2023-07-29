@@ -1,0 +1,35 @@
+﻿@model List<EntityLayer.Concrete.Contact>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="column">
+        <div class="col-12">
+            <h3 class="titulo-tabla"> İletişim </h3>
+            <table id="ejemplo" class="table table-striped table-bordered" style="table-layout: fixed; text-align:center">
+                <thead>
+                    <tr>
+                        <th>Mail:</th>
+                        <th>Telefon Numarası:</th>
+                        <th>Adres:</th>
+                        <th>Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.EMail</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.Address</td>
+                            <td><a href="/Admin/Contactt/UpdateContactt/@item.ContactID" class="btn btn-outline-success">Güncelle</a></td>
+                       
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

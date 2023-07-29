@@ -1,4 +1,4 @@
-﻿@model List<EntityLayer.Concrete.Team>
+﻿@model IEnumerable<EntityLayer.Concrete.Team>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,7 +12,7 @@
     {
         <div class="kart">
             <div class="resim-kapsayici">
-                <img src="@item.SignedUrl" alt="Yuvarlak Resim">
+                    <img width="75px" src="@item.SignedUrl" class="figure-img img-fluid rounded" alt="@item.SavedFileName">
             </div>
             <h1 class="takim-adi">@item.Name</h1>
             <a href="/Admin/TeamList/PlayerList/@item.TeamID" class="btnav btn-danger">Oyuncu Gir</a>

@@ -1,0 +1,85 @@
+﻿@model EntityLayer.Concrete.Player
+@{
+    ViewData["Title"] = "PlayerUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Stadyum Güncelleme</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="PlayerID" value="@Model.PlayerID" />
+
+    <label>Oyuncu Fotoğrafı</label>
+    <input type="file" class="form-control border" name="imageFile" />
+    <br />
+
+
+    <label>Oyuncu Adı</label>
+    <input type="text" class="form-control border" name="Name" value="@Model.Name" />
+    <br />
+
+    <label>Oyuncu Doğum Tarihi</label>
+    <input type="text" class="form-control border" name="BirthDate" value="@Model.BirthDate" />
+    <br />
+
+    <label>Oyuncu Boyu</label>
+    <input type="text" class="form-control border" name="Height" value="@Model.Height" />
+    <br />
+
+    <label>Oyuncu Kilosu</label>
+    <input type="text" class="form-control border" name="Weight" value="@Model.Weight" />
+    <br />
+
+
+
+    <label>Oyuncu Numarası</label>
+    <input type="text" class="form-control border" name="Number" value="@Model.Number" />
+    <br />
+
+    <label>Oyuncu Uyruğu</label>
+    <input type="text" class="form-control border" name="Nationality" value="@Model.Nationality" />
+    <br />
+
+    <label>Oyuncu Değeri</label>
+    <input type="text" class="form-control border" name="Price" value="@Model.Price" />
+    <br />
+
+    <label for="teamSelect">Takım Seç:</label>
+    <select id="teamSelect" name="TeamID" class="form-control">
+        <option value="">Oyuncunun Takımı</option>
+        @foreach (var team in ViewBag.TeamLists)
+        {
+            <option value="@team.TeamID" @(team.TeamID == Model.TeamID ? "selected" : "")>@team.Name</option>
+        }
+    </select>
+    <br />
+
+    <label for="positionSelect">Pozisyon Seç:</label>
+    <select id="positionSelect" name="PositionID" class="form-control">
+        <option value="">Oyuncunun Pozisyonu</option>
+        @foreach (var position in ViewBag.PositionLists)
+        {
+            <option value="@position.PositionID" @(position.PositionID == Model.PositionID ? "selected" : "")>@position.Name</option>
+        }
+    </select>
+    <br />
+
+    <label>Oyuncu Açıklaması</label>
+    <input type="text" class="form-control border" name="Description" value="@Model.Description" />
+    <br />
+
+
+    <button class="btn btn-outline-info">Oyuncuyu Güncelle</button>
+    <a href="/Admin/Stadium" class="btn btn-outline-danger">Geri Dön</a>
+
+</form>
+
+
+
+
+
+
+
+
+
+

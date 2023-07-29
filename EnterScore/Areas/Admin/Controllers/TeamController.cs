@@ -1,13 +1,8 @@
 ﻿using BusinessLayer.Abstract;
-using BusinessLayer.Concrete;
-using DataAccessLayer.Conrete.EntityFramework;
-using DataAccessLayer.Context;
 using EnterScore.Areas.Admin.Method;
 using EnterScore.Services;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using System.Data;
 
 namespace EnterScore.Areas.Admin.Controllers
 {

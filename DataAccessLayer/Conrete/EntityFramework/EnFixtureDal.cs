@@ -14,6 +14,16 @@ namespace DataAccessLayer.Conrete.EntityFramework
 {
     public class EnFixtureDal : GenericRepository<Fixture>, IFixtureDal
     {
+        public List<int> GetDistinctWeeks()
+        {
+            using (var context = new EnterScoreXContext())
+            {
+                return context.Fixtures
+               .Select(f => f.Week)
+               .ToList();
+            }
+        }
+
         public List<Fixture> GetFixtureWithTeams()
         {
             using var context = new EnterScoreXContext();
@@ -22,6 +32,15 @@ namespace DataAccessLayer.Conrete.EntityFramework
                           .Include(x => x.AwayTeam)
                           .Include(x => x.Matches)
                           .ToList();
+        }
+
+        public List<Fixture> GetMatchesWithTeams()
+        {
+            using var context = new EnterScoreXContext();
+            return context.Fixtures
+                  .Include(f => f.HomeTeam)
+                  .Include(f => f.AwayTeam)
+                  .ToList();
         }
     }
 }

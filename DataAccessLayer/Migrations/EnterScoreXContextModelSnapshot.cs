@@ -294,9 +294,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -397,32 +394,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Referees");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.RefereeDrive", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SavedFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SavedUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RefereeDrives");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Season", b =>
                 {
                     b.Property<int>("SeasonID")
@@ -458,9 +429,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -486,9 +454,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<int>("CoachID")
                         .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

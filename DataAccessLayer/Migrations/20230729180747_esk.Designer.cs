@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(EnterScoreXContext))]
-    [Migration("20230728181655_eses")]
-    partial class eses
+    [Migration("20230729180747_esk")]
+    partial class esk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,32 +23,6 @@ namespace DataAccessLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EnterScore.Models.RefereeDrive", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SavedFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SavedUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RefereeDrives");
-                });
 
             modelBuilder.Entity("EntityLayer.Concrete.Coach", b =>
                 {
@@ -60,6 +34,12 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CoachID");
@@ -316,9 +296,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -333,6 +310,12 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
+
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TeamID")
                         .HasColumnType("int");
@@ -402,6 +385,12 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("RefereeID");
 
                     b.ToTable("Referees");
@@ -442,11 +431,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StadiumID");
@@ -465,11 +457,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("CoachID")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StadiumID")

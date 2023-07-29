@@ -9,8 +9,8 @@ namespace DataAccessLayer.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-ITA1D3N\\SQLEXPRESS;database= DbEnterScoreX;integrated security = true");
-            //optionsBuilder.UseSqlServer("server=entescorexdb.database.windows.net;database=DbEnterScoreX;user=enterscore;password=Eskisehir26.");
+            //optionsBuilder.UseSqlServer("server=DESKTOP-ITA1D3N\\SQLEXPRESS;database= DbEnterScoreX;integrated security = true");
+            optionsBuilder.UseSqlServer("server=entescorexdb.database.windows.net;database=DbEnterScoreX;user=enterscore;password=Eskisehir26.;Connection Timeout=30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -68,8 +68,6 @@ namespace DataAccessLayer.Context
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamStatistic> TeamStatistics { get; set; }
-
         public DbSet<ContactUs> ContactUses { get; set; }
-        public DbSet<RefereeDrive> RefereeDrives { get; set; }
     }
 }

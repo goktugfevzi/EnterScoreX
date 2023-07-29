@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class eses : Migration
+    public partial class esk : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,9 @@ namespace DataAccessLayer.Migrations
                 {
                     CoachID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,28 +86,14 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RefereeDrives",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RefereeDrives", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Referees",
                 columns: table => new
                 {
                     RefereeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -135,7 +123,8 @@ namespace DataAccessLayer.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Capacity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -149,7 +138,8 @@ namespace DataAccessLayer.Migrations
                     TeamID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoachID = table.Column<int>(type: "int", nullable: false),
                     StadiumID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -213,11 +203,12 @@ namespace DataAccessLayer.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Height = table.Column<int>(type: "int", nullable: false),
                     Weight = table.Column<int>(type: "int", nullable: false),
-                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Number = table.Column<int>(type: "int", nullable: false),
                     Nationality = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TeamID = table.Column<int>(type: "int", nullable: true),
                     PositionID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -485,9 +476,6 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "PlayerStatistics");
-
-            migrationBuilder.DropTable(
-                name: "RefereeDrives");
 
             migrationBuilder.DropTable(
                 name: "TeamStatistics");

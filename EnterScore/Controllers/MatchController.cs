@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EnterScore.Controllers
 {
     public class MatchController : Controller
     {
+        private readonly IMatchService _matchService;
+
+        public MatchController(IMatchService matchService)
+        {
+            _matchService = matchService;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var values= _matchService.TGetListAll();
+
+            return View(values);
         }
     }
 }

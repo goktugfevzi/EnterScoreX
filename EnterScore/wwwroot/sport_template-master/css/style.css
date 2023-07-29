@@ -6584,9 +6584,19 @@ table.point-items-more span {
     width: 200px;
     border-radius: 10px;
     text-align: center;
+  
+ 
 }
 
 
+
+ 
+
+
+    .kart:hover {
+        transform: scale(1.1); /* Kartın büyümesi */
+      
+    }
 
 .resim-kapsayici2 {
     display: block;
@@ -6630,9 +6640,10 @@ table.point-items-more span {
     z-index: 1; /* Butonun diğer içeriklerin üzerinde görünmesini sağlar */
 }
 
-.btnav:hover {
-    background-color: rgba(184, 134, 11, 0.7); /* Daha koyu bir altın rengi ve %70 şeffaflık */
-}
+    .btnav:hover {
+        background-color: rgba(184, 134, 11, 0.7); /* Daha koyu bir altın rengi ve %70 şeffaflık */
+    }
+
 .kart2 {
     /* Diğer stil kodları burada */
     margin: 18px;
@@ -6666,3 +6677,7 @@ table.point-items-more span {
     font-weight: bold; /* Takım yazısını koyu yap */
     margin-top: -10px; /* Adjust the negative margin value to your preference */
 }
+
+
+
+

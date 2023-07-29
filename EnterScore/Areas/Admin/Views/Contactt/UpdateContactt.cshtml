@@ -1,0 +1,27 @@
+﻿@model EntityLayer.Concrete.Contact
+@{
+    ViewData["Title"] = "UpdateContactt";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>İletişim Bilgilerini Güncelleme </h1>
+
+<form method="post">
+    <input type="hidden" name="ContactID" value="@Model.ContactID" />
+    <label>Mail Adresi</label>
+    <input type="text" class="form-control border" name="EMail" value="@Model.EMail" />
+    <br />
+
+    <label>Telefon Numarası</label>
+    <input type="text" class="form-control border" name="PhoneNumber" value="@Model.PhoneNumber" />
+    <br />
+
+    <label>Adres</label>
+    <input type="text" class="form-control border" name="Address" value="@Model.Address" />
+    <br />
+
+    
+
+    <button class="btn btn-outline-info">İletişim Bilgilerini Kaydet</button>
+    <a href="/Admin/Contactt" class="btn btn-outline-danger">Geri Dön</a>
+</form>

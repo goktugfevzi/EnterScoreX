@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IMatchService : IGenericService<Match>
     {
+        public List<Match> TGetMatchWithTeams();
     }
 }

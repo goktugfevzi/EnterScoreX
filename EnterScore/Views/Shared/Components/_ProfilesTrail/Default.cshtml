@@ -1,7 +1,4 @@
-﻿@model List<EntityLayer.Concrete.Player>
-
-
-
+﻿@model IEnumerable<EntityLayer.Concrete.Player>
 
 
 
@@ -11,7 +8,7 @@
     @foreach (var item in Model)
     {
         <div class="kart">
-            <a href="/Profiles/Index/@item.PlayerID" class="resim-kapsayici2 btnav btn-danger">
+            <a href="/Profiles/Index/@item.PlayerID" class="resim-kapsayici2">
                 <!-- Yuvarlak resmi buraya ekleyin -->
                 <img src="@item.SignedUrl" alt="Yuvarlak Resim">
             </a>

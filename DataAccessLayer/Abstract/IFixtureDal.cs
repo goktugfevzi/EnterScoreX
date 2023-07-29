@@ -12,6 +12,10 @@ namespace DataAccessLayer.Abstract
     {
         public List<Fixture> GetFixtureWithTeams();
 
+        public List<Fixture> GetMatchesWithTeams();
+
+        public List<int> GetDistinctWeeks();
+
 
     }
 }

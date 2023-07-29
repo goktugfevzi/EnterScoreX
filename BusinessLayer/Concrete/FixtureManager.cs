@@ -31,6 +31,11 @@ namespace BusinessLayer.Concrete
             return _fixtureDal.GetById(id);
         }
 
+        public List<int> TGetDistinctWeeks()
+        {
+            return _fixtureDal.GetDistinctWeeks();
+        }
+
         public List<Fixture> TGetFixtureWithTeams()
         {
             return _fixtureDal.GetFixtureWithTeams();
@@ -39,6 +44,11 @@ namespace BusinessLayer.Concrete
         public List<Fixture> TGetListAll()
         {
             return _fixtureDal.GetListAll();
+        }
+
+        public List<Fixture> TGetMatchesWithTeams()
+        {
+          return  _fixtureDal.GetMatchesWithTeams();
         }
 
         public void TInsert(Fixture t)

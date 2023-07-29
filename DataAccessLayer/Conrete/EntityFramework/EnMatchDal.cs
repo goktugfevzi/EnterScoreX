@@ -13,6 +13,16 @@ namespace DataAccessLayer.Conrete.EntityFramework
 {
     public class EnMatchDal : GenericRepository<Match>, IMatchDal
     {
+        public List<Match> GetMatchWithTeams()
+        {
 
+            using var context = new EnterScoreXContext();
+            return context.Matches
+                          .Include(x => x.HomeTeam)
+                          .Include(x => x.AwayTeam)
+
+                          .ToList();
+        }
     }
 }
+

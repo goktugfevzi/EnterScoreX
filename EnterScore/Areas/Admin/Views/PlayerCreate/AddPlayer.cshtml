@@ -1,0 +1,79 @@
+﻿@model EntityLayer.Concrete.Player
+@{
+    ViewData["Title"] = "AddPlayer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <label>Oyuncu Fotoğrafı</label>
+    <input type="file" class="form-control border" name="imageFile" />
+    <br />
+    <label>Oyuncu Adı</label>
+    <input type="text" class="form-control border" name="Name" />
+    <br />
+
+    <label>Oyuncu Doğum Tarihi</label>
+    <input type="text" class="form-control border" name="BirthDate" />
+    <br />
+
+    <label>Oyuncu Boyu</label>
+    <input type="text" class="form-control border" name="Height" />
+    <br />
+
+    <label>Oyuncu Ağırlığı</label>
+    <input type="text" class="form-control border" name="Weight" />
+    <br />
+
+   
+
+    <label>Oyuncu Numarası</label>
+    <input type="text" class="form-control border" name="Number" />
+    <br />
+
+    <label>Oyuncu Uyruğu</label>
+    <input type="text" class="form-control border" name="Nationality" />
+    <br />
+
+    <label>Oyuncu Değeri</label>
+    <input type="text" class="form-control border" name="Price" />
+    <br />
+    <label for="coachSelect">Takım Seç:</label>
+    <select id="coachSelect" name="TeamID" class="form-control">
+
+        <option value="">Oyuncunun Takımı </option>
+        @foreach (var item in ViewBag.TeamLists)
+        {
+            <option value="@item.TeamID">@item.Name</option>
+        }
+    </select>
+    <br />
+
+
+
+
+   
+    <label for="coachSelect">Pozisyon Seç:</label>
+    <select id="coachSelect" name="PositionID" class="form-control">
+
+        <option value="">Oyuncunun Oynadığı Pozisyon </option>
+        @foreach (var item in ViewBag.PositionLists)
+        {
+            <option value="@item.PositionID">@item.Name</option>
+        }
+    </select>
+    <br />
+
+
+
+
+  
+
+    <label>Oyuncu Açıklaması</label>
+    <textarea type="text" class="form-control border" name="Description"> </textarea>
+    <br />
+
+    <button class="btn btn-info">Oyuncuyu Kaydet</button>
+</form>
+
+
