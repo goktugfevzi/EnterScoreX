@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class Initial : Migration
+    public partial class eses : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,6 +81,22 @@ namespace DataAccessLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Positions", x => x.PositionID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RefereeDrives",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    SavedUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SavedFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefereeDrives", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -254,6 +270,8 @@ namespace DataAccessLayer.Migrations
                 {
                     MatchID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    HomeTeamGoals = table.Column<int>(type: "int", nullable: true),
+                    AwayTeamGoals = table.Column<int>(type: "int", nullable: true),
                     HomeTeamShots = table.Column<int>(type: "int", nullable: true),
                     AwayTeamShots = table.Column<int>(type: "int", nullable: true),
                     HomeTeamShotsOnTarget = table.Column<int>(type: "int", nullable: true),
@@ -467,6 +485,9 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "PlayerStatistics");
+
+            migrationBuilder.DropTable(
+                name: "RefereeDrives");
 
             migrationBuilder.DropTable(
                 name: "TeamStatistics");

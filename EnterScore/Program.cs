@@ -1,15 +1,19 @@
 using DataAccessLayer.Context;
 using BusinessLayer.Container;
+using EnterScore.Utils.ConfigOptions;
+using EnterScore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.ContainerDependencies();
+
+builder.Services.Configure<GCSConfigOptions>(builder.Configuration);
+builder.Services.AddSingleton<ICloudStorageService, CloudStorageService>();
+
 builder.Services.AddDbContext<EnterScoreXContext>();
-
 builder.Services.AddControllersWithViews();
-
 
 
 var app = builder.Build();

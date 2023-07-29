@@ -100,7 +100,7 @@ StyleCopReport.xml
 
 # Chutzpah Test files
 _Chutzpah*
-
+*enterscorex-91cd2ca4eea6.json
 # Visual C++ cache files
 ipch/
 *.aps

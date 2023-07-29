@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,9 +12,14 @@ namespace EntityLayer.Concrete
     {
         public int TeamID { get; set; }
         public string Name { get; set; }
-        public string? ImageUrl { get; set; }
 
+        [NotMapped]
+        public IFormFile? Photo { get; set; }
+        public string? SavedUrl { get; set; }
 
+        [NotMapped]
+        public string? SignedUrl { get; set; }
+        public string? SavedFileName { get; set; }
 
 
         public int CoachID { get; set; }

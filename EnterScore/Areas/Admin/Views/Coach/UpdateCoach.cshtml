@@ -7,11 +7,27 @@
 
 <h1>Koç Güncelleme sayfa</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
+
     <input type="hidden" name="CoachID" value="@Model.CoachID" />
-    <label>Hakem Adı</label>
-    <input type="text" class="form-control border" name="Name" value="@Model.Name"/>
+    <label>Teknik Direktor Adı</label>
+    <input type="text" class="form-control border" name="Name" value="@Model.Name" />
     <br />
+    <label>Fotoğraf</label>
+    <input type="file" class="form-control border" name="Photo" />
+    <br />
+    @if (!String.IsNullOrWhiteSpace(Model.SignedUrl))
+    {
+        <div class="md-col-2">
+            @Html.DisplayNameFor(model => model.Photo)
+        </div>
+        <div cite="md-col-10">
+            <img src="@Model.SignedUrl" class="figure-img img-fluid rounded" alt="@Model.SavedFileName">
+        </div>
+    }
+
+    <input name="SavedUrl" type="hidden" class="form-control" />
+    <input name="SavedFileName" type="hidden" class="form-control" />
 
     <button class="btn btn-outline-info">Teknik Koçu Kaydet</button>
     <a href="/Admin/Coach" class="btn btn-outline-danger">Geri Dön</a>

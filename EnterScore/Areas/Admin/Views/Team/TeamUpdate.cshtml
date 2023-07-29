@@ -12,10 +12,20 @@
 <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="TeamID" value="@Model.TeamID" />
 
-    <label>Kulüp Simgesi</label>
-    <input type="file" class="form-control border" name="imageFile" value="imageFile" />
+    <label>Takım Fotosu</label>
+    <input type="file" class="form-control border" name="Photo" />
     <br />
-
+    @if (!String.IsNullOrWhiteSpace(Model.SignedUrl))
+    {
+        <div class="md-col-2">
+            @Html.DisplayNameFor(model => model.Photo)
+        </div>
+        <div cite="md-col-10">
+            <img src="@Model.SignedUrl" class="figure-img img-fluid rounded" alt="@Model.SavedFileName">
+        </div>
+    }
+    <input name="SavedUrl" type="hidden" class="form-control" />
+    <input name="SavedFileName" type="hidden" class="form-control" />
 
     <label>Kulüp Adı</label>
     <input type="text" class="form-control border" name="Name" value="@Model.Name" />

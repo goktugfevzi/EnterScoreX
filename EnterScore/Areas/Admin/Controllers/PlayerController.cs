@@ -1,36 +1,39 @@
 ﻿using BusinessLayer.Abstract;
-using BusinessLayer.Concrete;
-using DataAccessLayer.Conrete.EntityFramework;
-using DataAccessLayer.Context;
 using EnterScore.Areas.Admin.Method;
 using EnterScore.Services;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using System.Data;
+using System.Numerics;
 
 namespace EnterScore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class TeamController : Controller
+    public class PlayerController : Controller
     {
-
+        private readonly IPlayerService _playerService;
         private readonly ITeamService _teamService;
-        private readonly ICoachService _coachService;
-        private readonly IStadiumService _stadiumService;
+        private readonly IPositionService _positionService;
         private readonly ICloudStorageService _cloudStorageService;
 
-        public TeamController(ITeamService teamService, ICoachService coachService, IStadiumService stadiumService, ICloudStorageService cloudStorageService)
+
+        public PlayerController(IPlayerService playerService, ITeamService teamService, IPositionService positionService, ICloudStorageService cloudStorageService)
         {
+            _playerService = playerService;
             _teamService = teamService;
-            _coachService = coachService;
-            _stadiumService = stadiumService;
+            _positionService = positionService;
             _cloudStorageService = cloudStorageService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var values = _teamService.TGetTeamsWithCoach();
+            List<Team> TeamLists = _teamService.TGetListAll();
+            ViewBag.TeamLists = TeamLists;
+
+            List<Position> PositionLists = _positionService.TGetListAll();
+            ViewBag.PositionLists = PositionLists;
+
+            var values = _playerService.TGetListAll();
             foreach (var value in values)
             {
                 await GenerateSignedUrl(value);
@@ -38,32 +41,36 @@ namespace EnterScore.Areas.Admin.Controllers
             }
             return View(values);
         }
-
         [HttpGet]
-        public IActionResult AddTeam()
+        public IActionResult AddPlayer()
+
         {
-            List<Coach> CoachLists = _coachService.TGetListAll();
-            List<Stadium> StadiumLists = _stadiumService.TGetListAll();
-            ViewBag.CoachList = CoachLists;
-            ViewBag.StadiumList = StadiumLists;
+            List<Team> TeamLists = _teamService.TGetListAll();
+            ViewBag.TeamLists = TeamLists;
+
+            List<Position> PositionLists = _positionService.TGetListAll();
+            ViewBag.PositionLists = PositionLists;
+
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> AddTeam(Team p)
+        public async Task<IActionResult> AddPlayer(Player p)
         {
+
             if (p.Photo != null)
             {
                 p.SavedFileName = GeneratedFileNameForCloud.GenerateFileNameToSave(p.Photo.FileName);
                 p.SavedUrl = await _cloudStorageService.UploadFileAsync(p.Photo, p.SavedFileName);
             }
-            _teamService.TInsert(p);
-            return RedirectToAction("Team", "Admin");
+            _playerService.TInsert(p);
+            return RedirectToAction("Player", "Admin");
         }
 
 
-        public async Task<IActionResult> DeleteTeam(int id)
+        public async Task<IActionResult> DeletePlayer(int id)
         {
-            var value = _teamService.TGetById(id);
+            var value = _playerService.TGetById(id);
             if (value != null)
             {
                 if (!string.IsNullOrWhiteSpace(value.SavedFileName))
@@ -72,26 +79,29 @@ namespace EnterScore.Areas.Admin.Controllers
                     value.SavedFileName = String.Empty;
                     value.SavedUrl = String.Empty;
                 }
-                _teamService.TDelete(value);
+                _playerService.TDelete(value);
             }
-            return RedirectToAction("Team", "Admin");
+            return RedirectToAction("Player", "Admin");
 
         }
-        [HttpGet]
-        public async Task<IActionResult> TeamUpdate(int id)
-        {
-            List<Coach> CoachLists = _coachService.TGetListAll();
-            ViewBag.CoachList = CoachLists;
-            List<Stadium> StadiumLists = _stadiumService.TGetListAll();
-            ViewBag.StadiumList = StadiumLists;
 
-            var value = _teamService.TGetById(id);
-            await GenerateSignedUrl(value);
-            return View(value);
+        [HttpGet]
+        public async Task<IActionResult> PlayerUpdate(int id)
+        {
+            List<Team> TeamLists = _teamService.TGetListAll();
+            ViewBag.TeamLists = TeamLists;
+
+            List<Position> PositionLists = _positionService.TGetListAll();
+            ViewBag.PositionLists = PositionLists;
+
+
+            var values = _playerService.TGetById(id);
+            await GenerateSignedUrl(values);
+            return View(values);
         }
 
         [HttpPost]
-        public async Task<IActionResult> TeamUpdate(Team p)
+        public async Task<IActionResult> PlayerUpdate(Player p)
         {
             if (p.Photo != null)
             {
@@ -99,17 +109,15 @@ namespace EnterScore.Areas.Admin.Controllers
             }
             else
             {
-                var existingTeam = _teamService.TGetById(p.TeamID);
+                var existingTeam = _playerService.TGetById(p.PlayerID);
                 p.SavedUrl = existingTeam.SavedUrl;
                 p.SavedFileName = existingTeam.SavedFileName;
             }
-            _teamService.TUpdate(p);
-            return RedirectToAction("Team", "Admin");
+            _playerService.TUpdate(p);
+            return RedirectToAction("Player", "Admin");
 
         }
-
-
-        private async Task ReplacePhoto(Team p)
+        private async Task ReplacePhoto(Player p)
         {
             if (p.Photo != null)
             {
@@ -121,7 +129,7 @@ namespace EnterScore.Areas.Admin.Controllers
                 p.SavedUrl = await _cloudStorageService.UploadFileAsync(p.Photo, p.SavedFileName);
             }
         }
-        public async Task GenerateSignedUrl(Team p)
+        public async Task GenerateSignedUrl(Player p)
         {
             if (!string.IsNullOrWhiteSpace(p.SavedFileName))
             {

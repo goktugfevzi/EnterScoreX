@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿
+using EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Context
@@ -69,5 +70,6 @@ namespace DataAccessLayer.Context
         public DbSet<TeamStatistic> TeamStatistics { get; set; }
 
         public DbSet<ContactUs> ContactUses { get; set; }
+        public DbSet<RefereeDrive> RefereeDrives { get; set; }
     }
 }

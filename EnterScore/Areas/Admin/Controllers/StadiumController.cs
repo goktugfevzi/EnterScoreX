@@ -1,9 +1,8 @@
 ﻿using BusinessLayer.Abstract;
+using EnterScore.Areas.Admin.Method;
+using EnterScore.Services;
 using EntityLayer.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace EnterScore.Areas.Admin.Controllers
 {
@@ -11,17 +10,26 @@ namespace EnterScore.Areas.Admin.Controllers
     public class StadiumController : Controller
     {
         private readonly IStadiumService _stadiumService;
+        private readonly ICloudStorageService _cloudStorageService;
 
-        public StadiumController(IStadiumService stadiumService)
+
+        public StadiumController(IStadiumService stadiumService, ICloudStorageService cloudStorageService)
         {
             _stadiumService = stadiumService;
+            _cloudStorageService = cloudStorageService;
         }
 
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
             var values = _stadiumService.TGetListAll();
+            foreach (var value in values)
+            {
+                await GenerateSignedUrl(value);
+            }
             return View(values);
         }
+
 
         [HttpGet]
         public IActionResult AddStadium()
@@ -30,58 +38,85 @@ namespace EnterScore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddStadium(Stadium p, IFormFile imageFile)
+        public async Task<IActionResult> AddStadium(Stadium p)
         {
-            if (imageFile != null && imageFile.Length > 0)
+            if (ModelState.IsValid)
             {
-                var fileName = Path.GetFileName(imageFile.FileName);
-                var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "admin_panel", "img", fileName);
-                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                if (p.Photo != null)
                 {
-                    await imageFile.CopyToAsync(stream);
+                    p.SavedFileName = GeneratedFileNameForCloud.GenerateFileNameToSave(p.Photo.FileName);
+                    p.SavedUrl = await _cloudStorageService.UploadFileAsync(p.Photo, p.SavedFileName);
                 }
-                p.ImageURL = "/admin_panel/img/" + fileName;
             }
-
             _stadiumService.TInsert(p);
             return RedirectToAction("Stadium", "Admin");
-
-
-
         }
 
-        public IActionResult DeleteStadium(int id)
+
+        public async Task<IActionResult> DeleteStadium(int id)
         {
             var value = _stadiumService.TGetById(id);
-            _stadiumService.TDelete(value);
+            if (value != null)
+            {
+                if (!string.IsNullOrWhiteSpace(value.SavedFileName))
+                {
+                    await _cloudStorageService.DeleteFileAsync(value.SavedFileName);
+                    value.SavedFileName = String.Empty;
+                    value.SavedUrl = String.Empty;
+                }
+                _stadiumService.TDelete(value);
+            }
             return RedirectToAction("Stadium", "Admin");
 
         }
 
         [HttpGet]
-        public IActionResult UpdateStadium(int id)
+        public async Task<IActionResult> UpdateStadium(int id)
         {
             var value = _stadiumService.TGetById(id);
+            await GenerateSignedUrl(value);
             return View(value);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateStadium(Stadium p, IFormFile imageFile)
+        public async Task<IActionResult> UpdateStadium(Stadium p)
         {
-            if (imageFile != null && imageFile.Length > 0)
+            if (p.Photo != null)
             {
-                var fileName = Path.GetFileName(imageFile.FileName);
-                var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "admin_panel", "img", fileName);
-                using (var stream = new FileStream(physicalPath, FileMode.Create))
-                {
-                    await imageFile.CopyToAsync(stream);
-                }
-                p.ImageURL = "/admin_panel/img/" + fileName;
+                await ReplacePhoto(p);
             }
-
+            else
+            {
+                var existingTeam = _stadiumService.TGetById(p.StadiumID);
+                p.SavedUrl = existingTeam.SavedUrl;
+                p.SavedFileName = existingTeam.SavedFileName;
+            }
             _stadiumService.TUpdate(p);
-            return RedirectToAction("Stadium", "Admin");
-        }
 
+            return RedirectToAction("Stadium", "Admin");
+
+        }
+        private async Task ReplacePhoto(Stadium p)
+        {
+            if (p.Photo != null)
+            {
+                if (!string.IsNullOrEmpty(p.SavedFileName))
+                {
+                    await _cloudStorageService.DeleteFileAsync(p.SavedFileName);
+                }
+                p.SavedFileName = GeneratedFileNameForCloud.GenerateFileNameToSave(p.Photo.FileName);
+                p.SavedUrl = await _cloudStorageService.UploadFileAsync(p.Photo, p.SavedFileName);
+            }
+        }
+        public async Task GenerateSignedUrl(Stadium p)
+        {
+            if (!string.IsNullOrWhiteSpace(p.SavedFileName))
+            {
+                p.SignedUrl = await _cloudStorageService.GetSignedUrlAsync(p.SavedFileName);
+            }
+        }
     }
 }
+
+
+

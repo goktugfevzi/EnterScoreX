@@ -34,6 +34,12 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CoachID");
 
                     b.ToTable("Coachs");
@@ -306,6 +312,12 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("TeamID")
                         .HasColumnType("int");
 
@@ -374,9 +386,41 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("RefereeID");
 
                     b.ToTable("Referees");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.RefereeDrive", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RefereeDrives");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Season", b =>
@@ -421,6 +465,12 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("StadiumID");
 
                     b.ToTable("Stadiums");
@@ -442,6 +492,12 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SavedUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StadiumID")

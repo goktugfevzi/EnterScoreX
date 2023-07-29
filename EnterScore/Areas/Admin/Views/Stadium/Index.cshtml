@@ -1,4 +1,4 @@
-﻿@model List<EntityLayer.Concrete.Stadium>
+﻿@model IEnumerable<EntityLayer.Concrete.Stadium>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -26,7 +26,16 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td><img src=@item.ImageURL height="70" width="90"></td>
+                            <td>
+                                @if (!String.IsNullOrWhiteSpace(item.SignedUrl))
+                                {
+                                    <img width="75px" src="@item.SignedUrl" class="figure-img img-fluid rounded" alt="@item.SavedFileName">
+                                }
+                                else
+                                {
+                                    <span>No Photo Available</span>
+                                }
+                            </td>
                             <td>@item.Name</td>
                             <td>@item.City</td>
                             <td>@item.Capacity</td>

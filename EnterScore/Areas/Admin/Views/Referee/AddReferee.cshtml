@@ -6,13 +6,23 @@
 }
 <h1>Hakem Ekleme Sayfası</h1>
 
-
-<form method="post">
+<hr />
+<form method="post" enctype="multipart/form-data">
     <label>Hakem Adı</label>
     <input type="text" class="form-control border" name="Name" />
     <br />
-    
+    <label>Hakem Fotosu</label>
+    <input type="file" class="form-control border" name="Photo" />
+    <br />
+
+    <input name="SavedUrl" type="hidden" class="form-control" />
+    <input name="SavedFileName" type="hidden" class="form-control" />
     <button class="btn btn-outline-info">Hakemi Kaydet</button>
     <a href="/Admin/Referee" class="btn btn-outline-danger">Geri Dön</a>
 
 </form>
+
+
+<div>
+    <a href="Index">Back to List</a>
+</div>

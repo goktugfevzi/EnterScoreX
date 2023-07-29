@@ -6,9 +6,7 @@
 
 <form method="post" enctype="multipart/form-data">
 
-    <label>Oyuncu Fotoğrafı</label>
-    <input type="file" class="form-control border" name="imageFile" />
-    <br />
+
     <label>Oyuncu Adı</label>
     <input type="text" class="form-control border" name="Name" />
     <br />
@@ -25,7 +23,7 @@
     <input type="text" class="form-control border" name="Weight" />
     <br />
 
-   
+
 
     <label>Oyuncu Numarası</label>
     <input type="text" class="form-control border" name="Number" />
@@ -49,10 +47,6 @@
     </select>
     <br />
 
-
-
-
-   
     <label for="coachSelect">Pozisyon Seç:</label>
     <select id="coachSelect" name="PositionID" class="form-control">
 
@@ -63,12 +57,12 @@
         }
     </select>
     <br />
+    <label>Oyuncunun Fotosu</label>
+    <input type="file" class="form-control border" name="Photo" />
+    <br />
 
-
-
-
-  
-
+    <input name="SavedUrl" type="hidden" class="form-control" />
+    <input name="SavedFileName" type="hidden" class="form-control" />
     <label>Oyuncu Açıklaması</label>
     <textarea type="text" class="form-control border" name="Description"> </textarea>
     <br />

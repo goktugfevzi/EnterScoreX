@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-  
+
 }
 
 <div class="container">
@@ -14,11 +14,11 @@
                     <tr>
                         <th>Oyuncu Fotoğrafı </th>
                         <th>Oyuncu Adı</th>
-                   
+
                         <th>Oyuncu Numarası</th>
                         <th>Oyuncu Uyruğu</th>
                         <th>Oyuncu Değeri</th>
-               
+
                         <th>Oyuncu Takımı</th>
                         <th>Oyuncu Pozisyonu</th>
 
@@ -29,13 +29,20 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    
                         <tr>
-
-                            <td><img src=@item.ImageURL height="70" width="90"></td>
+                            <td>
+                                @if (!String.IsNullOrWhiteSpace(item.SignedUrl))
+                                {
+                                    <img width="75px" src="@item.SignedUrl" class="figure-img img-fluid rounded" alt="@item.SavedFileName">
+                                }
+                                else
+                                {
+                                    <span>No Photo Available</span>
+                                }
+                            </td>
                             <td>@item.Name</td>
-                    
-                        
+
+
                             <td>@item.Number</td>
                             <td>@item.Nationality</td>
                             <td>@item.Price</td>
@@ -65,13 +72,13 @@
 
 
 
-                            <td><a href="/Admin/PlayerCreate/PlayerUpdate/@item.PlayerID" class="btn btn-outline-success">Güncelle</a></td>
-                            <td><a href="/Admin/PlayerCreate/DeletePlayer/@item.PlayerID" class="btn btn-outline-danger">Sil</a></td>
+                            <td><a href="/Admin/Player/PlayerUpdate/@item.PlayerID" class="btn btn-outline-success">Güncelle</a></td>
+                            <td><a href="/Admin/Player/DeletePlayer/@item.PlayerID" class="btn btn-outline-danger">Sil</a></td>
                         </tr>
                     }
                 </tbody>
             </table>
-            <a href="/Admin/PlayerCreate/AddPlayer" class="btn btn-outline-light">Yeni Oyuncu Girişi</a>
+            <a href="/Admin/Player/AddPlayer" class="btn btn-outline-light">Yeni Oyuncu Girişi</a>
         </div>
     </div>
 </div>

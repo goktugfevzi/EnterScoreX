@@ -4,14 +4,29 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Hakem Güncelleme PEYÇ</h1>
+<h1>Hakem Güncelleme</h1>
 
-<form method="post">
-    <input type="hidden" name="RefereeID" value="@Model.RefereeID" />
+
+<hr />
+<form method="post" enctype="multipart/form-data">
     <label>Hakem Adı</label>
-    <input type="text" class="form-control border" name="Name" value="@Model.Name"/>
+    <input type="text" class="form-control border" name="Name" />
     <br />
+    <label>Hakem Fotosu</label>
+    <input type="file" class="form-control border" name="Photo" />
+    <br />
+    @if (!String.IsNullOrWhiteSpace(Model.SignedUrl))
+    {
+        <div class="md-col-2">
+            @Html.DisplayNameFor(model => model.Photo)
+        </div>
+        <div cite="md-col-10">
+            <img src="@Model.SignedUrl" class="figure-img img-fluid rounded" alt="@Model.SavedFileName">
+        </div>
+    }
 
+    <input name="SavedUrl" type="hidden" class="form-control" />
+    <input name="SavedFileName" type="hidden" class="form-control" />
     <button class="btn btn-outline-info">Hakemi Kaydet</button>
     <a href="/Admin/Referee" class="btn btn-outline-danger">Geri Dön</a>
 
