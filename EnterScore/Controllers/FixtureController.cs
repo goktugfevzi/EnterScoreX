@@ -14,7 +14,7 @@ namespace EnterScore.Controllers
         {
             _fixtureService = fixtureService;
         }
-
+        //BU SAYFA BİR İŞE YARAMIYOR TÜM VERİLER SİLİNECEK
         // Ana sayfa - Tüm maçları ve haftaları gösterir
         public IActionResult Index()
         {

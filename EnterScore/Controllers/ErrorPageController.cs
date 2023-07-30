@@ -6,7 +6,7 @@ namespace EnterScore.Controllers
     {
         public IActionResult ErrorPage(int code)
         {
-          
+            Console.WriteLine(code);
             return View();
         }
     }

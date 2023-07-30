@@ -10,6 +10,7 @@ namespace DataAccessLayer.Abstract
     public interface ITeamDal : IGenericDal<Team>
     {
         public List<Team> GetTeamsWithCoach();
+        public List<Team> GetTeamsWithStatistics();
 
     }
 }

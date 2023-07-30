@@ -1,4 +1,4 @@
-﻿@model List<EntityLayer.Concrete.Team>
+﻿@model IEnumerable<EntityLayer.Concrete.Team>
 
 <div class="point-table-page">
     <div class="container">
@@ -14,7 +14,7 @@
                                     <th width="10%" class="text-center">Playered</th>
                                     <th width="10%" class="text-center">Won</th>
                                     <th width="10%" class="text-center">Draw</th>
-                                    <th width="10%" class="text-center">Lost </th>
+                                    <th width="10%" class="text-center">Lost</th>
                                     <th width="10%" class="text-center">For</th>
                                     <th width="10%" class="text-center">Against</th>
                                     <th width="10%" class="text-center">Goal dif.</th>
@@ -23,34 +23,32 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="point-itmes">
+                    <div class="point-items">
                         <table class="table table-striped-inverse point-table">
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var team in Model)
                                 {
-                                    <tr>
-                                        <th data-th="Group A" width="20%" scope="row">
-                                            <img style="width:60px; height:60px" src="@item.SignedUrl" alt="" />
-                                            <span>@item.Name</span>
-                                        </th>
-                                        <td data-th="Playered" width="10%" class="text-center">3</td>
-                                        <td data-th="Won" width="10%" class="text-center">2</td>
-                                        <td data-th="Draw" width="10%" class="text-center">1</td>
-                                        <td data-th="Lost" width="10%" class="text-center">0</td>
-                                        <td data-th="For" width="10%" class="text-center">4</td>
-                                        <td data-th="Against" width="10%" class="text-center">1</td>
-                                        <td data-th="Goal dif." width="10%" class="text-center">3</td>
-                                        <td data-th="Points" width="10%" class="text-center">7</td>
-                                    </tr>
+                                    var statistics = team.Statistics.FirstOrDefault(s => s.TeamID == team.TeamID);
+                                    if (statistics != null)
+                                    {
+                                        <tr>
+                                            <th data-th="Group A" width="20%" scope="row">
+                                                <img style="width:60px; height:60px" src="@team.SignedUrl" />
+                                                <span>@team.Name</span>
+                                            </th>
+                                            <td data-th="Playered" width="10%" class="text-center">@statistics.PlayedCount</td>
+                                            <td data-th="Won" width="10%" class="text-center">@statistics.WinCount</td>
+                                            <td data-th="Draw" width="10%" class="text-center">@statistics.DrawCount</td>
+                                            <td data-th="Lost" width="10%" class="text-center">@statistics.LoseCount</td>
+                                            <td data-th="For" width="10%" class="text-center">@statistics.GoalsFor</td>
+                                            <td data-th="Against" width="10%" class="text-center">@statistics.GoalsAgainst</td>
+                                            <td data-th="Goal dif." width="10%" class="text-center">@statistics.Average</td>
+                                            <td data-th="Points" width="10%" class="text-center">@statistics.Points</td>
+                                        </tr>
+                                    }
                                 }
-
-
-
-
                             </tbody>
                         </table>
-
-
                     </div>
                 </div>
             </div>

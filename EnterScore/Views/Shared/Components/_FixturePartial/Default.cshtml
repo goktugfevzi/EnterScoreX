@@ -1,6 +1,5 @@
-﻿@model List<EntityLayer.Concrete.Match>
+﻿@model IEnumerable<EntityLayer.Concrete.Match>
 
-@*
 
 <div class="fixture-section">
     <div class="container">
@@ -27,7 +26,7 @@
                                     <div class="col-md-4">
                                         <div class="match-left">
                                             <div class="fixture-team-img">
-                                                <a href="#"><img src="@match.HomeTeam.ImageUrl" width="80" height="77" alt=""></a>
+                                                <a href="#"><img src="@match.HomeTeam.SignedUrl" width="80" height="77" alt=""></a>
                                             </div>
                                             <div class="fixture-team-name fixture-team-left">
                                                 <h1>@match.HomeTeam.Name</h1>
@@ -48,7 +47,7 @@
                                                 <!-- @match. kısmına ekstra bir özellik eklemeyi unutmuşum, burayı düzeltebilirsiniz. -->
                                             </div>
                                             <div class="fixture-team-img">
-                                                <a href="#"><img src="@match.AwayTeam.ImageUrl" width="80" height="77" alt=""></a>
+                                                <a href="#"><img src="@match.AwayTeam.SignedUrl" width="80" height="77" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +68,6 @@
                 <div class="prev-and-next-btn-section prev-and-next-btn-section1">
                     <div class="prev-and-next-btn">
 
-                        var fixtures= Fix
                         @if (Model.Any() && Model.Max(m => m.Fixture.Week) > 1)
                         {
 
@@ -88,4 +86,4 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>

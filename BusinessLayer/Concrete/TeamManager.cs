@@ -47,5 +47,9 @@ namespace BusinessLayer.Concrete
             return _teamDal.GetTeamsWithCoach();
 
         }
+        public List<Team> TGetTeamsWithStatistics()
+        {
+            return _teamDal.GetTeamsWithStatistics();
+        }
     }
 }

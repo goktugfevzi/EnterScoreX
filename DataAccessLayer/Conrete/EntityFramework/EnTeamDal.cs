@@ -18,7 +18,11 @@ namespace DataAccessLayer.Conrete.EntityFramework
             using var context = new EnterScoreXContext();
             return context.Teams.Include(x => x.Coach).ToList();
         }
-     
+        public List<Team> GetTeamsWithStatistics()
+        {
+            using var context = new EnterScoreXContext();
+            return context.Teams.Include(x => x.Statistics).ToList();
+        }
 
     }
 }

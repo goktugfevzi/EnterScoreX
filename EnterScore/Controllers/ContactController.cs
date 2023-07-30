@@ -39,12 +39,9 @@ namespace EnterScore.Controllers
                     MessageDate = Convert.ToDateTime(DateTime.Now.ToShortDateString())
                 });
 
-                // Gönderme işlemi başarılıysa başka bir sayfaya yönlendirebilirsiniz.
-                // Örnek olarak HomeController içindeki bir action'a yönlendirelim:
-                return RedirectToAction("ContactSuccess", "Home");
+                return RedirectToAction("Index", "Fixture");
             }
 
-            // Eğer model geçerli değilse, iletişim formunu tekrar gösterin.
             return View(model);
         }
     }
