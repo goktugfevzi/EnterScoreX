@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Context;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EnterScore.Areas.Admin.Controllers
@@ -10,17 +12,43 @@ namespace EnterScore.Areas.Admin.Controllers
     {
         private readonly IFixtureService _fixtureService;
         private readonly ITeamService _teamService;
+        private readonly EnterScoreXContext _context;
 
-        public FixtureController(IFixtureService fixtureService, ITeamService teamService)
+        public FixtureController(IFixtureService fixtureService, ITeamService teamService, EnterScoreXContext enterScoreXContext)
         {
             _fixtureService = fixtureService;
             _teamService = teamService;
+            _context = enterScoreXContext;
         }
 
         public IActionResult Index()
         {
             var values = _fixtureService.TGetFixtureWithTeams();
             return View(values);
+        }
+
+        public IActionResult DeleteFixture()
+        {
+
+            // Delete records from Goals table.
+            var goals = _context.Goals.ToList();
+            _context.Goals.RemoveRange(goals);
+            _context.SaveChanges();
+            // Delete records from TeamStatistics table.
+            var teamStatistics = _context.TeamStatistics.ToList();
+            _context.TeamStatistics.RemoveRange(teamStatistics);
+            _context.SaveChanges();
+
+            // Delete records from PlayerStatistics table.
+            var playerStatistics = _context.PlayerStatistics.ToList();
+            _context.PlayerStatistics.RemoveRange(playerStatistics);
+            _context.SaveChanges();
+
+            // Delete records from Matches table.
+            _context.Database.ExecuteSqlRaw("DELETE FROM dbo.Matches DBCC CHECKIDENT ('DbEnterScoreX.dbo.Matches', RESEED, 0)");
+            _context.Database.ExecuteSqlRaw("DELETE FROM dbo.Fixtures DBCC CHECKIDENT ('DbEnterScoreX.dbo.Fixtures', RESEED, 0)");
+
+            return RedirectToAction("Fixture", "Admin");
         }
 
         [HttpGet]

@@ -7,20 +7,22 @@ namespace EnterScore.ViewComponents.Point_Table
 {
     public class _TablePointsPartial : ViewComponent
     {
-        private readonly ITeamService _teamService;
         private readonly ICloudStorageService _cloudStorageService;
+        private readonly ITeamStatisticService _teamStatisticService;
+        private readonly ITeamService _teamService;
 
-        public _TablePointsPartial(ITeamService teamService, ICloudStorageService cloudStorageService)
+        public _TablePointsPartial(ICloudStorageService cloudStorageService, ITeamStatisticService metricService, ITeamService teamService)
         {
-            _teamService = teamService;
             _cloudStorageService = cloudStorageService;
+            _teamStatisticService = metricService;
+            _teamService = teamService;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = _teamService.TGetTeamsWithStatistics();
+            var values = _teamStatisticService.TGetTeamStatisticWithTeams();
             foreach (var value in values)
             {
-                await GenerateSignedUrl(value);
+                await GenerateSignedUrl(value.Team);
             }
             return View(values);
         }

@@ -15,33 +15,46 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(Match t)
         {
-         _matchDal.Delete(t);
+            _matchDal.Delete(t);
         }
 
         public Match TGetById(int id)
         {
-            return _matchDal.GetById(id);   
+            return _matchDal.GetById(id);
         }
 
-    
+
         public List<Match> TGetListAll()
         {
-           return _matchDal.GetListAll();
+            return _matchDal.GetListAll();
         }
 
         public List<Match> TGetMatchWithTeams()
         {
-           return _matchDal.GetMatchWithTeams();
+            return _matchDal.GetMatchWithTeams();
         }
-
+        public List<Match> TGetMatchWithAllDetails()
+        {
+            return _matchDal.GetMatchWithAllDetails();
+        }
+        public Match TGetMatchWithTeamByID(int MatchID)
+        {
+            return _matchDal.GetMatchWithTeamByID(MatchID);
+        }
+        public Match TGetMatchWithAllDetailsByID(int MatchID)
+        {
+            return _matchDal.GetMatchWithAllDetailsByID(MatchID);
+        }
         public void TInsert(Match t)
         {
-          _matchDal.Insert(t);
+            _matchDal.Insert(t);
         }
 
         public void TUpdate(Match t)
         {
-          _matchDal.Update(t);
+            _matchDal.Update(t);
         }
+
+      
     }
 }

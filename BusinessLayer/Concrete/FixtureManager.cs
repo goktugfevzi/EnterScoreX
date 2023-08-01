@@ -19,7 +19,7 @@ namespace BusinessLayer.Concrete
             _fixtureDal = fixtureDal;
         }
 
-       
+
 
         public void TDelete(Fixture t)
         {
@@ -41,6 +41,11 @@ namespace BusinessLayer.Concrete
             return _fixtureDal.GetFixtureWithTeams();
         }
 
+        public List<List<Fixture>> TGetFixtureWithTeamsGroupByWeek()
+        {
+            return _fixtureDal.GetFixtureWithTeamsGroupByWeek();
+        }
+
         public List<Fixture> TGetListAll()
         {
             return _fixtureDal.GetListAll();
@@ -48,7 +53,7 @@ namespace BusinessLayer.Concrete
 
         public List<Fixture> TGetMatchesWithTeams()
         {
-          return  _fixtureDal.GetMatchesWithTeams();
+            return _fixtureDal.GetMatchesWithTeams();
         }
 
         public void TInsert(Fixture t)
@@ -60,6 +65,6 @@ namespace BusinessLayer.Concrete
         {
             _fixtureDal.Update(t);
         }
-       
+
     }
 }

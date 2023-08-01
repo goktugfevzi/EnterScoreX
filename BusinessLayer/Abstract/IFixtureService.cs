@@ -12,7 +12,8 @@ namespace BusinessLayer.Abstract
     {
         public List<Fixture> TGetFixtureWithTeams();
 
-       public List<Fixture> TGetMatchesWithTeams();
+        public List<Fixture> TGetMatchesWithTeams();
+        public List<List<Fixture>> TGetFixtureWithTeamsGroupByWeek();
 
         public List<int> TGetDistinctWeeks();
 

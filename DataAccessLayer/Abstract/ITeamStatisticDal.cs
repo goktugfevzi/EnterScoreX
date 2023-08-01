@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ITeamStatisticDal : IGenericDal<TeamStatistic>
     {
+        public List<TeamStatistic> GetTeamStatisticWithTeams();
     }
 }

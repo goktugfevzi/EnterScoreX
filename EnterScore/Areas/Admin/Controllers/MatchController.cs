@@ -93,8 +93,8 @@ namespace EnterScore.Areas.Admin.Controllers
                 int homeTeamShots = random.Next(homeTeamShotsOnTarget, homeTeamShotsOnTarget + 4);
                 int awayTeamShots = random.Next(awayTeamShotsOnTarget, awayTeamShotsOnTarget + 4);
 
-                int homeTeamPassSuccess = random.Next(60, 150);
-                int awayTeamPassSuccess = random.Next(60, 150);
+                int homeTeamPassSuccess = random.Next(35, 66);
+                int awayTeamPassSuccess = 100 - homeTeamPassSuccess;
 
                 int homeTeamAerialDualSuccess;
                 int awayTeamAerialDualSuccess;

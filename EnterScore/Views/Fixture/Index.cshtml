@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,37 +8,43 @@
 <body>
 
 
-        @await Component.InvokeAsync("_NavbarPartial")
+    @await Component.InvokeAsync("_NavbarPartial")
 
 
-        <div class="player-profile-section page-title-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <div class="section-title profile-title">
-                            <h1>Fikstür</h1>
-                        </div>
+    <div class="player-profile-section page-title-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="section-title profile-title">
+                        <h1>Fikstür</h1>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="pagination-area">
-                            <ul>
-                                <li><a href="#">Ana Sayfa<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                      
-                                <li class="active"><a href="#">Fikstür</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="pagination-area">
+                        <ul>
+                            <li><a href="#">Ana Sayfa<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+
+                            <li class="active"><a href="#">Fikstür</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-     
-        @await Component.InvokeAsync("_FixturePartial")
+    </div>
+
+    @{
+        int currentPage = 1;
+        if (int.TryParse(ViewContext.RouteData.Values["id"]?.ToString(), out int parsedPage))
+        {
+            currentPage = parsedPage;
+        }
+    }
+    @await Component.InvokeAsync("_FixturePartial", new { id = currentPage })
 
 
 
-     
-       
-  
+
+
     <!-- jQuery libery -->
     <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
     <!-- Bootstrap -->

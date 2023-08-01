@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EntityLayer.Concrete.Team>
+﻿@model IEnumerable<EntityLayer.Concrete.TeamStatistic>
 
 <div class="point-table-page">
     <div class="container">
@@ -26,27 +26,25 @@
                     <div class="point-items">
                         <table class="table table-striped-inverse point-table">
                             <tbody>
-                                @foreach (var team in Model)
+                                @foreach (var item in Model)
                                 {
-                                    var statistics = team.Statistics.FirstOrDefault(s => s.TeamID == team.TeamID);
-                                    if (statistics != null)
-                                    {
-                                        <tr>
-                                            <th data-th="Group A" width="20%" scope="row">
-                                                <img style="width:60px; height:60px" src="@team.SignedUrl" />
-                                                <span>@team.Name</span>
-                                            </th>
-                                            <td data-th="Playered" width="10%" class="text-center">@statistics.PlayedCount</td>
-                                            <td data-th="Won" width="10%" class="text-center">@statistics.WinCount</td>
-                                            <td data-th="Draw" width="10%" class="text-center">@statistics.DrawCount</td>
-                                            <td data-th="Lost" width="10%" class="text-center">@statistics.LoseCount</td>
-                                            <td data-th="For" width="10%" class="text-center">@statistics.GoalsFor</td>
-                                            <td data-th="Against" width="10%" class="text-center">@statistics.GoalsAgainst</td>
-                                            <td data-th="Goal dif." width="10%" class="text-center">@statistics.Average</td>
-                                            <td data-th="Points" width="10%" class="text-center">@statistics.Points</td>
-                                        </tr>
-                                    }
+                                    @*    var team = item.Team.where(s => s.TeamID;*@
+                                    <tr>
+                                        <th data-th="Group A" width="20%" scope="row">
+                                            <img style="width:60px; height:60px" src="@item.Team.SignedUrl" />
+                                            <span>@item.Team.Name</span>
+                                        </th>
+                                        <td data-th="Playered" width="10%" class="text-center">@item.PlayedCount</td>
+                                        <td data-th="Won" width="10%" class="text-center">@item.WinCount</td>
+                                        <td data-th="Draw" width="10%" class="text-center">@item.DrawCount</td>
+                                        <td data-th="Lost" width="10%" class="text-center">@item.LoseCount</td>
+                                        <td data-th="For" width="10%" class="text-center">@item.GoalsFor</td>
+                                        <td data-th="Against" width="10%" class="text-center">@item.GoalsAgainst</td>
+                                        <td data-th="Goal dif." width="10%" class="text-center">@item.Average</td>
+                                        <td data-th="Points" width="10%" class="text-center">@item.Points</td>
+                                    </tr>
                                 }
+
                             </tbody>
                         </table>
                     </div>

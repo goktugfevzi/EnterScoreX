@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface ITeamStatisticService : IGenericService<TeamStatistic>
     {
+        public List<TeamStatistic> TGetTeamStatisticWithTeams();
+
     }
 }

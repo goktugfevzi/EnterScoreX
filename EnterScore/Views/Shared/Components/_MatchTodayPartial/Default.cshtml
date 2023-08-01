@@ -1,45 +1,42 @@
-﻿<div class="match-today-section world-cup-match">
+﻿@model EntityLayer.Concrete.Match
+
+
+<div class="match-today-section world-cup-match">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="world-cup-match-title gallery">
-                    <h1>world cup <a href="http://www.youtube.com/watch?v=qqXi8WmQ_WM" data-gal="prettyPhoto[gallery2]"><span><i class="fa fa-video-camera" aria-hidden="true"></i></span></a></h1>
-                    <p><a href="#">06 Aug, 2016 - 12:00, France</a></p>
+                    <h1>Premier Leauge</h1>
+                    <p><a href="#">@Model.Fixture.Week, @Model.Stadium.City</a></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="match-left">
+                <div class="match-left d-flex align-items-center">
                     <div class="today-team-img teamsname">
-                        <a href="#"><img src="~/sport_template-master/images/team-foot1.png" width="65" height="63" alt=""></a>
+                        <a href="#"><img src="@Model.HomeTeam.SignedUrl" width="55" height="53" alt=""></a>
                     </div>
                     <div class="today-team-name teamsname">
-                        <h1>France</h1>
-                        <p>Teamfoot</p>
+                        <h1>@Model.HomeTeam.Name</h1>
+                        <p>@Model.HomeTeam.Coach.Name</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="team-vs-team">
-                    <h1>2:3</h1>
+                    <h1>@Model.HomeTeamGoals:@Model.AwayTeamGoals</h1>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="match-right">
+                <div class="match-right d-flex align-items-center">
                     <div class="today-team-name teamsname text-right">
-                        <h1>France</h1>
-                        <p>Teamfoot</p>
+                        <h1>@Model.AwayTeam.Name</h1>
+                        <p>@Model.AwayTeam.Coach.Name</p>
                     </div>
                     <div class="today-team-img teamsname">
-                        <a href="#"><img src="~/sport_template-master/images/team-foot2.png" width="65" height="63" alt=""></a>
+                        <a href="#"><img src="@Model.AwayTeam.SignedUrl" width="55" height="53" /></a>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="nex-match">
-                    <p>Half time:<span>0:0</span></p>
-                    <p>Full time:<span>2:5</span></p>
                 </div>
             </div>
         </div>
-    </div>
-</div><!-- end of /. match today section -->
+    </div><!-- end of /. match today section -->
+</div>

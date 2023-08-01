@@ -9,8 +9,10 @@
 
 <hr />
 <form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="RefereeID" value="@Model.RefereeID" />
+
     <label>Hakem Adı</label>
-    <input type="text" class="form-control border" name="Name" />
+    <input type="text" class="form-control border" name="Name" value="@Model.Name" />
     <br />
     <label>Hakem Fotosu</label>
     <input type="file" class="form-control border" name="Photo" />

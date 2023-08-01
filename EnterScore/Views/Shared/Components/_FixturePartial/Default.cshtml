@@ -1,89 +1,115 @@
-﻿@model IEnumerable<EntityLayer.Concrete.Match>
-
+﻿@model IEnumerable<EntityLayer.Concrete.Fixture>
 
 <div class="fixture-section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="world-cup">
-                    <h1>World Cup</h1>
-                </div>
-            </div>
+        <div class="text-center">
+            <h1>@ViewBag.CurrentPage. HAFTA</h1>
         </div>
         <div class="row inner-custom-row">
             <div class="col-md-12">
-
-                @for (int week = 1; week <= Model.Max(m => m.Fixture.Week); week++)
+                @foreach (var item in Model)
                 {
-                    <div class="current-week">
-                        <h2>Week @week</h2>
-                    </div>
-                    <div class="matches-for-current-week">
-                        @foreach (var match in Model.Where(m => m.Fixture.Week == week))
-                        {
-                            <div class="row">
-                                <div class="white-match">
-                                    <div class="col-md-4">
-                                        <div class="match-left">
-                                            <div class="fixture-team-img">
-                                                <a href="#"><img src="@match.HomeTeam.SignedUrl" width="80" height="77" alt=""></a>
+                    if (@item.Matches.Count > 0)
+                    {
+                        <div class="row">
+                            <div class="white-match">
+                                <a asp-controller="Result" asp-action="Index" asp-route-id="@item.Matches[0].MatchID">
+                                    <div>
+                                        <div class="col-md-4">
+                                            <div class="match-left">
+                                                <div class="fixture-team-img">
+                                                    <img src="@item.HomeTeam.SignedUrl" width="80" height="77" alt="">
+                                                </div>
+                                                <div class="fixture-team-name fixture-team-left">
+                                                    <h1>@item.HomeTeam.Name</h1>
+                                                    <p>@item.HomeTeam.Coach.Name</p>
+
+                                                </div>
                                             </div>
-                                            <div class="fixture-team-name fixture-team-left">
-                                                <h1>@match.HomeTeam.Name</h1>
-                                                <p>@match.MatchID</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="fixture-team-date">
+                                                <p>@item.Matches[0].HomeTeamGoals - @item.Matches[0].AwayTeamGoals</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="match-right">
+                                                <div class="fixture-team-name fixture-team-right text-right">
+                                                    <h1>@item.AwayTeam.Name</h1>
+                                                    <p>@item.AwayTeam.Coach.Name</p>
+
+                                                </div>
+                                                <div class="fixture-team-img">
+                                                    <img src="@item.AwayTeam.SignedUrl" width="80" height="77" alt="">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="fixture-team-date">
-                                            <h1>@match.HomeTeamGoals - @match.AwayTeamGoals</h1>
-                                            <p>@match.Stadium</p>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="white-match">
+
+                                <div class="col-md-4">
+                                    <div class="match-left">
+                                        <div class="fixture-team-img">
+                                            <img src="@item.HomeTeam.SignedUrl" width="80" height="77" alt="">
+                                        </div>
+                                        <div class="fixture-team-name fixture-team-left">
+                                            <h1>@item.HomeTeam.Name</h1>
+                                            <p>@item.HomeTeam.Coach.Name</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="match-right">
-                                            <div class="fixture-team-name fixture-team-right text-right">
-                                                <h1>@match.AwayTeam.Name</h1>
-                                                <!-- @match. kısmına ekstra bir özellik eklemeyi unutmuşum, burayı düzeltebilirsiniz. -->
-                                            </div>
-                                            <div class="fixture-team-img">
-                                                <a href="#"><img src="@match.AwayTeam.SignedUrl" width="80" height="77" alt=""></a>
-                                            </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="fixture-team-date">
+                                        <p>OYNANACAK</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="match-right">
+                                        <div class="fixture-team-name fixture-team-right text-right">
+                                            <h1>@item.AwayTeam.Name</h1>
+                                            <p>@item.AwayTeam.Coach.Name</p>
+
+                                        </div>
+                                        <div class="fixture-team-img">
+                                            <img src="@item.AwayTeam.SignedUrl" width="80" height="77" alt="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 }
             </div>
         </div>
-    </div>
-</div>
-
-<div class="prev-and-next-sec">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="prev-and-next-btn-section prev-and-next-btn-section1">
-                    <div class="prev-and-next-btn">
-
-                        @if (Model.Any() && Model.Max(m => m.Fixture.Week) > 1)
-                        {
-
-                            <a href="/Fixture/PreviousWeek">Prev <i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <div class="prev-and-next-btn-section">
-                    <div class="prev-and-next-btn">
-                        <!-- "Next" butonu her tıklamada mevcut hafta numarasını artırarak, bir sonraki haftaya geçişi sağlar -->
-                        <a href="/Fixture/NextWeek">Next <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                    </div>
-                </div>
+        <div class="d-flex justify-content-center">
+            <div class="pagination-container mt-3">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-controller="Fixture" asp-action="Index" asp-route-id="@((ViewBag.CurrentPage > 1) ? ViewBag.CurrentPage - 1 : 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" asp-controller="Fixture" asp-action="Index" asp-route-id="@i">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                        <a class="page-link" asp-controller="Fixture" asp-action="Index" asp-route-id="@((ViewBag.CurrentPage < ViewBag.TotalPages) ? ViewBag.CurrentPage + 1 : ViewBag.TotalPages)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+
     </div>
 </div>

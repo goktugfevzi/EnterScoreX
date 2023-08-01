@@ -1,0 +1,358 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+@*@await Component.InvokeAsync("_HeadPartial")*@
+<head>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- web site title -->
+    <title>Sportsox | Sport Team Clubs HTML Template</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="~/sport_template-master/images/favicon.png">
+
+    <!-- style -->
+    <link rel="stylesheet" href="~/sport_template-master/css/style.css">
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+    <![endif]-->
+</head>
+<body>
+    <!-- START PRELOADER -->
+    <div id="preloader">
+        <div id="loader-wrapper">
+            <div class="loader1"></div>
+        </div>
+    </div>
+    <!-- END OF /. PRELOADER -->
+
+    <div class="wrapper">
+        <!-- START HEADER TOP SECTION -->
+        @await Component.InvokeAsync("_NavbarPartial")
+        <!-- START PAGE TITILE SECTION -->
+        <div class="player-profile-section page-title-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="section-title profile-title">
+                            <h1>Legacy</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pagination-area">
+                            <ul>
+                                <li><a href="#">Home<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                <li><a href="#">Bread<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                <li class="active"><a href="#">Crumbs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END OF /. PAGE TITLE SECTION -->
+
+        <div class="club-histry-feature-section">
+            <div class="container">
+                <div class="row">
+                    <div class="inner-container">
+                        <div class="col-sm-2">
+                            <div class="club-histry-img">
+                                <a href="#"><img class="~/sport_template-master/img-responsive" src="images/club-img.png" width="169" height="222" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="club-histry">
+                                <h1>Club <b>History</b></h1>
+                                <p>Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. </p>
+                                <p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="club-histry">
+                                <h1>Main <b>Features</b></h1>
+                            </div>
+                            <div class="club-details">
+                                <div class="club-name club-details-inner">
+                                    <h1>Legacy (Italy)</h1>
+                                    <p>Football Club</p>
+                                </div>
+                                <div class="coach-name club-details-inner">
+                                    <h1>Coach</h1>
+                                    <p>Zinedine Zidane</p>
+                                </div>
+                            </div>
+                            <div class="club-details">
+                                <div class="start-time club-details-inner">
+                                    <h1>Established</h1>
+                                    <p>Since 1993</p>
+                                </div>
+                                <div class="president-name club-details-inner">
+                                    <h1>Curent President</h1>
+                                    <p>Jose Angel Sanchez</p>
+                                </div>
+                            </div>
+                            <div class="club-details">
+                                <div class="stadium-name club-details-inner">
+                                    <h1>Arena / Stadium</h1>
+                                    <p>Santiago Bernabeu</p>
+                                </div>
+                                <div class="club-social club-details-inner">
+                                    <h1>Social</h1>
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="club-play-histry">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+
+                        <div class="col-md-7">
+                            <div class="sidebar">
+                                <div class="widget">
+                                    <div class="widget-title">
+                                        <h3>Recent Result</h3>
+                                        <div class="recent-navigation arrow-style">
+                                            <button class="recent-re-next"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                                            <button class="recent-re-prev"><i class="fa fa-chevron-right" aria-hidden="true"></i></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="widget-container">
+                                        <div class="owl-carousel" id="recent-result">
+                                            <div class="item">
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div><!-- end of /. item -->
+                                            <div class="item">
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="recent-items">
+                                                    <a href="#">
+                                                        <h4>06 Aug, 2016</h4>
+                                                        <div class="result-coutry-area">
+                                                            <div class="result-item">
+                                                                <p>Portogal</p>
+                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <p>1-0</p>
+                                                            </div>
+                                                            <div class="result-item">
+                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
+                                                                <p>France</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div><!-- end of /. item -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="photos">
+                                <!-- FOREACH -->
+                                <div class="player-total-details">
+                                    <div class="player-name-img player-inner">
+                                        <div class="profile-image">
+                                            <a href="#"><img src="~/sport_template-master/images/player/8.jpg" width="70" height="70" alt=""></a>
+                                        </div>
+                                        <div class="profile-caption profile-caption1">
+                                            <h3>#20</h3>
+                                            <p>Henry Anderbal</p>
+                                        </div>
+                                    </div>
+                                    <div class="player-country player-inner">
+                                        <div class="profile-image">
+                                            <a href="#"><img src="~/sport_template-master/images/player-country4.png" width="36" height="36" alt=""></a>
+                                        </div>
+                                        <div class="profile-caption profile-caption2">
+                                            <p>IE</p>
+                                        </div>
+                                    </div>
+                                    <div class="player-position player-inner">
+                                        <h3>Defensive <i class="fa fa-street-view" aria-hidden="true"></i></h3>
+                                    </div>
+                                </div>
+                                <!-- FOREACH -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/sport_template-master/js/vendor/bootstrap.min.js"></script>
+    <!-- jQuery Ui -->
+    <script src="~/sport_template-master/js/jquery-ui-min.js"></script>
+    <!-- Owl -->
+    <script src="~/sport_template-master/js/owl.carousel.min.js"></script>
+    <!-- Downcount -->
+    <script src="~/sport_template-master/js/jquery.downCount.js"></script>
+    <!-- Bootsnav -->
+    <script src="~/sport_template-master/js/bootsnav.js"></script>
+    <!-- Isotope -->
+    <script src="~/sport_template-master/js/isotope.pkgd.min.js"></script>
+    <!-- prettyphoto -->
+    <script src="~/sport_template-master/js/jquery.prettyPhoto.js"></script>
+    <!-- tweetie -->
+    <script src="~/sport_template-master/scripts/Tweetie/tweetie.min.js"></script>
+    <!-- appear -->
+    <script src="~/sport_template-master/js/jquery.appear.js"></script>
+    <!-- waypoint -->
+    <script src="~/sport_template-master/js/waypoints.min.js"></script>
+    <!-- progress bar -->
+    <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
+    <!-- custom -->
+    <script src="~/sport_template-master/js/custom.js"></script>
+</body>
+</html>

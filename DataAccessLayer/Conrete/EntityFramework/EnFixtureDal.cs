@@ -42,5 +42,40 @@ namespace DataAccessLayer.Conrete.EntityFramework
                   .Include(f => f.AwayTeam)
                   .ToList();
         }
+
+
+        public List<List<Fixture>> GetFixtureWithTeamsGroupByWeek()
+        {
+            using var context = new EnterScoreXContext();
+            var pageCount = (context.Teams.Count() - 1) * 2;
+
+            // Retrieve fixtures with related entities from the database
+            var fixtures = context.Fixtures
+                .Include(f => f.HomeTeam)
+                .Include(f => f.AwayTeam)
+                .Include(f => f.Matches)
+                .Include(f => f.HomeTeam.Coach)
+                .Include(f => f.AwayTeam.Coach)
+                .ToList();
+
+            // Group the fixtures by Week in memory
+            var groupedFixtures = fixtures
+                .GroupBy(f => f.Week)
+                .Take(pageCount)
+                .Select(group => group.ToList())
+                .ToList();
+
+            // Ensure that the list contains exactly 10 weeks
+            while (groupedFixtures.Count < pageCount)
+            {
+                groupedFixtures.Add(new List<Fixture>());
+            }
+
+            return groupedFixtures;
+        }
+
+
+
+
     }
 }

@@ -57,9 +57,6 @@ namespace EnterScore.Areas.Admin.Controllers
 
 
 
-
-
-
         public async Task<IActionResult> DeleteReferee(int id)
         {
             var value = _refereeService.TGetById(id);
@@ -86,6 +83,22 @@ namespace EnterScore.Areas.Admin.Controllers
             await GenerateSignedUrl(value);
             return View(value);
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateReferee(Referee p)
+        {
+            if (p.Photo != null)
+            {
+                await ReplacePhoto(p);
+            }
+            else
+            {
+                var existingReferee = _refereeService.TGetById(p.RefereeID);
+                p.SavedUrl = existingReferee.SavedUrl;
+                p.SavedFileName = existingReferee.SavedFileName;
+            }
+            _refereeService.TUpdate(p);
+            return RedirectToAction("Referee", "Admin");
+        }
 
 
 
@@ -103,22 +116,6 @@ namespace EnterScore.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateReferee(Referee p)
-        {
-            if (p.Photo != null)
-            {
-                await ReplacePhoto(p);
-            }
-            else
-            {
-                var existingReferee = _refereeService.TGetById(p.RefereeID);
-                p.SavedUrl = existingReferee.SavedUrl;
-                p.SavedFileName = existingReferee.SavedFileName;
-            }
-            _refereeService.TUpdate(p);
-            return RedirectToAction("Referee", "Admin");
-        }
 
 
         public async Task GenerateSignedUrl(Referee referee)
