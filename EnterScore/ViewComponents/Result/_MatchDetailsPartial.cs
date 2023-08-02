@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace EnterScore.ViewComponents.Result
 {
 
-    public class _MatchTodayPartial : ViewComponent
+    public class _MatchDetailsPartial : ViewComponent
     {
         private readonly IMatchService _matchService;
         private readonly ICloudStorageService _cloudStorageService;
 
-        public _MatchTodayPartial(IMatchService matchService, ICloudStorageService cloudStorageService)
+        public _MatchDetailsPartial(IMatchService matchService, ICloudStorageService cloudStorageService)
         {
             _matchService = matchService;
             _cloudStorageService = cloudStorageService;

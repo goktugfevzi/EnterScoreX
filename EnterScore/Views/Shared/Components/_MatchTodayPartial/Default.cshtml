@@ -1,23 +1,45 @@
-﻿@model EntityLayer.Concrete.Match
+﻿@using EntityLayer.Concrete;
+@model EntityLayer.Concrete.Match
 
-
+@{
+    var players = TempData["Players"] as List<Player>;
+}
 <div class="match-today-section world-cup-match">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="world-cup-match-title gallery">
                     <h1>Premier Leauge</h1>
-                    <p><a href="#">@Model.Fixture.Week, @Model.Stadium.City</a></p>
+                    <p>@Model.Fixture.Week. Hafta </p>
+                    <p>@Model.Stadium.City</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="match-left d-flex align-items-center">
                     <div class="today-team-img teamsname">
-                        <a href="#"><img src="@Model.HomeTeam.SignedUrl" width="55" height="53" alt=""></a>
+                        <a href="#"><img src="@Model.HomeTeam.SignedUrl" width="50" height="47"></a>
                     </div>
                     <div class="today-team-name teamsname">
                         <h1>@Model.HomeTeam.Name</h1>
                         <p>@Model.HomeTeam.Coach.Name</p>
+                        <br />
+
+                        @if (Model.Goals != null)
+                        {
+
+                            @foreach (var item in Model.Goals)
+                            {
+                                var player = players.FirstOrDefault(p => p.PlayerID == item.PlayerID);
+                                if (player.TeamID == Model.HomeTeam.TeamID)
+                                {
+
+                                    <span class="goal-time">@item.GoalTime'</span>
+                                    <span class="player-name">@player.Name</span>
+                                    <br />
+                                }
+                            }
+                        }
+
                     </div>
                 </div>
             </div>
@@ -31,9 +53,24 @@
                     <div class="today-team-name teamsname text-right">
                         <h1>@Model.AwayTeam.Name</h1>
                         <p>@Model.AwayTeam.Coach.Name</p>
+                        <br />
+                        @if (Model.Goals != null)
+                        {
+
+                            @foreach (var item in Model.Goals)
+                            {
+                                var player = players.FirstOrDefault(p => p.PlayerID == item.PlayerID);
+                                if (player.TeamID == Model.AwayTeam.TeamID)
+                                {
+                                    <span class="goal-time">@item.GoalTime'</span>
+                                    <span class="player-name">@player.Name</span>
+                                    <br />
+                                }
+                            }
+                        }
                     </div>
                     <div class="today-team-img teamsname">
-                        <a href="#"><img src="@Model.AwayTeam.SignedUrl" width="55" height="53" /></a>
+                        <a href="#"><img src="@Model.AwayTeam.SignedUrl" width="50" height="47" /></a>
                     </div>
                 </div>
             </div>

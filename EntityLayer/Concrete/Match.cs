@@ -47,7 +47,7 @@ namespace EntityLayer.Concrete
         public Fixture Fixture { get; set; }
 
 
-        public List<Goal> Goals { get; set; }
+        public virtual List<Goal> Goals { get; set; }
 
     }
 }

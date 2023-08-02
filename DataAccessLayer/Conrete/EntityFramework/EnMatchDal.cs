@@ -40,6 +40,7 @@ namespace DataAccessLayer.Conrete.EntityFramework
             return context.Matches
                           .Include(x => x.HomeTeam)
                           .Include(x => x.AwayTeam)
+                          .Include(x => x.Goals)
                           .Include(x => x.HomeTeam.Coach)
                           .Include(x => x.AwayTeam.Coach)
                           .FirstOrDefault(x => x.MatchID == MatchID);
@@ -50,6 +51,7 @@ namespace DataAccessLayer.Conrete.EntityFramework
             return context.Matches
                           .Include(x => x.HomeTeam)
                           .Include(x => x.AwayTeam)
+                          .Include(x => x.Goals)
                           .Include(x => x.HomeTeam.Coach)
                           .Include(x => x.AwayTeam.Coach)
                           .Include(x => x.HomeTeam.Stadium)
@@ -57,7 +59,7 @@ namespace DataAccessLayer.Conrete.EntityFramework
                           .Include(x => x.Fixture)
                           .FirstOrDefault(x => x.MatchID == MatchID);
         }
-     
+
 
 
 
