@@ -13,7 +13,7 @@ namespace DataAccessLayer.Conrete.EntityFramework
 {
     public class EnPlayerDal : GenericRepository<Player>, IPlayerDal
     {
-       
+
 
         public List<Player> GetPlayersByTeamID(int id)
         {
@@ -21,7 +21,11 @@ namespace DataAccessLayer.Conrete.EntityFramework
             return context.Players.Where(x => x.TeamID == id).ToList();
         }
 
+        public Player GetPlayerWithTeam(int id)
+        {
+            var context = new EnterScoreXContext();
+            return context.Players.Include(x => x.Team).Where(x => x.PlayerID == id).FirstOrDefault();
+        }
 
-       
     }
 }

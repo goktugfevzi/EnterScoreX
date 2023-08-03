@@ -21,6 +21,5 @@ namespace DataAccessLayer.Conrete.EntityFramework
                           .OrderByDescending(x => x.Points)
                           .ToList();
         }
-
     }
 }

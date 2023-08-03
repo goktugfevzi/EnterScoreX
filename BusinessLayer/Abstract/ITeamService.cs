@@ -11,6 +11,7 @@ namespace BusinessLayer.Abstract
     {
         public List<Team> TGetTeamsWithCoach();
         public List<Team> TGetTeamsWithStatistics();
+        public Team TGetTeamWithCoachById(int id);
 
 
     }

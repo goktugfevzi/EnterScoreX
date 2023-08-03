@@ -100,10 +100,16 @@ namespace EnterScore.Areas.Admin.Controllers
                     homeTeamPassSuccess = random.Next(52, 63);
                     awayTeamPassSuccess = 100 - homeTeamPassSuccess;
                 }
-                else
+                else if (homeTeamGoals < awayTeamGoals)
                 {
                     awayTeamPassSuccess = random.Next(52, 63);
                     homeTeamPassSuccess = 100 - awayTeamPassSuccess;
+                }
+                else
+                {
+                    homeTeamPassSuccess = random.Next(46, 54);
+                    awayTeamPassSuccess = 100 - homeTeamPassSuccess;
+
                 }
 
                 int homeTeamAerialDualSuccess;
@@ -113,10 +119,15 @@ namespace EnterScore.Areas.Admin.Controllers
                     homeTeamAerialDualSuccess = random.Next(55, 67);
                     awayTeamAerialDualSuccess = 100 - homeTeamAerialDualSuccess;
                 }
-                else
+                else if (homeTeamPassSuccess < awayTeamPassSuccess)
                 {
                     awayTeamAerialDualSuccess = random.Next(55, 67);
                     homeTeamAerialDualSuccess = 100 - awayTeamAerialDualSuccess;
+                }
+                else
+                {
+                    homeTeamAerialDualSuccess = random.Next(48, 55);
+                    awayTeamAerialDualSuccess = 100 - homeTeamAerialDualSuccess;
                 }
 
                 Match match = new Match

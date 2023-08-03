@@ -24,11 +24,11 @@ namespace EnterScore.ViewComponents.Profiles
         public async Task<IViewComponentResult> InvokeAsync()
         {
             int id = (int)TempData["id"];
-            var value = _playerService.TGetById(id);
+            var value = _playerService.TGetPlayerWithTeam(id);
             await GenerateSignedUrl(value);
             return View(value);
         }
-      
+
         public async Task GenerateSignedUrl(Player p)
         {
             if (!string.IsNullOrWhiteSpace(p.SavedFileName))

@@ -9,8 +9,11 @@ namespace DataAccessLayer.Abstract
 {
     public interface IPlayerDal : IGenericDal<Player>
     {
-        List<Player> GetPlayersByTeamID(int id);
+        public List<Player> GetPlayersByTeamID(int id);
+        public Player GetPlayerWithTeam(int id);
 
-    
+
+
+
     }
 }

@@ -11,6 +11,7 @@ namespace DataAccessLayer.Abstract
     {
         public List<Team> GetTeamsWithCoach();
         public List<Team> GetTeamsWithStatistics();
+        public Team GetTeamWithCoachById(int id);
 
     }
 }

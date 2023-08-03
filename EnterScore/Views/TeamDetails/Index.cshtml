@@ -1,31 +1,41 @@
-﻿@{
+﻿@model EntityLayer.Concrete.Team
+
+@{
     Layout = null;
+    int count = 0;
 }
 
 <!doctype html>
 <html class="no-js" lang="en">
+@await Component.InvokeAsync("_HeadPartial")
 
-@*@await Component.InvokeAsync("_HeadPartial")*@
 <head>
-    <!-- meta -->
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EnterScore</title>
+    <link rel="shortcut icon" href="~/HTML/images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/HTML/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/HTML/images/apple-touch-icon-114x114.png">
 
-    <!-- web site title -->
-    <title>EnterScoreX</title>
 
-    <!-- favicon -->
-    <link rel="icon" href="~/sport_template-master/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="~/HTML/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/HTML/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/HTML/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/HTML/css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="~/HTML/css/magnific-popup.css">
 
-    <!-- style -->
-    <link rel="stylesheet" href="~/sport_template-master/css/style.css">
 
-    <!--[if lt IE 9]>
-        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
-    <![endif]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="~/HTML/css/style.css" />
+
+
+
+    <script type="text/javascript" src="~/HTML/js/modernizr.min.js"></script>
+
 </head>
+
 <body>
     <!-- START PRELOADER -->
     <div id="preloader">
@@ -44,18 +54,10 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="section-title profile-title">
-                            <h1>Legacy</h1>
+                            <h1>@Model.Name</h1>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="pagination-area">
-                            <ul>
-                                <li><a href="#">Home<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                <li><a href="#">Bread<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                <li class="active"><a href="#">Crumbs</a></li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -67,14 +69,25 @@
                     <div class="inner-container">
                         <div class="col-sm-2">
                             <div class="club-histry-img">
-                                <a href="#"><img class="~/sport_template-master/img-responsive" src="images/club-img.png" width="169" height="222" alt=""></a>
+                                <a href="#"><img class="~/sport_template-master/img-responsive" src="@Model.SignedUrl" width="169" height="169" alt=""></a>
                             </div>
                         </div>
                         <div class="col-sm-5">
                             <div class="club-histry">
                                 <h1>Club <b>History</b></h1>
-                                <p>Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. </p>
-                                <p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend </p>
+                                @foreach (var item in ViewBag.lastMatches)
+                                {
+                                    <div class="match-container">
+                                        <a href="/Result/Index/@item.MatchID">
+                                            <span>
+                                                @item.HomeTeam.Name @item.HomeTeamGoals-@item.AwayTeamGoals
+                                                @item.AwayTeam.Name
+                                            </span>
+                                        </a>
+                                        <span>@item.Fixture.Week. Hafta</span>
+                                    </div>
+                                    <hr class="match-separator"> <!-- Maçlar arasındaki ayırıcı -->
+                                }
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -83,28 +96,18 @@
                             </div>
                             <div class="club-details">
                                 <div class="club-name club-details-inner">
-                                    <h1>Legacy (Italy)</h1>
+                                    <h1>@Model.Name</h1>
                                     <p>Football Club</p>
                                 </div>
                                 <div class="coach-name club-details-inner">
                                     <h1>Coach</h1>
-                                    <p>Zinedine Zidane</p>
-                                </div>
-                            </div>
-                            <div class="club-details">
-                                <div class="start-time club-details-inner">
-                                    <h1>Established</h1>
-                                    <p>Since 1993</p>
-                                </div>
-                                <div class="president-name club-details-inner">
-                                    <h1>Curent President</h1>
-                                    <p>Jose Angel Sanchez</p>
+                                    <p>@Model.Coach.Name</p>
                                 </div>
                             </div>
                             <div class="club-details">
                                 <div class="stadium-name club-details-inner">
                                     <h1>Arena / Stadium</h1>
-                                    <p>Santiago Bernabeu</p>
+                                    <p>@Model.Stadium.Name</p>
                                 </div>
                                 <div class="club-social club-details-inner">
                                     <h1>Social</h1>
@@ -123,204 +126,68 @@
         </div>
 
         <div class="club-play-histry">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-9">
 
-                        <div class="col-md-7">
-                            <div class="sidebar">
-                                <div class="widget">
-                                    <div class="widget-title">
-                                        <h3>Recent Result</h3>
-                                        <div class="recent-navigation arrow-style">
-                                            <button class="recent-re-next"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-                                            <button class="recent-re-prev"><i class="fa fa-chevron-right" aria-hidden="true"></i></i></button>
+            <div class="section singlepage">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-12">
+
+                            <div class="team-tab" data-example-id="togglable-tabs">
+
+                                <div id="myTabContent" class="tab-content tab-team tab-team-bg">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="primary" aria-labelledBy="primary-tab">
+                                        <div class="teams">
+                                            <div class="nav-team" id="primary-nav">
+                                                @foreach (var item in ViewBag.players)
+                                                {
+                                                    count++;
+                                                    if (count == 1)
+                                                    {
+
+                                                        <div class="position active">
+                                                            <a title=""><span class="@item.Player.Position.Name.ToLower()">@item.Player.Position.Name.ToUpper()</span> @count. @item.Player.Name</a>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="position">
+                                                            <a title=""><span class="@item.Player.Position.Name.ToLower()">@item.Player.Position.Name.ToUpper()</span> @count. @item.Player.Name</a>
+                                                        </div>
+                                                    }
+
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="widget-container">
-                                        <div class="owl-carousel" id="recent-result">
-                                            <div class="item">
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
+                                        <div class="teams-caro">
+                                            <div id="primary-team-caro" class="owl-carousel owl-theme">
+                                                @foreach (var item in ViewBag.players)
+                                                {
+                                                    <div class="item">
+                                                        <div class="teams-image">
+                                                            <img src="@item.Player.SignedUrl" class="img-responsive" />
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
+                                                        <div class="teams-description">
+                                                            <p><span class="title">NATIONAL : </span>@item.Player.Nationality</p>
+                                                            <p><span class="title">DATE OF BIRTH : </span>@item.Player.BirthDate</p>
+                                                            <p><span class="title">HEIGHT : </span>@item.Player.Height cm</p>
+                                                            <p><span class="title">WEIGHT : </span>@item.Player.Weight kg</p>
+                                                            <p><span class="title">GOAL : </span>@item.GoalScore</p>
+                                                            <p><span class="title">ASIST : </span>@item.AsistScore</p>
+                                                            <p><span class="title">INFORMATION </span></p>
+                                                            <p class="font-normal">@item.Player.Description</p>
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div><!-- end of /. item -->
-                                            <div class="item">
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="recent-items">
-                                                    <a href="#">
-                                                        <h4>06 Aug, 2016</h4>
-                                                        <div class="result-coutry-area">
-                                                            <div class="result-item">
-                                                                <p>Portogal</p>
-                                                                <img src="~/sport_template-master/images/flag1.png" alt="" />
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <p>1-0</p>
-                                                            </div>
-                                                            <div class="result-item">
-                                                                <img src="~/sport_template-master/images/flag2.png" alt="" />
-                                                                <p>France</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div><!-- end of /. item -->
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
+                                        <div class="clearfix"></div>
+                                        }
+
                                     </div>
+
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="photos">
-                                <!-- FOREACH -->
-                                <div class="player-total-details">
-                                    <div class="player-name-img player-inner">
-                                        <div class="profile-image">
-                                            <a href="#"><img src="~/sport_template-master/images/player/8.jpg" width="70" height="70" alt=""></a>
-                                        </div>
-                                        <div class="profile-caption profile-caption1">
-                                            <h3>#20</h3>
-                                            <p>Henry Anderbal</p>
-                                        </div>
-                                    </div>
-                                    <div class="player-country player-inner">
-                                        <div class="profile-image">
-                                            <a href="#"><img src="~/sport_template-master/images/player-country4.png" width="36" height="36" alt=""></a>
-                                        </div>
-                                        <div class="profile-caption profile-caption2">
-                                            <p>IE</p>
-                                        </div>
-                                    </div>
-                                    <div class="player-position player-inner">
-                                        <h3>Defensive <i class="fa fa-street-view" aria-hidden="true"></i></h3>
-                                    </div>
-                                </div>
-                                <!-- FOREACH -->
-
                             </div>
                         </div>
                     </div>
@@ -328,6 +195,28 @@
             </div>
         </div>
     </div>
+    <style>
+        .match-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px; /* Azaltılan boşluk */
+        }
+
+            .match-container a {
+                flex: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+        .match-separator {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 4px 0; /* Alt çizgi boşluğu */
+        }
+    </style>
+
 
     <script src="~/sport_template-master/js/vendor/jquery-1.12.4.min.js"></script>
     <!-- Bootstrap -->
@@ -354,5 +243,16 @@
     <script src="~/sport_template-master/js/jQuery-plugin-progressbar.js"></script>
     <!-- custom -->
     <script src="~/sport_template-master/js/custom.js"></script>
+
+    <script type="text/javascript" src="~/HTML/js/jquery.min.js"></script>
+    <script type='text/javascript' src='https://maps.google.com/maps/api/js?sensor=false&#038;ver=4.1.5'></script>
+    <script type='text/javascript' src='~/HTML/js/jqBootstrapValidation.js'></script>
+    <script type="text/javascript" src="~/HTML/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/HTML/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/HTML/js/bootstrap-hover-dropdown.min.js"></script>
+    <script type="text/javascript" src="~/HTML/js/jquery.magnific-popup.min.js"></script>
+
+    <script type="text/javascript" src="~/HTML/js/script.js"></script>
+
 </body>
 </html>

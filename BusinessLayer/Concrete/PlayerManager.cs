@@ -20,12 +20,12 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(Player t)
         {
-           _playerDal.Delete(t);
+            _playerDal.Delete(t);
         }
 
         public Player TGetById(int id)
         {
-            return _playerDal.GetById(id);  
+            return _playerDal.GetById(id);
         }
 
         public List<Player> TGetListAll()
@@ -33,14 +33,17 @@ namespace BusinessLayer.Concrete
             return _playerDal.GetListAll();
         }
 
-       
+
 
         public List<Player> TGetPlayersByTeamID(int id)
         {
             return _playerDal.GetPlayersByTeamID(id);
         }
 
-      
+        public Player TGetPlayerWithTeam(int id)
+        {
+            return _playerDal.GetPlayerWithTeam(id);
+        }
 
         public void TInsert(Player t)
         {
@@ -49,7 +52,7 @@ namespace BusinessLayer.Concrete
 
         public void TUpdate(Player t)
         {
-          _playerDal.Update(t);
+            _playerDal.Update(t);
         }
     }
 }

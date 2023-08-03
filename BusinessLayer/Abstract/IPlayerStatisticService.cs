@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IPlayerStatisticService : IGenericService<PlayerStatistic>
     {
+        public List<PlayerStatistic> TGetTeamsWithStatistics(int id);
+
     }
 }

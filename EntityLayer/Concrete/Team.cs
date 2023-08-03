@@ -35,5 +35,6 @@ namespace EntityLayer.Concrete
         public virtual ICollection<Goal> GoalForTeam { get; set; }
         public virtual ICollection<Goal> GoalAgainstTeam { get; set; }
         public List<TeamStatistic> Statistics { get; set; }
+        public List<Player> Players { get; set; }
     }
 }

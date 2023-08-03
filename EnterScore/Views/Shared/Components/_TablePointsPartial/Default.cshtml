@@ -31,7 +31,7 @@
                                     @*    var team = item.Team.where(s => s.TeamID;*@
                                     <tr>
                                         <th data-th="Group A" width="20%" scope="row">
-                                            <img style="width:60px; height:60px" src="@item.Team.SignedUrl" />
+                                            <a href="/TeamDetails/Index/@item.TeamID"> <img style="width:60px; height:60px" src="@item.Team.SignedUrl" /></a>
                                             <span>@item.Team.Name</span>
                                         </th>
                                         <td data-th="Playered" width="10%" class="text-center">@item.PlayedCount</td>

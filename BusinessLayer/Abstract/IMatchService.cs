@@ -11,6 +11,7 @@ namespace BusinessLayer.Abstract
     {
         public List<Match> TGetMatchWithTeams();
         public List<Match> TGetMatchWithAllDetails();
+        public List<Match> TGetTeamLastMatches(int id);
         public Match TGetMatchWithTeamByID(int MatchID);
         public Match TGetMatchWithAllDetailsByID(int MatchID);
 

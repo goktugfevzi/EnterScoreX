@@ -20,17 +20,22 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(PlayerStatistic t)
         {
-           _playerStatisticDal.Delete(t);   
+            _playerStatisticDal.Delete(t);
         }
 
         public PlayerStatistic TGetById(int id)
         {
-           return _playerStatisticDal.GetById(id);
+            return _playerStatisticDal.GetById(id);
         }
 
         public List<PlayerStatistic> TGetListAll()
         {
-           return _playerStatisticDal.GetListAll();
+            return _playerStatisticDal.GetListAll();
+        }
+
+        public List<PlayerStatistic> TGetTeamsWithStatistics(int id)
+        {
+            return _playerStatisticDal.GetPlayerByTeamID(id);
         }
 
         public void TInsert(PlayerStatistic t)

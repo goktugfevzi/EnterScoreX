@@ -13,5 +13,6 @@ namespace DataAccessLayer.Abstract
         public List<Match> GetMatchWithAllDetails();
         public Match GetMatchWithTeamByID(int MatchID);
         public Match GetMatchWithAllDetailsByID(int MatchID);
+        public List<Match> GetTeamLastMatches(int id);
     }
 }

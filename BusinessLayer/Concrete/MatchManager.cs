@@ -55,6 +55,9 @@ namespace BusinessLayer.Concrete
             _matchDal.Update(t);
         }
 
-      
+        public List<Match> TGetTeamLastMatches(int id)
+        {
+            return _matchDal.GetTeamLastMatches(id);
+        }
     }
 }

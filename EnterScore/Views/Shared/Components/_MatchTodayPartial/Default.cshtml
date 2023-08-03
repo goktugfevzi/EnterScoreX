@@ -17,10 +17,12 @@
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="match-left d-flex align-items-center">
                     <div class="today-team-img teamsname">
-                        <a href="#"><img src="@Model.HomeTeam.SignedUrl" width="50" height="47"></a>
+                        <a href="/TeamDetails/Index/@Model.HomeTeam.TeamID"><img src="@Model.HomeTeam.SignedUrl" width="50" height="47"></a>
                     </div>
                     <div class="today-team-name teamsname">
-                        <h1>@Model.HomeTeam.Name</h1>
+                        <a href="/TeamDetails/Index/@Model.HomeTeam.TeamID">
+                            <h1>@Model.HomeTeam.Name</h1>
+                        </a>
                         <p>@Model.HomeTeam.Coach.Name</p>
                         <br />
 
@@ -51,7 +53,9 @@
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="match-right d-flex align-items-center">
                     <div class="today-team-name teamsname text-right">
-                        <h1>@Model.AwayTeam.Name</h1>
+                        <a href="/TeamDetails/Index/@Model.AwayTeam.TeamID">
+                            <h1>@Model.AwayTeam.Name</h1>
+                        </a>
                         <p>@Model.AwayTeam.Coach.Name</p>
                         <br />
                         @if (Model.Goals != null)
@@ -70,7 +74,7 @@
                         }
                     </div>
                     <div class="today-team-img teamsname">
-                        <a href="#"><img src="@Model.AwayTeam.SignedUrl" width="50" height="47" /></a>
+                        <a href="/TeamDetails/Index/@Model.AwayTeam.TeamID"><img src="@Model.AwayTeam.SignedUrl" width="50" height="47" /></a>
                     </div>
                 </div>
             </div>

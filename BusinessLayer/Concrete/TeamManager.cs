@@ -51,5 +51,10 @@ namespace BusinessLayer.Concrete
         {
             return _teamDal.GetTeamsWithStatistics();
         }
+
+        public Team TGetTeamWithCoachById(int id)
+        {
+            return _teamDal.GetTeamWithCoachById(id);
+        }
     }
 }
