@@ -1,0 +1,126 @@
+CREATE TRIGGER MacEklendi
+ON Matches
+FOR INSERT AS
+BEGIN
+    DECLARE @homeTeamID INT
+    DECLARE @awayTeamID INT
+
+    SELECT @homeTeamID = HomeTeamID, @awayTeamID = AwayTeamID FROM inserted
+
+    -- Ev sahibi takım gol sayısı
+    DECLARE @homeGoals INT
+    SELECT @homeGoals = ISNULL(SUM(ISNULL(HomeTeamGoals, 0)), 0)
+    FROM inserted
+
+    -- Misafir takım gol sayısı
+    DECLARE @awayGoals INT
+    SELECT @awayGoals = ISNULL(SUM(ISNULL(AwayTeamGoals, 0)), 0)
+    FROM inserted
+
+    -- Update HomeTeam statistics
+    IF EXISTS (SELECT 1 FROM TeamStatistics WHERE TeamID = @homeTeamID)
+    BEGIN
+        UPDATE TeamStatistics SET 
+            GoalsFor = GoalsFor + @homeGoals, 
+            GoalsAgainst = GoalsAgainst + @awayGoals,
+            PlayedCount = PlayedCount + 1,
+            WinCount = WinCount + CASE WHEN @homeGoals > @awayGoals THEN 1 ELSE 0 END,
+            LoseCount = LoseCount + CASE WHEN @homeGoals < @awayGoals THEN 1 ELSE 0 END,
+            DrawCount = DrawCount + CASE WHEN @homeGoals = @awayGoals THEN 1 ELSE 0 END,
+            Points = Points + 
+                CASE 
+                    WHEN @homeGoals > @awayGoals THEN 3 
+                    WHEN @homeGoals = @awayGoals THEN 1
+                    ELSE 0
+                END,
+            Average = CAST((GoalsFor + @homeGoals - GoalsAgainst - @awayGoals) AS FLOAT) / (PlayedCount + 1)
+        WHERE TeamID = @homeTeamID;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO TeamStatistics ([GoalsFor], [GoalsAgainst], [Points], [WinCount], [LoseCount], [PlayedCount], [Average], [TeamID], [DrawCount])
+        VALUES (@homeGoals, @awayGoals, 
+            CASE WHEN @homeGoals > @awayGoals THEN 3 
+                 WHEN @homeGoals = @awayGoals THEN 1
+                 ELSE 0
+            END,
+            CASE WHEN @homeGoals > @awayGoals THEN 1 ELSE 0 END,
+            CASE WHEN @homeGoals < @awayGoals THEN 1 ELSE 0 END,
+            1, @homeGoals - @awayGoals, @homeTeamID,
+            CASE WHEN @homeGoals = @awayGoals THEN 1 ELSE 0 END);
+    END
+
+    -- Update AwayTeam statistics
+    IF EXISTS (SELECT 1 FROM TeamStatistics WHERE TeamID = @awayTeamID)
+    BEGIN
+        UPDATE TeamStatistics SET 
+            GoalsFor = GoalsFor + @awayGoals, 
+            GoalsAgainst = GoalsAgainst + @homeGoals,
+            PlayedCount = PlayedCount + 1,
+            WinCount = WinCount + CASE WHEN @awayGoals > @homeGoals THEN 1 ELSE 0 END,
+            LoseCount = LoseCount + CASE WHEN @awayGoals < @homeGoals THEN 1 ELSE 0 END,
+            DrawCount = DrawCount + CASE WHEN @awayGoals = @homeGoals THEN 1 ELSE 0 END,
+            Points = Points + 
+                CASE 
+                    WHEN @awayGoals > @homeGoals THEN 3 
+                    WHEN @awayGoals = @homeGoals THEN 1
+                    ELSE 0
+                END,
+            Average = CAST((GoalsFor + @awayGoals - GoalsAgainst - @homeGoals) AS FLOAT) / (PlayedCount + 1)
+        WHERE TeamID = @awayTeamID;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO TeamStatistics ([GoalsFor], [GoalsAgainst], [Points], [WinCount], [LoseCount], [PlayedCount], [Average], [TeamID], [DrawCount])
+        VALUES (@awayGoals, @homeGoals, 
+            CASE WHEN @awayGoals > @homeGoals THEN 3 
+                 WHEN @awayGoals = @homeGoals THEN 1
+                 ELSE 0
+            END,
+            CASE WHEN @awayGoals > @homeGoals THEN 1 ELSE 0 END,
+            CASE WHEN @awayGoals < @homeGoals THEN 1 ELSE 0 END,
+            1, @awayGoals - @homeGoals, @awayTeamID,
+            CASE WHEN @awayGoals = @homeGoals THEN 1 ELSE 0 END);
+    END
+END
+
+
+_____________________________________________________________________________________________________________
+
+
+
+CREATE TRIGGER GolAtildi 
+ON Goals
+FOR INSERT AS
+BEGIN
+    DECLARE @OYUNCUID INT
+
+    SELECT @OYUNCUID = inserted.PlayerID FROM inserted
+
+    -- Update the GoalScore for the player in PlayerStatistics table
+    IF (SELECT COUNT(*) FROM PlayerStatistics WHERE PlayerID = @OYUNCUID) > 0
+    BEGIN
+        UPDATE PlayerStatistics SET GoalScore = GoalScore + 1 WHERE PlayerID = @OYUNCUID
+    END
+    ELSE 
+    BEGIN
+        INSERT INTO PlayerStatistics (PlayerID, GoalScore, AsistScore) VALUES (@OYUNCUID, 1, 0)
+    END
+
+    -- Update the AsistScore for a randomly selected player from Players table
+    DECLARE @RANDOM_PLAYERID INT
+    SELECT TOP 1 @RANDOM_PLAYERID = PlayerID
+    FROM Players
+    WHERE TeamID = (SELECT TeamID FROM Players WHERE PlayerID = @OYUNCUID)
+      AND PlayerID <> @OYUNCUID  -- Make sure not to select the same player
+    ORDER BY NEWID()
+
+    IF (SELECT COUNT(*) FROM PlayerStatistics WHERE PlayerID = @RANDOM_PLAYERID) > 0
+    BEGIN
+        UPDATE PlayerStatistics SET AsistScore = AsistScore + 1 WHERE PlayerID = @RANDOM_PLAYERID
+    END
+    ELSE 
+    BEGIN
+        INSERT INTO PlayerStatistics (PlayerID, GoalScore, AsistScore) VALUES (@RANDOM_PLAYERID, 0, 1)
+    END
+END

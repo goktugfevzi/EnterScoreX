@@ -54,7 +54,7 @@ namespace DataAccessLayer.Conrete.EntityFramework
                               .Include(x => x.Fixture)
                               .FirstOrDefault(x => x.MatchID == MatchID);
 
-            match?.Goals.OrderBy(goal => goal.GoalTime);
+            match.Goals = match.Goals.OrderBy(goal => goal.GoalTime).ToList();
 
             return match;
         }
@@ -73,9 +73,6 @@ namespace DataAccessLayer.Conrete.EntityFramework
 
             return lastMatches;
         }
-
-
-
 
 
     }

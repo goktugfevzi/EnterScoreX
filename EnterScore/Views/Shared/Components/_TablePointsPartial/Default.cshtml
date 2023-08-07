@@ -28,7 +28,7 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    @*    var team = item.Team.where(s => s.TeamID;*@
+                                    var average = @item.GoalsFor - @item.GoalsAgainst;
                                     <tr>
                                         <th data-th="Group A" width="20%" scope="row">
                                             <a href="/TeamDetails/Index/@item.TeamID"> <img style="width:60px; height:60px" src="@item.Team.SignedUrl" /></a>
@@ -40,7 +40,7 @@
                                         <td data-th="Lost" width="10%" class="text-center">@item.LoseCount</td>
                                         <td data-th="For" width="10%" class="text-center">@item.GoalsFor</td>
                                         <td data-th="Against" width="10%" class="text-center">@item.GoalsAgainst</td>
-                                        <td data-th="Goal dif." width="10%" class="text-center">@item.Average</td>
+                                        <td data-th="Goal dif." width="10%" class="text-center">@average</td>
                                         <td data-th="Points" width="10%" class="text-center">@item.Points</td>
                                     </tr>
                                 }

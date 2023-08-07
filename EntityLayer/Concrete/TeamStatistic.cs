@@ -9,9 +9,9 @@ namespace EntityLayer.Concrete
     public class TeamStatistic
     {
         public int TeamStatisticID { get; set; }
-        public int GoalsFor { get; set; }
-        public int GoalsAgainst { get; set; }
-        public int Points { get; set; }
+        public int? GoalsFor { get; set; }
+        public int? GoalsAgainst { get; set; }
+        public int? Points { get; set; }
         public int? PlayedCount { get; set; }
         public int? WinCount { get; set; }
         public int? LoseCount { get; set; }
