@@ -23,7 +23,7 @@ namespace EnterScore.ViewComponents.Profiles
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            int id = (int)TempData["id"];
+            int id = (int)TempData["id2"];
             var value = _playerService.TGetPlayerWithTeam(id);
             await GenerateSignedUrl(value);
             return View(value);

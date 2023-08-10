@@ -16,14 +16,16 @@ namespace EnterScore.Areas.Admin.Controllers
         private readonly ITeamService _teamService;
         private readonly IGoalService _goalService;
         private readonly IPlayerService _playerService;
+        private readonly IRefereeService _refereeService;
 
-        public MatchController(IMatchService matchService, IFixtureService fixtureService, ITeamService teamService, IGoalService goalService, IPlayerService playerService)
+        public MatchController(IMatchService matchService, IFixtureService fixtureService, ITeamService teamService, IGoalService goalService, IPlayerService playerService, IRefereeService refereeService)
         {
             _matchService = matchService;
             _fixtureService = fixtureService;
             _teamService = teamService;
             _goalService = goalService;
             _playerService = playerService;
+            _refereeService = refereeService;
         }
 
         public IActionResult Index()
@@ -79,6 +81,7 @@ namespace EnterScore.Areas.Admin.Controllers
         }
         private void PlayMatchesForWeek(List<Fixture> weekFixtures)
         {
+            var referees = _refereeService.TGetListAll();
             var random = new Random();
             foreach (var fixture in weekFixtures)
             {
@@ -136,7 +139,7 @@ namespace EnterScore.Areas.Admin.Controllers
                     AwayTeamID = fixture.AwayTeamID,
                     FixtureID = fixture.FixtureID,
                     StadiumID = _teamService.TGetById(fixture.HomeTeamID).StadiumID,
-                    RefereeID = random.Next(1, 5),
+                    RefereeID = referees[random.Next(0, 5)].RefereeID,
                     MatchID = 0,//IDENTITY HATASI FIXTUREDE ALDIĞIMLA AYNI
                     HomeTeamGoals = homeTeamGoals,
                     AwayTeamGoals = awayTeamGoals,
