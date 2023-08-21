@@ -18,15 +18,17 @@ EnterScoreX, bulut depolama sistemleriyle çalışan futbol fikstürü oluştura
 
 <img width="960" alt="ss13" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/19c083e5-ee63-4856-9100-9b4b9125f4ce">
 
-<img width="959" alt="ss1" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/42e6af24-65be-48bd-9e2c-516efffab7db">
+<img width="960" alt="ss1" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/42e6af24-65be-48bd-9e2c-516efffab7db">
 
 <img width="960" alt="ss2" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/6d4069d0-0df0-4ef5-83e3-1cd88cf41604">
 
-![ss4](https://github.com/goktugfevzi/EnterScoreX/assets/64567701/62ee6656-1c9a-4ecb-be1d-ee81f179ba9b)
+<img width="960" alt="ss45" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/62ee6656-1c9a-4ecb-be1d-ee81f179ba9b">
+
+<img width="960" alt="ss4" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/7fa0271b-73f9-41e2-997d-02c476fd4a8c">
 
 <img width="959" alt="ss7" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/a9821d64-13ac-463e-b0a5-911a20d6a2c8">
 
-<img width="954" alt="ss3" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/e0f49a85-95c1-40e8-8fdb-011a66ece685">
+<img width="960" alt="ss3" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/e0f49a85-95c1-40e8-8fdb-011a66ece685">
 
 <img width="960" alt="ss5" src="https://github.com/goktugfevzi/EnterScoreX/assets/64567701/1e97b677-8461-4735-8cfe-c24eab0eea32">
 
@@ -49,11 +51,13 @@ EnterScoreX, bulut depolama sistemleriyle çalışan futbol fikstürü oluştura
 git clone https://github.com/goktugfevzi/EnterScoreX
 ```
 
-Go into the folder where you cloned/downloaded and run:
+Drive Cloud Json Key oluşturun ve Context dosyanızı yapılandırın eğer ki Mssql kullanırsanız yapmanız gereken tek şey Context dosyasındaki context string i değiştirin.
 
-Drive Cloud Json Key oluşturun ve Context dosyanızı yapılandırın eğer ki Mssql kullanırsanız yapmanız gereken tek şey Context dosyasındaki context string i değiştirin
+Eğer ki bir ekip ile çalışıyorsanız oluşturduğunuz Json Key dosyasını ekibiniz ile paylaşıp appsettings üzerindeki yolunu kendilerine göre değiştirmeleri gerekmektedir.
 
+Bu işlemler için makalemi inceleyebilirsiniz.
 
+[Medium Makalesi](https://medium.com/@goktugfevziozcelik/google-cloud-storage-kullan%C4%B1m%C4%B1-246ff44b2791)
 
 
 ## Using
